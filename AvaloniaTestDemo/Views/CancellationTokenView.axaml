@@ -1,0 +1,34 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:CancellationTokenViewModel"
+             x:Class="AvaloniaTestDemo.Views.CancellationTokenView">
+    <Design.DataContext>
+        <vm:CancellationTokenViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="16">
+        <StackPanel Spacing="12">
+            <TextBlock Text="{Binding DisplayName}" FontSize="20" />
+
+            <TextBlock Text="状态：" />
+            <TextBlock Text="{Binding Status}" FontWeight="Bold" />
+
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Height="18" />
+            <TextBlock Text="{Binding Progress}" HorizontalAlignment="Center" />
+
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="Start" Command="{Binding StartCommand}" Width="100" />
+                <Button Content="Cancel" Command="{Binding CancelCommand}" Width="100" />
+            </StackPanel>
+
+            <TextBlock TextWrapping="Wrap">
+                说明：点击 Start 开始一个可取消的异步任务（模拟耗时操作），
+                点击 Cancel 可以取消正在进行的任务；任务完成或取消后会更新状态与进度。
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

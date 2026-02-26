@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:ReactiveViewModel"
+             x:Class="AvaloniaTestDemo.Views.ReactiveView">
+    <Design.DataContext>
+        <vm:ReactiveViewModel />
+    </Design.DataContext>
+    <Grid ShowGridLines="True" RowDefinitions="*,*" ColumnDefinitions="*,*">
+        
+        <StackPanel Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Command="{Binding TimerCommand}" Content="开始倒计时" Width="120" Height="40" Margin="0,0,0,10" />
+            <TextBlock Text="{Binding Time}" FontSize="20" TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
+            <Button Command="{Binding RetryCommand}"  Content="开始测试" Width="100" Height="35" Margin="0,0,0,10" />
+            <ScrollViewer Height="150" Background="AliceBlue" x:Name="LogScroll"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding LogContent}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" Spacing="10">
+            <Button Command="{Binding ShakeCommand}" Content="开启防抖"/>
+            <TextBox Watermark="输入关键词"
+                     Text="{Binding SearchText}" />
+            <TextBlock HorizontalAlignment="Center" Text="{Binding Result}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" Spacing="10" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Text="3s后可再次点击" />
+            <Button Classes="Flat Rounded" IsEnabled="{Binding CanClick}" Command="{Binding ClickCommand}">BUTTON</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

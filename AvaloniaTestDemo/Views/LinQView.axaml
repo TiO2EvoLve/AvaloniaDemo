@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:LinQViewModel"
+             x:Class="AvaloniaTestDemo.Views.LinQView">
+    <Design.DataContext>
+        <vm:LinQViewModel />
+    </Design.DataContext>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
+            <Button Command="{Binding 筛选Command}" Content="筛选" Height="40" Width="80" />
+            <Button Classes="Flat" Command="{Binding  操作Command}" Content="操作" Height="40" Width="80" />
+            <Button Classes="Flat Rounded" Command="{Binding 排序Command}" Content="排序" Height="40"
+                    Width="80" />
+            <Button Classes="Outlined" Command="{Binding 分组Command}" Content="分组" Height="40"
+                    Width="80" />
+            <Button Classes="Basic" Command="{Binding 连接Command}" Content="连接" Height="40"
+                    Width="80" />
+            <Button Classes="Flat Accent" Command="{Binding 统计Command}" Content="统计" Height="40"
+                    Width="80" />
+            <Button Command="{Binding 查找Command}" Content="查找" Height="40" Width="80" />
+            <Button Classes="Flat Danger"  Command="{Binding 转换Command}" Content="转换" Height="40"
+                    Width="80" />
+        </StackPanel>
+    </Grid>
+</UserControl>

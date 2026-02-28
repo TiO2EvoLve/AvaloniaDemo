@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Avalonia.Collections;
-using AvaloniaTestDemo.Models;
 using AvaloniaTestDemo.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
 

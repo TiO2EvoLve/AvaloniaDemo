@@ -1,7 +1,6 @@
 ﻿using System;
 using Avalonia.Collections;
 using Avalonia.Styling;
-using AvaloniaTestDemo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;

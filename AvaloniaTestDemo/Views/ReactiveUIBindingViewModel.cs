@@ -1,5 +1,4 @@
 ﻿
-using AvaloniaTestDemo.Models;
 using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;

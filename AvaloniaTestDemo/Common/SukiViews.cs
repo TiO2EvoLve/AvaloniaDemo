@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
-using AvaloniaTestDemo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
+using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo.Common;
 

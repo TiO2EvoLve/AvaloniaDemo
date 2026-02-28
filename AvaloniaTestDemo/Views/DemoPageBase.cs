@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Material.Icons;
 
-namespace AvaloniaTestDemo.Models;
+namespace AvaloniaTestDemo.Views;
 
 public abstract partial class DemoPageBase(string displayName, MaterialIconKind icon, int index = 0) : ObservableValidator
 {

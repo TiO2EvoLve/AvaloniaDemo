@@ -1,5 +1,5 @@
 ﻿using System;
-using AvaloniaTestDemo.Models;
+using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo.Services;
 

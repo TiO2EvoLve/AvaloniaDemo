@@ -9,7 +9,7 @@ using AvaloniaTestDemo.Services;
 using AvaloniaTestDemo.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Avalonia.Collections;
-using AvaloniaTestDemo.Models;
+using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
 

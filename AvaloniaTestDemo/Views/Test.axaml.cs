@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class FaceRecognition : UserControl
+public partial class Test : UserControl
 {
-    public FaceRecognition()
+    public Test()
     {
         InitializeComponent();
     }

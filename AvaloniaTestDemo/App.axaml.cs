@@ -46,7 +46,7 @@ public class App : Application
             .AddView<SettingView, SettingViewModel>(services)
             .AddView<ReactiveView, ReactiveViewModel>(services)
             .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
-            ;
+            .AddView<Test, TestViewModel>(services);
     }
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)

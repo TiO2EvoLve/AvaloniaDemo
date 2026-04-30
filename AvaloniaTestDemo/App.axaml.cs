@@ -46,7 +46,8 @@ public class App : Application
             .AddView<ReactiveView, ReactiveViewModel>(services)
             .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
             .AddView<Test, TestViewModel>(services)
-            .AddView<BindingView, BindingViewModel>(services);
+            .AddView<BindingView, BindingViewModel>(services)
+            .AddView<StateMachineView, StateMachineViewModel>(services);
     }
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)

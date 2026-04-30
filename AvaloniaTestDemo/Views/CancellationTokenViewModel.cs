@@ -42,6 +42,7 @@ public partial class CancellationTokenViewModel() : DemoPageBase("消息取消",
         catch (OperationCanceledException)
         {
             Status = "已取消";
+            Progress = 0;
         }
         finally
         {

@@ -1,22 +1,14 @@
 ﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
 using ReactiveUI;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class BindingViewModel :  DemoPageBase
+public partial class BindingViewModel() :  DemoPageBase("Binding", MaterialIconKind.LinkVariant)
 {
-    public Dictionary<string, bool> States { get; } = new();
+    [ObservableProperty] private bool isChecked;
     
-    public BindingViewModel() : base("Binding", MaterialIconKind.LinkVariant)
-    {
-        States.Add("IsCheck", false);
-        States.Add("IsSelect", false);
-    }
-    [RelayCommand]
-    private void ClickButton()
-    {
-        States["IsCheck"] = true;
-    }
+
 }

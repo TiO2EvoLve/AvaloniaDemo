@@ -9,6 +9,7 @@
                  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                  x:Class="AvaloniaTestDemo.MainWindow"
                  Icon="/Assets/avalonia-logo.ico"
+                 WindowStartupLocation="CenterScreen"
                  Title="Avalonia Demo"
                  CanPin="True"
                  CanFullScreen="True"

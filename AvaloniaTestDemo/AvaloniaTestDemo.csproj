@@ -23,9 +23,11 @@
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.3.0.6" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.4.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+        <PackageReference Include="Stateless" Version="5.20.1" />
         <PackageReference Include="SukiUI" Version="6.0.3" />
         <PackageReference Include="System.Reactive" Version="6.1.0" />
         <PackageReference Include="xunit" Version="2.9.3" />

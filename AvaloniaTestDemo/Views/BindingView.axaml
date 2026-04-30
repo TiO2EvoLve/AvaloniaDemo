@@ -10,9 +10,20 @@
         <vm:BindingViewModel/>
     </Design.DataContext>
     <Grid>
-        <StackPanel>
-            <Button Command="{Binding ClickButtonCommand}">BUTTON</Button>
+        <StackPanel Margin="20" Spacing="10" >
+            <ComboBox>
+                <ComboBoxItem Content="选项1"/>
+                <ComboBoxItem Content="选项2"/>
+                <ComboBoxItem Content="选项3"/>
+            </ComboBox>
+            <WrapPanel ItemSpacing="10" >
+                <TextBlock  VerticalAlignment="Center" Text="输入文本:"/>
+                <TextBox x:Name="text1" Width="200"/>
+            </WrapPanel>
+            <TextBlock Text="{Binding #text1.Text}" FontSize="16"/>
         </StackPanel>
-        
+        <StackPanel Margin="20">
+           
+        </StackPanel>
     </Grid>
 </UserControl>

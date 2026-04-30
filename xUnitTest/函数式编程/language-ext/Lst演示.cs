@@ -1,5 +1,4 @@
 ﻿using Xunit.Abstractions;
-using static System.Console;
 using static LanguageExt.Prelude;
 namespace xUnitTest.函数式编程.language_ext;
 // 演示不可变列表

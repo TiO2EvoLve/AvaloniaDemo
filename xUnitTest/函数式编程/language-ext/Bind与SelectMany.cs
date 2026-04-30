@@ -8,12 +8,11 @@ public class Bind与SelectMany(ITestOutputHelper testOutputHelper)
     [Fact]
     public void Run()
     {
-        Option<int> Parse(string s) =>
-            int.TryParse(s, out var i) ? Some(i) : None;
+        Option<int> Parse(string s) => int.TryParse(s, out var i) ? Some(i) : None;
 
         var result =
             from x in Parse("10")
-            from y in Parse("20")
+            from y in Parse("")
             select x + y;
 
         testOutputHelper.WriteLine(result.IfNone(0).ToString()); // 30

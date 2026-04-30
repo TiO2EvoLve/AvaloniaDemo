@@ -24,7 +24,6 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            DisableAvaloniaDataAnnotationValidation();
             var services = new ServiceCollection();
             services.AddSingleton(desktop);
             var views = ConfigureViews(services);
@@ -46,7 +45,8 @@ public class App : Application
             .AddView<SettingView, SettingViewModel>(services)
             .AddView<ReactiveView, ReactiveViewModel>(services)
             .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
-            .AddView<Test, TestViewModel>(services);
+            .AddView<Test, TestViewModel>(services)
+            .AddView<BindingView, BindingViewModel>(services);
     }
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)
@@ -61,17 +61,17 @@ public class App : Application
         return services.BuildServiceProvider();
     }
 
-    //禁用 Avalonia 内置的 DataAnnotations 验证功能，以防止与 CommunityToolkit 的冲突。Mvvm 验证
-    private void DisableAvaloniaDataAnnotationValidation()
-    {
-        // Get an array of plugins to remove
-        var dataValidationPluginsToRemove =
-            BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
-    
-        // remove each entry found
-        foreach (var plugin in dataValidationPluginsToRemove)
-        {
-            BindingPlugins.DataValidators.Remove(plugin);
-        }
-    }
+    // //禁用 Avalonia 内置的 DataAnnotations 验证功能，以防止与 CommunityToolkit 的冲突。Mvvm 验证
+    // private void DisableAvaloniaDataAnnotationValidation()
+    // {
+    //     // Get an array of plugins to remove
+    //     var dataValidationPluginsToRemove =
+    //         BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
+    //
+    //     // remove each entry found
+    //     foreach (var plugin in dataValidationPluginsToRemove)
+    //     {
+    //         BindingPlugins.DataValidators.Remove(plugin);
+    //     }
+    // }
 }

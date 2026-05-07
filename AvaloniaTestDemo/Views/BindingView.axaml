@@ -9,21 +9,22 @@
     <Design.DataContext>
         <vm:BindingViewModel/>
     </Design.DataContext>
-    <Grid>
+    <Grid RowDefinitions="Auto,Auto,Auto">
         <StackPanel Margin="20" Spacing="10" >
             <ComboBox>
-                <ComboBoxItem Content="选项1"/>
-                <ComboBoxItem Content="选项2"/>
-                <ComboBoxItem Content="选项3"/>
+                <ComboBoxItem Content="选项1" x:Name="BoxItem1"/>
+                <ComboBoxItem Content="选项2" x:Name="BoxItem2" IsSelected="True"/>
+                <ComboBoxItem Content="选项3" x:Name="BoxItem3"/>
             </ComboBox>
-            <WrapPanel ItemSpacing="10" >
-                <TextBlock  VerticalAlignment="Center" Text="输入文本:"/>
-                <TextBox x:Name="text1" Width="200"/>
-            </WrapPanel>
-            <TextBlock Text="{Binding #text1.Text}" FontSize="16"/>
         </StackPanel>
-        <StackPanel Margin="20">
-           
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding #BoxItem1.IsSelected, ElementName=BoxItem1}">
+            <Button >BUTTON</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="20" Spacing="10" HorizontalAlignment="Center" IsVisible="{Binding #BoxItem2.IsSelected, ElementName=BoxItem1}">
+           <Grid ColumnDefinitions="Auto,*" >
+               <TextBlock Text="用户名:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+               <TextBox Grid.Column="1" Width="200" />
+           </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

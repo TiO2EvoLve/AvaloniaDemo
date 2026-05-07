@@ -3,6 +3,7 @@ using Xunit.Abstractions;
 using static LanguageExt.Prelude;
 namespace xUnitTest.函数式编程.language_ext;
 
+//Map与Select本质上是同一个操作，只是命名风格不同
 public class Map与Select(ITestOutputHelper testOutputHelper)
 {
     [Fact]

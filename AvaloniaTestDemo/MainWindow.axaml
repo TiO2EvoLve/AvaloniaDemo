@@ -42,6 +42,10 @@
             </MenuItem>
         </MenuItem>
     </suki:SukiWindow.MenuItems>
+    <suki:SukiWindow.Hosts>
+        <suki:SukiToastHost Manager="{Binding ToastManager}" />
+        <suki:SukiDialogHost Manager="{Binding DialogManager}" />
+    </suki:SukiWindow.Hosts>
     <suki:SukiWindow.RightWindowTitleBarControls>
         <Button Classes="WindowControlsButton">
             <avalonia:MaterialIcon Foreground="{DynamicResource SukiText}" Kind="Cog" />

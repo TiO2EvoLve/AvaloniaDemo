@@ -2,6 +2,8 @@
 using Avalonia.Collections;
 using AvaloniaTestDemo.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using SukiUI.Dialogs;
+using SukiUI.Toasts;
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
@@ -10,10 +12,14 @@ public partial class MainWindowViewModel : ObservableObject
 {
     public IAvaloniaReadOnlyList<DemoPageBase> DemoPages { get; }
     [ObservableProperty] private DemoPageBase? _activePage;
+    public ISukiToastManager ToastManager { get; set; }
+    public ISukiDialogManager DialogManager { get;set; }
     public PageNavigationService PageNavigationService { get; }
 
-    public MainWindowViewModel(IAvaloniaReadOnlyList<DemoPageBase> demoPages,PageNavigationService pageNavigationService)
+    public MainWindowViewModel(IAvaloniaReadOnlyList<DemoPageBase> demoPages,PageNavigationService pageNavigationService,ISukiToastManager toastManager, ISukiDialogManager dialogManager)
     {
+        ToastManager = toastManager;
+        DialogManager = dialogManager;
         DemoPages = new AvaloniaList<DemoPageBase>(demoPages.OrderBy(x => x.Index).ThenBy(x => x.DisplayName));
         PageNavigationService = pageNavigationService;
         pageNavigationService.NavigationRequested += pageType =>

@@ -9,6 +9,8 @@ using AvaloniaTestDemo.Services;
 using AvaloniaTestDemo.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Avalonia.Collections;
+using SukiUI.Dialogs;
+using SukiUI.Toasts;
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
@@ -47,11 +49,17 @@ public class App : Application
             .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
             .AddView<Test, TestViewModel>(services)
             .AddView<BindingView, BindingViewModel>(services)
-            .AddView<StateMachineView, StateMachineViewModel>(services);
+            .AddView<StateMachineView, StateMachineViewModel>(services)
+            .AddView<QRCodeView, QRCodeViewModel>(services)
+            .AddView<SendEmailView, SendEmailViewModel>(services)
+            ;
     }
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)
     {
+        services.AddSingleton<PageNavigationService>();
+        services.AddSingleton<ISukiToastManager, SukiToastManager>();
+        services.AddSingleton<ISukiDialogManager, SukiDialogManager>();
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<IAvaloniaReadOnlyList<DemoPageBase>>(sp =>
         {

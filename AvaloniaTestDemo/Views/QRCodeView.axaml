@@ -9,12 +9,11 @@
     <Design.DataContext>
         <vm:QRCodeViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*" Margin="10">
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
             <TextBox Text="{Binding Text}" Width="200" />
-            <Button Command="{Binding SpawnQRCodeCommand}" Height="40" Margin="10,0,0,0"
-                    >
+            <Button Command="{Binding SpawnQRCodeCommand}" Height="40" Margin="10,0,0,0">
                 生成二维码
             </Button>
             <Button x:Name="savebutton" Command="{Binding SaveCommand}" Height="40"

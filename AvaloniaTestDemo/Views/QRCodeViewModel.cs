@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
@@ -56,7 +59,7 @@ public partial class QRCodeViewModel(ISukiToastManager toastManager) : DemoPageB
 
     // 将最近生成的二维码保存为文件（保存到用户的图片目录下的 qrcode.png）
     [RelayCommand]
-    private void Save()
+    private async Task Save()
     {
         try
         {
@@ -64,7 +67,7 @@ public partial class QRCodeViewModel(ISukiToastManager toastManager) : DemoPageB
                 return; // 没有可保存的数据
             var pictures = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var path = Path.Combine(pictures, "qrcode.png");
-            File.WriteAllBytes(path, _lastPngBytes);
+            await File.WriteAllBytesAsync(path, _lastPngBytes);
             ShowTypeDemoToast(NotificationType.Success);
         }
         catch (Exception ex)

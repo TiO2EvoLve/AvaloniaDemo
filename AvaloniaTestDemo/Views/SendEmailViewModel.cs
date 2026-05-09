@@ -16,7 +16,6 @@ public partial class SendEmailViewModel (ISukiToastManager toastManager) : DemoP
     public string toEmail { get; set; } = "3290158038@qq.com";
     public string subject { get; set; } = "你好";
     public string body { get;set; } = "你好";
-    
 
     private void SendEmail(string fromEmail, string password, string toEmail, string subject, string body)
     {

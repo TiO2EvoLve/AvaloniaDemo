@@ -47,7 +47,7 @@ public class App : Application
             .AddView<SettingView, SettingViewModel>(services)
             .AddView<ReactiveView, ReactiveViewModel>(services)
             .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
-            .AddView<Test, TestViewModel>(services)
+            .AddView<TestView, TestViewModel>(services)
             .AddView<BindingView, BindingViewModel>(services)
             .AddView<StateMachineView, StateMachineViewModel>(services)
             .AddView<QRCodeView, QRCodeViewModel>(services)

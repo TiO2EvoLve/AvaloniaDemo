@@ -4,27 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
              x:DataType="vm:BindingViewModel"
              x:Class="AvaloniaTestDemo.Views.BindingView">
     <Design.DataContext>
-        <vm:BindingViewModel/>
+        <vm:BindingViewModel />
     </Design.DataContext>
     <Grid RowDefinitions="Auto,Auto,Auto">
-        <StackPanel Margin="20" Spacing="10" >
+        <StackPanel Margin="20">
             <ComboBox>
-                <ComboBoxItem Content="选项1" x:Name="BoxItem1"/>
-                <ComboBoxItem Content="选项2" x:Name="BoxItem2" IsSelected="True"/>
-                <ComboBoxItem Content="选项3" x:Name="BoxItem3"/>
+                <ComboBoxItem Content="变量绑定" x:Name="BoxItem1" IsSelected="True" />
+                <ComboBoxItem Content="关联绑定" x:Name="BoxItem2" />
+                <ComboBoxItem Content="选项3" x:Name="BoxItem3" />
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" IsVisible="{Binding #BoxItem1.IsSelected, ElementName=BoxItem1}">
-            <Button >BUTTON</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Margin="20" Spacing="10" HorizontalAlignment="Center" IsVisible="{Binding #BoxItem2.IsSelected, ElementName=BoxItem1}">
-           <Grid ColumnDefinitions="Auto,*" >
-               <TextBlock Text="用户名:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-               <TextBox Grid.Column="1" Width="200" />
-           </Grid>
-        </StackPanel>
+        <Grid Grid.Row="1" RowSpacing="10" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="20"
+              IsVisible="{Binding #BoxItem1.IsSelected, ElementName=BoxItem1}">
+            <!-- 文本绑定 -->
+            <suki:GlassCard HorizontalAlignment="Stretch" IsInteractive="True">
+                <DockPanel LastChildFill="True" >
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Number}"></TextBlock>
+                    <Slider IsSnapToTickEnabled="True"
+                            Maximum="100"
+                            Minimum="0"
+                            TickFrequency="1"
+                            Value="{Binding Number}" />
+                    
+                </DockPanel>
+            </suki:GlassCard>
+            <suki:GlassCard Grid.Row="1" IsInteractive="True" HorizontalAlignment="Stretch">
+                <!-- 枚举绑定 -->
+                <ComboBox
+                    ItemsSource="{Binding Season}"
+                    SelectedItem="{Binding SelectedSeason}" />
+            </suki:GlassCard>
+            <suki:GlassCard Grid.Row="2" IsInteractive="True" HorizontalAlignment="Stretch">
+                
+            </suki:GlassCard>
+        </Grid>
+
     </Grid>
 </UserControl>

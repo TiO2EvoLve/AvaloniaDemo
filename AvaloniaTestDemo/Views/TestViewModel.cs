@@ -7,14 +7,14 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class TestViewModel() : DemoPageBase("Test", MaterialIconKind.TestTube)
+public partial class TestViewModel() : DemoPageBase("Test", MaterialIconKind.TestTube,100)
 {
 
     [RelayCommand]
     private void Test()
     {
         var pr = from desktop in Try(() => Environment.GetFolderPath(Environment.SpecialFolder.Desktop))
-            where desktop.Contains("aa")   
+            where desktop.Contains("d") 
             select desktop;
 
         pr.Match(

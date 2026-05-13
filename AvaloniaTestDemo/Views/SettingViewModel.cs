@@ -26,7 +26,7 @@ public partial class SettingViewModel : DemoPageBase
     [ObservableProperty] private bool _backgroundAnimations;
     [ObservableProperty] private bool _backgroundTransitions;
     
-    public SettingViewModel() : base("Theming", MaterialIconKind.PaletteOutline, -200)
+    public SettingViewModel() : base("设置", MaterialIconKind.PaletteOutline, 100)
     {
         AvailableBackgroundStyles = new AvaloniaList<SukiBackgroundStyle>(Enum.GetValues<SukiBackgroundStyle>());
         AvailableColors = _theme.ColorThemes;

@@ -8,7 +8,7 @@ using SukiUI.Toasts;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class SendEmailViewModel (ISukiToastManager toastManager) : DemoPageBase("Email", MaterialIconKind.Email, int.MinValue)
+public partial class SendEmailViewModel (ISukiToastManager toastManager) : DemoPageBase("发送邮件", MaterialIconKind.Email, int.MinValue)
 {
 
     public string fromEmail { get; set; } = "3290158038@qq.com";

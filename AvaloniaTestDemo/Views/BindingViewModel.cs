@@ -11,9 +11,12 @@ namespace AvaloniaTestDemo.Views;
 public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKind.LinkVariant)
 {
     //数字绑定
-    [ObservableProperty] private int number = 0;
+    [ObservableProperty]
+    public partial int Number { get; set; } = 0;
+
     // 当前选中项
-    [ObservableProperty] private Option selectedSeason;
+    [ObservableProperty]
+    public partial Option SelectedSeason { get; set; }
 
     // 枚举列表
     public IEnumerable<Option> Season { get; }
@@ -33,4 +36,5 @@ public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKi
         [Description("冬天")]
         Winter
     }
+    
 }

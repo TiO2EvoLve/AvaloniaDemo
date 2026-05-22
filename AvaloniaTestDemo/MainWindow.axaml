@@ -20,7 +20,7 @@
                                Height="20"
                                VerticalAlignment="Center"
                                Foreground="{DynamicResource SukiPrimaryColor}"
-                               Kind="Dog">
+                               Kind="Code">
             <avalonia:MaterialIcon.Transitions>
                 <Transitions>
                     <BrushTransition Property="Foreground" Duration="{DynamicResource ShortAnimationDuration}" />

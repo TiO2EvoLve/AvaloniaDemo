@@ -1,43 +1,40 @@
-﻿using Autofac;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Xunit.Abstractions;
 
-namespace xUnitTest.依赖注入.Autofac;
+namespace xUnitTest.依赖注入.Extensions;
 
-public class AutofacDI(ITestOutputHelper testOutputHelper)
+public class DependencyInjection(ITestOutputHelper testOutputHelper)
 {
-
-
     [Fact]
     public void Run()
     {
-        // 1. 创建容器构建器
-        var builder = new ContainerBuilder();
+        // 1. 创建服务集合
+        var services = new ServiceCollection();
 
         // 2. 注册依赖
-        // 注册 ITestOutputHelper（使用实例）
-        builder.RegisterInstance(testOutputHelper)
-            .As<ITestOutputHelper>();
-        
-        builder.RegisterType<ConsoleLogger>()
-            .As<ILogger>()
-            .SingleInstance(); // 单例
 
-        builder.RegisterType<UserRepository>()
-            .As<IUserRepository>();
+        // 注册实例
+        services.AddSingleton(testOutputHelper);
 
-        builder.RegisterType<UserService>();
+        // 单例
+        services.AddSingleton<ILogger, ConsoleLogger>();
 
-        // 3. 构建容器
-        var container = builder.Build();
+        // 瞬态（默认每次创建新对象）
+        services.AddTransient<IUserRepository, UserRepository>();
+
+        // 注册自身
+        services.AddTransient<UserService>();
+
+        // 3. 构建服务提供器
+        var provider = services.BuildServiceProvider();
 
         // 4. 解析对象
-        var service = container.Resolve<UserService>();
-        
+        var service = provider.GetRequiredService<UserService>();
+
         // 5. 执行逻辑
         service.Process("TiO2");
-        
     }
-    
+
     public interface ILogger
     {
         void Log(string message);
@@ -70,7 +67,9 @@ public class AutofacDI(ITestOutputHelper testOutputHelper)
         public void Process(string name)
         {
             logger.Log("开始处理业务");
+
             var user = repo.GetUser(name);
+
             logger.Log($"处理完成: {user}");
         }
     }

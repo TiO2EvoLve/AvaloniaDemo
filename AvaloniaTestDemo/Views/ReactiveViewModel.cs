@@ -9,7 +9,7 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class ReactiveViewModel() : DemoPageBase("响应式", MaterialIconKind.Abc, int.MinValue),IDisposable
+public partial class ReactiveViewModel() : DemoPageBase("响应式+++", MaterialIconKind.Abc, int.MinValue),IDisposable
 {
     private readonly Subject<string> _textChanged = new();
     [ObservableProperty]private string _time = "点击按钮开始倒计时";

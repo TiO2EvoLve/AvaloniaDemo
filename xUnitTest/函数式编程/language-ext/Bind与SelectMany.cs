@@ -12,9 +12,9 @@ public class Bind与SelectMany(ITestOutputHelper testOutputHelper)
 
         var result =
             from x in Parse("10")
-            from y in Parse("")
+            from y in Parse("10")
             select x + y;
 
-        testOutputHelper.WriteLine(result.IfNone(0).ToString()); // 30
+        testOutputHelper.WriteLine(result.IfNone(0).ToString());
     }
 }

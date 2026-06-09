@@ -10,18 +10,18 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKind.LinkVariant)
 {
-    //数字绑定
+    //滑动条绑定数字
     [ObservableProperty]
     public partial int Number { get; set; } = 0;
 
-    // 当前选中项
+    // 下拉框当前选择的项
     [ObservableProperty]
     public partial Option SelectedSeason { get; set; }
 
-    // 枚举列表
+    // 枚举列表，下拉框绑定
     public IEnumerable<Option> Season { get; }
         = Enum.GetValues<Option>();
-    
+    //枚举
     public enum Option
     {
         [Description("春天")]

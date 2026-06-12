@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:HangfireViewModel"
+             x:Class="AvaloniaTestDemo.Views.HangfireView">
+
+    <Grid Margin="16">
+        <Grid RowDefinitions="Auto,Auto,*,Auto">
+            <TextBlock Grid.Row="0" Text="{Binding DisplayName}" FontSize="20" Margin="0,0,0,8" />
+
+            <StackPanel Grid.Row="1" Spacing="8" Margin="0,0,0,12">
+                <TextBlock Text="{Binding Status}" FontWeight="Bold" />
+
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Content="立即任务" Command="{Binding EnqueueImmediateCommand}" Width="100" />
+                    <Button Content="延迟 5 秒" Command="{Binding ScheduleDelayedCommand}" Width="100" />
+                    <Button Content="启动周期任务" Command="{Binding StartRecurringCommand}" Width="120"
+                            IsEnabled="{Binding !IsRecurringActive}" />
+                    <Button Content="停止周期任务" Command="{Binding StopRecurringCommand}" Width="120"
+                            IsEnabled="{Binding IsRecurringActive}" />
+                    <Button Content="清空日志" Command="{Binding ClearLogsCommand}" Width="100" Classes="Flat" />
+                </StackPanel>
+            </StackPanel>
+
+            <Border Grid.Row="2" BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+                    BorderThickness="1" CornerRadius="4" Padding="8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding JobLogs}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontFamily="Consolas,Courier New,monospace"
+                                           Margin="0,2" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <TextBlock Grid.Row="3" Margin="0,12,0,0" TextWrapping="Wrap" Opacity="0.8">
+                说明：本页使用 Hangfire + MemoryStorage 演示三种调度方式——
+                立即执行（Enqueue）、延迟执行（Schedule）、周期执行（RecurringJob）。
+                任务在后台 Worker 中运行，执行结果会显示在上方日志区域。
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

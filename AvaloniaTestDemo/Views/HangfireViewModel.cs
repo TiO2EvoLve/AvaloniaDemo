@@ -48,7 +48,7 @@ public partial class HangfireViewModel : DemoPageBase
         RecurringJob.AddOrUpdate(
             RecurringJobId,
             () => HangfireDemoJobs.RunRecurring("每分钟触发"),
-            "* * * * * *");
+            "0 * * * * *");
         IsRecurringActive = true;
         Status = "已启动周期任务（每 1 分）";
     }

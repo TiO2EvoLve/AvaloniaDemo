@@ -52,15 +52,11 @@ public class App : Application
             .AddView<StateMachineView, StateMachineViewModel>(services)
             .AddView<QRCodeView, QRCodeViewModel>(services)
             .AddView<SendEmailView, SendEmailViewModel>(services)
-            .AddView<HangfireView, HangfireViewModel>(services)
-            .AddView<QuartzView, QuartzViewModel>(services)
             ;
     }
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)
     {
-        services.AddSingleton<HangfireService>();
-        services.AddSingleton<QuartzService>();
         services.AddSingleton<PageNavigationService>();
         services.AddSingleton<ISukiToastManager, SukiToastManager>();
         services.AddSingleton<ISukiDialogManager, SukiDialogManager>();

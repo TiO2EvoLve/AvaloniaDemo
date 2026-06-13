@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="AvaloniaTestDemo/AvaloniaTestDemo.csproj" />
-  <Project Path="UI/UI.csproj" />
   <Project Path="xUnitTest/xUnitTest.csproj" />
 </Solution>

@@ -1,8 +1,8 @@
-﻿
-using Xunit.Abstractions; // xUnit 的特性（[Fact]）
-namespace xUnitTest; // 文件作用域命名空间，简洁写法
+﻿using Xunit.Abstractions;
 
-public class MyTest(ITestOutputHelper TS) // 测试类
+namespace xUnitTest.回调函数;
+
+public class CallBack(ITestOutputHelper TS)
 {
     [Fact]
     public async Task Test1()
@@ -19,5 +19,4 @@ public class MyTest(ITestOutputHelper TS) // 测试类
         await Task.Delay(delayMilliseconds);
         return callback();
     }
-    
 }

@@ -9,14 +9,36 @@
     <Design.DataContext>
         <vm:DragDropViewModel />
     </Design.DataContext>
-    <Border BorderBrush="LightGray"
-            CornerRadius="10"
-            BorderThickness="1"
-            Margin="20">
 
+    <Grid ColumnDefinitions="*,3*">
+        <Border Background="White"
+                Margin="10"
+                CornerRadius="10"
+                BorderBrush="LightGray"
+                BorderThickness="1">
+            <Grid Margin="10" RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+                <Grid Grid.Row="0" ColumnDefinitions="*,2*">
+                    <TextBlock Text="启用吸附" VerticalAlignment="Center"></TextBlock>
+                    <CheckBox Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding IsSnapEnabled, Mode=TwoWay}"/>
+                </Grid>
+                
+                <Grid Grid.Row="1" ColumnDefinitions="*,2*">
+                    <TextBlock Text="网格大小" VerticalAlignment="Center"></TextBlock>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Slider TickFrequency="10" IsSnapToTickEnabled="True" Minimum="1" Maximum="100" Width="100" Value="{Binding SnapDistance, Mode=TwoWay}"/>
+                        <TextBlock Text="{Binding SnapDistance}" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2" ColumnDefinitions="*,2*">
+                    <TextBlock Text="显示网格" VerticalAlignment="Center"></TextBlock>
+                    <CheckBox Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding ShowGrid, Mode=TwoWay}"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Margin="10" BorderBrush="LightGray" CornerRadius="10" BorderThickness="1">
         <Canvas x:Name="RootCanvas"
                 ClipToBounds="True">
-
+            <Canvas x:Name="GridLayer" IsHitTestVisible="False" />
             <Border x:Name="DraggableBorder"
                     Width="50"
                     Height="50"
@@ -37,7 +59,7 @@
             </Border>
 
         </Canvas>
+        </Border>
+    </Grid>
 
-    </Border>
-  
 </UserControl>

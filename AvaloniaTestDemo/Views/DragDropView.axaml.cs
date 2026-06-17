@@ -4,134 +4,126 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Controls.Shapes;
+using Avalonia.Media;
 
 namespace AvaloniaTestDemo.Views;
 
 public partial class DragDropView : UserControl
 {
-   private const double DragThreshold = 4;//拖动像素阈值
-   private double GridSize = 20;
-   private const double SnapDistance = 8;
-   
-    private bool _isDragging;
-    private bool _dragStarted;
-
-    private Point _startPointer;
-
-    private double _startLeft;
-    private double _startTop;
-
-    private Border? _border;
     private Canvas? _canvas;
-    
+    private Border? _border;
+    private Canvas? _gridLayer;
+    private DragDropViewModel? _vm;
+
     public DragDropView()
     {
         InitializeComponent();
 
         _canvas = this.FindControl<Canvas>("RootCanvas");
         _border = this.FindControl<Border>("DraggableBorder");
+        _gridLayer = this.FindControl<Canvas>("GridLayer");
 
         Loaded += OnLoaded;
     }
+
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
-        GridSize = _canvas.Bounds.Height / 50; // 根据Canvas高度动态设置网格大小
+        _vm = this.DataContext as DragDropViewModel ?? _vm;
+        _vm?.OnLoaded(_canvas);
+        // Subscribe to ViewModel property changes to redraw grid when needed
+        if (_vm != null)
+        {
+            _vm.PropertyChanged += Vm_PropertyChanged;
+        }
+
+        // Redraw grid initially
+        DrawGrid();
+
+        // Redraw when canvas size changes
+        if (_canvas != null)
+        {
+            _canvas.PropertyChanged += Canvas_PropertyChanged;
+        }
+    }
+
+    private void Vm_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(DragDropViewModel.ShowGrid) or nameof(DragDropViewModel.GridSize))
+        {
+            DrawGrid();
+        }
+    }
+
+    private void Canvas_PropertyChanged(object? sender, Avalonia.AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == Canvas.BoundsProperty)
+            DrawGrid();
     }
 
     private void Border_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (_border == null || _canvas == null)
-            return;
-
-        if (!e.GetCurrentPoint(_border)
-              .Properties.IsLeftButtonPressed)
-            return;
-
-        _startPointer = e.GetPosition(_canvas);
-
-        _startLeft = Canvas.GetLeft(_border);
-        _startTop = Canvas.GetTop(_border);
-
-        if (double.IsNaN(_startLeft))
-            _startLeft = 0;
-
-        if (double.IsNaN(_startTop))
-            _startTop = 0;
-
-        _isDragging = true;
-        _dragStarted = false;
-
-        e.Pointer.Capture(_border);
-
-        e.Handled = true;
+        _vm = this.DataContext as DragDropViewModel ?? _vm;
+        _vm?.PointerPressed(_border, _canvas, e);
     }
 
     private void Border_PointerMoved(object? sender, PointerEventArgs e)
     {
-        if (!_isDragging || _border == null || _canvas == null)
-            return;
-
-        var pos = e.GetPosition(_canvas);
-
-        var dx = pos.X - _startPointer.X;
-        var dy = pos.Y - _startPointer.Y;
-
-        if (!_dragStarted)
-        {
-            if (Math.Abs(dx) < DragThreshold &&
-                Math.Abs(dy) < DragThreshold)
-            {
-                return;
-            }
-
-            _dragStarted = true;
-        }
-
-        var newLeft = _startLeft + dx;
-        var newTop = _startTop + dy;
-
-        // 限制在Canvas范围内
-        newLeft = Math.Clamp(
-            newLeft,
-            0,
-            Math.Max(0, _canvas.Bounds.Width - _border.Bounds.Width));
-
-        newTop = Math.Clamp(
-            newTop,
-            0,
-            Math.Max(0, _canvas.Bounds.Height - _border.Bounds.Height));
-
-        newLeft = Snap(newLeft);
-        newTop = Snap(newTop);
-
-        Canvas.SetLeft(_border, newLeft);
-        Canvas.SetTop(_border, newTop);
-
-        e.Handled = true;
+        _vm = this.DataContext as DragDropViewModel ?? _vm;
+        _vm?.PointerMoved(_border, _canvas, e);
     }
 
     private void Border_PointerReleased(object? sender, PointerReleasedEventArgs e)
     {
-        _isDragging = false;
-        _dragStarted = false;
-
-        e.Pointer.Capture(null);
-
-        e.Handled = true;
+        _vm = this.DataContext as DragDropViewModel ?? _vm;
+        _vm?.PointerReleased(e);
     }
 
     private void Border_PointerCaptureLost(object? sender, PointerCaptureLostEventArgs e)
     {
-        _isDragging = false;
-        _dragStarted = false;
+        _vm = this.DataContext as DragDropViewModel ?? _vm;
+        _vm?.PointerCaptureLost();
     }
-
-    private double Snap(double value)
+    
+    private void DrawGrid()
     {
-        var target =
-            Math.Round(value / GridSize) * GridSize;
+        if (_gridLayer == null || _canvas == null || _vm == null) return;
+        _gridLayer.Children.Clear();
+        if (!_vm.ShowGrid) return;
 
-        return Math.Abs(target - value) <= SnapDistance ? target : value;
+        var step = _vm.GridSize;
+        if (step <= 0) return;
+
+        var width = _canvas.Bounds.Width;
+        var height = _canvas.Bounds.Height;
+
+        var stroke = Brushes.LightGray;
+
+        for (double x = 0; x <= width; x += step)
+        {
+            var line = new Line
+            {
+                StartPoint = new Point(x, 0),
+                EndPoint = new Point(x, height),
+                Stroke = stroke,
+                StrokeThickness = 0.5,
+                Opacity = 0.6
+            };
+            _gridLayer.Children.Add(line);
+        }
+
+        for (double y = 0; y <= height; y += step)
+        {
+            var line = new Line
+            {
+                StartPoint = new Point(0, y),
+                EndPoint = new Point(width, y),
+                Stroke = stroke,
+                StrokeThickness = 0.5,
+                Opacity = 0.6
+            };
+            _gridLayer.Children.Add(line);
+        }
     }
     private void InitializeComponent()
     {

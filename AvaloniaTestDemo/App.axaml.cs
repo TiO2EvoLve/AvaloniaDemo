@@ -53,6 +53,7 @@ public class App : Application
             .AddView<QRCodeView, QRCodeViewModel>(services)
             .AddView<SendEmailView, SendEmailViewModel>(services)
             .AddView<DragDropView, DragDropViewModel>(services)
+            .AddView<DynamicDataView, DynamicDataViewModel>(services)
             ;
     }
 

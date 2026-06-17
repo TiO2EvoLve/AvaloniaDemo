@@ -11,7 +11,7 @@
     </Design.DataContext>
 
     <Grid ColumnDefinitions="*,3*">
-        <Border Background="White"
+        <Border
                 Margin="10"
                 CornerRadius="10"
                 BorderBrush="LightGray"

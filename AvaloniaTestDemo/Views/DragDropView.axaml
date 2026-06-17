@@ -1,0 +1,43 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:DragDropViewModel"
+             x:Class="AvaloniaTestDemo.Views.DragDropView">
+    <Design.DataContext>
+        <vm:DragDropViewModel />
+    </Design.DataContext>
+    <Border BorderBrush="LightGray"
+            CornerRadius="10"
+            BorderThickness="1"
+            Margin="20">
+
+        <Canvas x:Name="RootCanvas"
+                ClipToBounds="True">
+
+            <Border x:Name="DraggableBorder"
+                    Width="50"
+                    Height="50"
+                    CornerRadius="10"
+                    Background="DodgerBlue"
+                    Cursor="Hand"
+                    Canvas.Left="100"
+                    Canvas.Top="100"
+                    PointerPressed="Border_PointerPressed"
+                    PointerMoved="Border_PointerMoved"
+                    PointerReleased="Border_PointerReleased"
+                    PointerCaptureLost="Border_PointerCaptureLost">
+                <TextBlock Text="拖动我"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold" />
+            </Border>
+
+        </Canvas>
+
+    </Border>
+  
+</UserControl>

@@ -1,14 +1,18 @@
 ﻿using Hangfire;
 using Hangfire.MemoryStorage;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace xUnitTest.时间调度.HangFire;
 
 public static class HangfireJob
 {
+    static ITestOutputHelper TS = new TestOutputHelper();
+    
     public static void Print(string message)
     {
-        Console.WriteLine($"{DateTime.Now:HH:mm:ss} -> {message}");
+        TS.WriteLine($"{DateTime.Now:HH:mm:ss} -> {message}");
     }
 }
 
@@ -108,7 +112,7 @@ public class HangfireTests : IDisposable
 
         var result = BackgroundJob.Delete(jobId);
 
-        Console.WriteLine($"删除结果: {result}");
+        HangfireJob.Print($"删除结果: {result}");
     }
 
     public void Dispose()

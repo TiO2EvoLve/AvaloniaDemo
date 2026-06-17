@@ -52,6 +52,7 @@ public class App : Application
             .AddView<StateMachineView, StateMachineViewModel>(services)
             .AddView<QRCodeView, QRCodeViewModel>(services)
             .AddView<SendEmailView, SendEmailViewModel>(services)
+            .AddView<DragDropView, DragDropViewModel>(services)
             ;
     }
 

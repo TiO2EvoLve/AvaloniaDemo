@@ -54,6 +54,7 @@ public class App : Application
             .AddView<SendEmailView, SendEmailViewModel>(services)
             .AddView<DragDropView, DragDropViewModel>(services)
             .AddView<DynamicDataView, DynamicDataViewModel>(services)
+            .AddView<HarmonyModView, HarmonyModViewModel>(services)
             ;
     }
 

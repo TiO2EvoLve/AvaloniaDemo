@@ -1,20 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
 using Xunit.Abstractions;
 
 namespace xUnitTest.工作流;
 
-public class WorkflowCoreDemo()
+public class WorkflowCoreDemo(ITestOutputHelper TS)
 {
+    
     [Fact]
     public async Task Run()
     {
         var services = new ServiceCollection();
 
         services.AddLogging();
-
+        services.AddSingleton(TS);
         services.AddWorkflow();
 
         var provider = services.BuildServiceProvider();
@@ -28,6 +28,8 @@ public class WorkflowCoreDemo()
         await host.StartWorkflow("HelloWorld");
 
         host.Stop();
+
+        TS.WriteLine("工作流执行成功！");
     }
 }
 

@@ -1,0 +1,21 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:LineRenderViewModel"
+             x:Class="AvaloniaTestDemo.Views.LineRenderView">
+    <Design.DataContext>
+        <vm:LineRenderViewModel />
+    </Design.DataContext>
+    
+    <Grid Margin="16">
+        <Canvas Width="500" Height="300">
+        <Line StartPoint="50,50"
+              EndPoint="200,100"
+              Stroke="Red"
+              StrokeThickness="2"/>
+        </Canvas>
+    </Grid>
+</UserControl>

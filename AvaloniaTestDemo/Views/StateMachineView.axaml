@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
-             xmlns:suki="https://github.com/kikipoulet/SukiUI"
              x:DataType="vm:StateMachineViewModel"
              x:Class="AvaloniaTestDemo.Views.StateMachineView">
     <Design.DataContext>

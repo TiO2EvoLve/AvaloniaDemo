@@ -55,6 +55,7 @@ public class App : Application
             .AddView<DragDropView, DragDropViewModel>(services)
             .AddView<DynamicDataView, DynamicDataViewModel>(services)
             .AddView<HarmonyModView, HarmonyModViewModel>(services)
+            .AddView<LineRenderView, LineRenderViewModel>(services)
             ;
     }
 

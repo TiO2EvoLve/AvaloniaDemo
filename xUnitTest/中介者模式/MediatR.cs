@@ -18,10 +18,7 @@ public class MediatR(ITestOutputHelper TS)
         services.AddSingleton(TS);
 
         // 2. 注册 MediatR
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssemblyContaining<UserCreatedEvent>();
-        });
+        services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblyContaining<UserCreatedEvent>(); });
 
         var provider = services.BuildServiceProvider();
 
@@ -30,10 +27,11 @@ public class MediatR(ITestOutputHelper TS)
         // 3. 发布事件（关键点：Publish，不是 Send）
         await mediator.Publish(new UserCreatedEvent("TiO2"));
     }
-    
 }
+
 //定义事件
 public record UserCreatedEvent(string UserName) : INotification;
+
 //监听者1：日志
 public class LogHandler(ITestOutputHelper TS) : INotificationHandler<UserCreatedEvent>
 {
@@ -43,6 +41,7 @@ public class LogHandler(ITestOutputHelper TS) : INotificationHandler<UserCreated
         return Task.CompletedTask;
     }
 }
+
 //监听者2：邮件
 public class EmailHandler(ITestOutputHelper TS) : INotificationHandler<UserCreatedEvent>
 {
@@ -52,10 +51,10 @@ public class EmailHandler(ITestOutputHelper TS) : INotificationHandler<UserCreat
         return Task.CompletedTask;
     }
 }
+
 //监听者3：积分系统
 public class ScoreHandler(ITestOutputHelper TS) : INotificationHandler<UserCreatedEvent>
 {
-
     public Task Handle(UserCreatedEvent notification, CancellationToken cancellationToken)
     {
         TS.WriteLine($"[Score] 赠送积分：{notification.UserName}");

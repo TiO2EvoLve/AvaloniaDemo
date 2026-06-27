@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             xmlns:models="clr-namespace:AvaloniaTestDemo.Models"
              x:DataType="vm:LineRenderViewModel"
              x:Class="AvaloniaTestDemo.Views.LineRenderView">
     <Design.DataContext>
@@ -11,11 +12,33 @@
     </Design.DataContext>
     
     <Grid Margin="16">
-        <Canvas Width="500" Height="300">
-        <Line StartPoint="50,50"
-              EndPoint="200,100"
-              Stroke="Red"
-              StrokeThickness="2"/>
+
+        <Canvas>
+
+            <Path
+                Stroke="DeepSkyBlue"
+                StrokeDashArray="5,1"
+                StrokeDashOffset="{Binding DashOffset}"
+                StrokeThickness="3"
+                Data="{Binding Connection.Geometry}" />
+
+            <models:DraggableEllipse
+                Width="20"
+                Height="20"
+                Fill="OrangeRed"
+                DataContext="{Binding StartNode}"
+                Canvas.Left="{Binding X}"
+                Canvas.Top="{Binding Y}" />
+
+            <models:DraggableEllipse
+                Width="20"
+                Height="20"
+                Fill="LimeGreen"
+                DataContext="{Binding EndNode}"
+                Canvas.Left="{Binding X}"
+                Canvas.Top="{Binding Y}" />
+
         </Canvas>
+
     </Grid>
 </UserControl>

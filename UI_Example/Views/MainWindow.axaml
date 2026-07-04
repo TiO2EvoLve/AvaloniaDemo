@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UI_Example.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="UI_Example.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="Default"
+        TransparencyLevelHint="Mica"
+        Background="Transparent"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="UI_Example">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="Auto,*">
+        <Grid PointerPressed="TitleBar_PointerPressed">
+            <Menu>
+                <MenuItem Header="File" />
+                <MenuItem Header="Edit" />
+                <MenuItem Header="View" />
+                <MenuItem Header="Help" />
+            </Menu>
+        </Grid>
+        
+        <Grid Grid.Row="1" >
+            <Border BorderBrush="Lavender" CornerRadius="10" Margin="10" BorderThickness="2">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                    <Button Classes="Success" Width="120" Height="35" Content="绿色"/>
+                    <Button Classes="Danger" Width="120" Height="35" Content="红色"/>
+                </StackPanel>
+            </Border>                   
+        </Grid>
+    </Grid>
+</Window>

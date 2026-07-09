@@ -1,0 +1,44 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:SqlServerViewModel"
+             x:Class="AvaloniaTestDemo.Views.SqlServerView">
+
+    <Design.DataContext>
+        <vm:SqlServerViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="10" Margin="20">
+        <Button Command="{Binding SqlSelectCommand}">
+            查询数据库
+        </Button>
+        <StackPanel Grid.Row="1" Margin="20">
+            <DataGrid ItemsSource="{Binding SqlData}" >
+                <DataGrid.Columns>
+                    <!-- 其他数据列 -->
+                    <DataGridTextColumn Header="编号" FontSize="12" Binding="{Binding id}" />
+                    <DataGridTextColumn Header="姓名" FontSize="12" Binding="{Binding name}" />
+                    <DataGridTextColumn Header="年龄" FontSize="12" Binding="{Binding age}" />
+                    <DataGridTextColumn Header="性别" FontSize="12" Binding="{Binding sex}" />
+                    
+                    <!-- 操作列：包含编辑和删除按钮 -->
+                    <DataGridTemplateColumn Header="操作" >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <StackPanel DataContext="{vm:SqlServerViewModel}" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" Spacing="10">
+                                    <!-- 编辑按钮 -->
+                                    <Button Content="Edit" Classes="Basic" />
+                                    <!-- 删除按钮 -->
+                                    <Button Content="Delete" Classes="Basic" Foreground="Red"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

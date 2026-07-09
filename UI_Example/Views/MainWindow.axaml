@@ -30,9 +30,14 @@
         
         <Grid Grid.Row="1" >
             <Border BorderBrush="Lavender" CornerRadius="10" Margin="10" BorderThickness="2">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-                    <Button Classes="Success" Width="120" Height="35" Content="绿色"/>
-                    <Button Classes="Danger" Width="120" Height="35" Content="红色"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                    <Button Classes="Green" Width="60" HorizontalAlignment="Center">绿色</Button>
+                    <Button Classes="Red" Width="60" HorizontalAlignment="Center">红色</Button>
+                    <Button Classes="Orange" Width="60" HorizontalAlignment="Center">橙色</Button>
+                    <Button Classes="Cyan" Width="60" HorizontalAlignment="Center">青色</Button>
+                    <Button Classes="Blue" Width="60" HorizontalAlignment="Center">蓝色</Button>
+                    <Button Classes="Purple" Width="60" HorizontalAlignment="Center">紫色</Button>
+                    <Button Classes="Pink">粉色</Button>
                 </StackPanel>
             </Border>                   
         </Grid>

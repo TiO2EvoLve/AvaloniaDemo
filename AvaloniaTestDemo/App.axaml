@@ -4,11 +4,17 @@
              xmlns:suki="https://github.com/kikipoulet/SukiUI"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-             <!-- App.axaml -->
+             
+    <Application.Resources>
+        <ResourceDictionary>
+            <x:Double x:Key="WindowScaleFactor">1.0</x:Double>
+        </ResourceDictionary>
+    </Application.Resources>
+    
     <Application.Styles>
         <FluentTheme />
         <suki:SukiTheme Locale="zh-CN" ThemeColor="Blue" />
         <avalonia:MaterialIconStyles />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
     </Application.Styles>
 </Application>

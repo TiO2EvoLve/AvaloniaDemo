@@ -56,6 +56,7 @@ public class App : Application
             .AddView<DynamicDataView, DynamicDataViewModel>(services)
             .AddView<HarmonyModView, HarmonyModViewModel>(services)
             .AddView<LineRenderView, LineRenderViewModel>(services)
+            .AddView<SqlServerView, SqlServerViewModel>(services)
             ;
     }
 
@@ -73,18 +74,4 @@ public class App : Application
 
         return services.BuildServiceProvider();
     }
-
-    // //禁用 Avalonia 内置的 DataAnnotations 验证功能，以防止与 CommunityToolkit 的冲突。Mvvm 验证
-    // private void DisableAvaloniaDataAnnotationValidation()
-    // {
-    //     // Get an array of plugins to remove
-    //     var dataValidationPluginsToRemove =
-    //         BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
-    //
-    //     // remove each entry found
-    //     foreach (var plugin in dataValidationPluginsToRemove)
-    //     {
-    //         BindingPlugins.DataValidators.Remove(plugin);
-    //     }
-    // }
 }

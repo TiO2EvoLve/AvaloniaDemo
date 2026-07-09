@@ -5,40 +5,66 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
              x:DataType="vm:SqlServerViewModel"
-             x:Class="AvaloniaTestDemo.Views.SqlServerView">
+             x:Class="AvaloniaTestDemo.Views.SqlServerView"
+             x:Name="Root">
 
     <Design.DataContext>
         <vm:SqlServerViewModel />
     </Design.DataContext>
 
     <Grid RowDefinitions="Auto,*" RowSpacing="10" Margin="20">
-        <Button Command="{Binding SqlSelectCommand}">
-            查询数据库
-        </Button>
-        <StackPanel Grid.Row="1" Margin="20">
-            <DataGrid ItemsSource="{Binding SqlData}" >
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBox Width="200" Height="30" PlaceholderText="姓名" Text="{Binding QueryStudent.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Width="200" Height="30" PlaceholderText="年龄" Text="{Binding QueryStudent.Age, Mode=TwoWay}"></TextBox>
+            <ComboBox Height="30"
+                      PlaceholderText="性别"
+                      ItemsSource="{Binding SexOptions}"
+                      SelectedItem="{Binding QueryStudent.Sex, Mode=TwoWay}" />
+            <Button Classes="Flat" Command="{Binding SqlSelectCommand}" Content="查询" />
+            <Button Classes="Outlined" Command="{Binding SqlResetCommand}" Content="重置" />
+            <Button Classes="Flat Success" Command="{Binding SqlInsertCommand}" Content="新增" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="20">
+            <DataGrid ColumnWidth="*" HorizontalAlignment="Center" CanUserResizeColumns="True"
+                CanUserReorderColumns="True" CanUserSortColumns="True" GridLinesVisibility="All"
+                ItemsSource="{Binding SqlData}">
+
+                <DataGrid.Styles>
+                    <Style Selector="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+
+                    <Style Selector="DataGridCell">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Styles>
+
                 <DataGrid.Columns>
-                    <!-- 其他数据列 -->
-                    <DataGridTextColumn Header="编号" FontSize="12" Binding="{Binding id}" />
-                    <DataGridTextColumn Header="姓名" FontSize="12" Binding="{Binding name}" />
-                    <DataGridTextColumn Header="年龄" FontSize="12" Binding="{Binding age}" />
-                    <DataGridTextColumn Header="性别" FontSize="12" Binding="{Binding sex}" />
-                    
-                    <!-- 操作列：包含编辑和删除按钮 -->
-                    <DataGridTemplateColumn Header="操作" >
-                        <DataGridTemplateColumn.CellTemplate >
-                            <DataTemplate >
-                                <StackPanel DataContext="{vm:SqlServerViewModel}" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" Spacing="10">
-                                    <!-- 编辑按钮 -->
-                                    <Button Content="Edit" Classes="Basic" />
-                                    <!-- 删除按钮 -->
-                                    <Button Content="Delete" Classes="Basic" Foreground="Red"/>
+                    <DataGridTextColumn Header="编号"  FontSize="13" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="姓名"  FontSize="13" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="年龄"  FontSize="13" Binding="{Binding Age}" />
+                    <DataGridTextColumn Header="性别"  FontSize="1" Binding="{Binding Sex}" />
+                    <DataGridTemplateColumn Header="操作">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Spacing="10">
+                                    <Button Content="Edit" Classes="Basic" 
+                                            Command="{ReflectionBinding #Root.DataContext.SqlEditCommand}"
+                                            CommandParameter="{Binding}"/>
+                                    
+                                    <Button Command="{ReflectionBinding #Root.DataContext.SqlDeleteCommand}"
+                                            CommandParameter="{Binding}" Content="Delete" Classes="Basic" Foreground="Red"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
+
             </DataGrid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

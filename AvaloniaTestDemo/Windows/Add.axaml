@@ -1,0 +1,37 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        Width="400" Height="300"
+        WindowStartupLocation="CenterScreen"
+        xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+        x:DataType="vm:SqlServerViewModel"
+        ExtendClientAreaToDecorationsHint="True"
+        x:Class="AvaloniaTestDemo.Windows.Add"
+        Title="Add">
+    
+    <Design.DataContext>
+        <vm:SqlServerViewModel />
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <TextBlock Width="50" Text="姓名:" VerticalAlignment="Center"></TextBlock>
+            <TextBox Width="100"  Text="{Binding SelectStudent.Name, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <TextBlock Width="50" Text="年龄:" VerticalAlignment="Center"></TextBlock>
+            <TextBox Width="100"  Text="{Binding SelectStudent.Age, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <TextBlock Width="50" Text="性别:" VerticalAlignment="Center"></TextBlock>
+            <ComboBox Width="100" 
+                      ItemsSource="{Binding SexOptions}"
+                      SelectedItem="{Binding SelectStudent.Sex, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <Button Click="Close" Content="确定"/>
+        </StackPanel>
+    </Grid>
+</Window>

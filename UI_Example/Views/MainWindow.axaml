@@ -8,7 +8,6 @@
         x:DataType="vm:MainWindowViewModel"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="Default"
         TransparencyLevelHint="Mica"
         Background="Transparent"
         Icon="/Assets/avalonia-logo.ico"

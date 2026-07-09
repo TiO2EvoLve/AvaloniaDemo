@@ -17,7 +17,7 @@ using Tmds.DBus.Protocol;
 namespace AvaloniaTestDemo.Views;
 
 // 使用常规构造函数并调用基类构造以避免语法错误
-public partial class QRCodeViewModel(ISukiToastManager toastManager) : DemoPageBase("二维码", MaterialIconKind.Qrcode, int.MinValue)
+public partial class QRCodeViewModel(ISukiToastManager toastManager) : DemoPageBase("二维码", MaterialIconKind.Qrcode, 1)
 {
     // 将要传递给基类的显示名与图标，通过构造函数调用基类构造器
 

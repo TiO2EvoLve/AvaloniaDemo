@@ -1,24 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-
 namespace AvaloniaTestDemo.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 [Table("student")]
-public class Student
+// 使用 ObservableProperty 自动实现通知
+public partial class Student : ObservableObject
 {
-    public Student(string name, int age, string sex)
-    {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-    }
-
-    public Student()
-    {
-    }
-
-    public int id { get; set; }
-    public string name { get; set; }
-    public int age { get; set; }
-
-    public string sex { get; set; }
+    public int Id  { get; set; }
+    
+    public string? Name { get; set; }
+    
+    public int Age { get; set; }
+    
+    public string? Sex { get; set; }
+    
 }

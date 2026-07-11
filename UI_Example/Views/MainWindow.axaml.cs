@@ -9,22 +9,19 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    
-    private void TitleBar_PointerPressed(object? sender, PointerPressedEventArgs e)
+
+    private void Close(object? sender, PointerPressedEventArgs e)
     {
-        // Only react to left button presses
-        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-        {
-            // Double-click to toggle maximize/restore
-            if (e.ClickCount == 2)
-            {
-                WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-            }
-            else
-            {
-                // Begin window drag (Avalonia Window API)
-                BeginMoveDrag(e);
-            }
-        }
+        Close();
+    }
+
+    private void MaxWindow(object? sender, PointerPressedEventArgs e)
+    {
+        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+    }
+
+    private void MinWindow(object? sender, PointerPressedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 }

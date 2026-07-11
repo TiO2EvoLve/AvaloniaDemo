@@ -13,5 +13,12 @@ public partial class Student : ObservableObject
     public int Age { get; set; }
     
     public string? Sex { get; set; }
-    
+
+    public void clear()
+    {
+        Id = 0;
+        Name = null;
+        Age = 0;
+        Sex = null;
+    }
 }

@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AvaloniaTestDemo/AvaloniaTestDemo.csproj" />
+  <Project Path="Fsharp/Fsharp.fsproj" />
   <Project Path="UI_Example/UI_Example.csproj" />
   <Project Path="xUnitTest/xUnitTest.csproj" />
 </Solution>

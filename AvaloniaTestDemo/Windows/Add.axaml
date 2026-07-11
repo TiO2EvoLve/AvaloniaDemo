@@ -6,32 +6,47 @@
         Width="400" Height="300"
         WindowStartupLocation="CenterScreen"
         xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         x:DataType="vm:SqlServerViewModel"
         ExtendClientAreaToDecorationsHint="True"
         x:Class="AvaloniaTestDemo.Windows.Add"
+        WindowDecorations="None"
+        TransparencyLevelHint="Transparent" 
+        Background="Transparent"
         Title="Add">
     
     <Design.DataContext>
         <vm:SqlServerViewModel />
     </Design.DataContext>
     
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+    <Border CornerRadius="20" Background="Lavender" BorderBrush="LightGray" BorderThickness="2">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="20">
+            <StackPanel>
+                <Border Background="Lavender" Width="30" Height="30" PointerPressed="Close" HorizontalAlignment="Right">
+                    <avalonia:MaterialIcon Kind="Close"/>
+                </Border>
+                
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+            <TextBlock Text="学生信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
             <TextBlock Width="50" Text="姓名:" VerticalAlignment="Center"></TextBlock>
             <TextBox Width="100"  Text="{Binding SelectStudent.Name, Mode=TwoWay}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+        <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
             <TextBlock Width="50" Text="年龄:" VerticalAlignment="Center"></TextBlock>
             <TextBox Width="100"  Text="{Binding SelectStudent.Age, Mode=TwoWay}"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
             <TextBlock Width="50" Text="性别:" VerticalAlignment="Center"></TextBlock>
             <ComboBox Width="100" 
                       ItemsSource="{Binding SexOptions}"
                       SelectedItem="{Binding SelectStudent.Sex, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
             <Button Click="Close" Content="确定"/>
         </StackPanel>
     </Grid>
+        </Border>
 </Window>

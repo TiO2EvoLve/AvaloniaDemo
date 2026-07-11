@@ -13,6 +13,7 @@ using SukiUI.Controls;
 using SukiUI.MessageBox;
 using SukiUI.Toasts;
 using Tmds.DBus.Protocol;
+using NotificationType = Avalonia.Controls.Notifications.NotificationType;
 
 namespace AvaloniaTestDemo.Views;
 

@@ -14,13 +14,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class SqlServerViewModel() : DemoPageBase("SqlServer", MaterialIconKind.Database, 0)
+public partial class SqlServerViewModel : DemoPageBase
 {
     [ObservableProperty] private ObservableCollection<Student> _sqlData = new(); //表格数据绑定
     [ObservableProperty] private Student selectStudent = new(); //回显数据绑定
     [ObservableProperty] private Student queryStudent = new(); //查询条件绑定
     public List<string> SexOptions { get; } = ["男", "女"]; // 性别选项绑定
 
+    public SqlServerViewModel() : base("SqlServer", MaterialIconKind.Database, 0)
+    {
+        SqlSelect().ConfigureAwait(true); //初始化查询
+    }
+    
     //查询方法绑定
     [RelayCommand]
     private async Task SqlSelect()
@@ -60,10 +65,8 @@ public partial class SqlServerViewModel() : DemoPageBase("SqlServer", MaterialIc
         await addWindow.ShowDialog(App.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
             ? desktop.MainWindow
             : null);
-
-        // 对话框关闭后，从 newStudent 读取填写的数据
-        if (string.IsNullOrWhiteSpace(SelectStudent.Name) || SelectStudent.Age == 0 ||
-            string.IsNullOrWhiteSpace(SelectStudent.Sex)) //检查是否有空属性
+        
+        if (string.IsNullOrWhiteSpace(SelectStudent.Name) || SelectStudent.Age == 0 || string.IsNullOrWhiteSpace(SelectStudent.Sex)) //检查是否有空属性
         {
             return;
         }
@@ -92,6 +95,7 @@ public partial class SqlServerViewModel() : DemoPageBase("SqlServer", MaterialIc
         context.Students.Update(SelectStudent);
         await context.SaveChangesAsync();
         await SqlSelect(); // 刷新列表
+        SelectStudent.clear();
     }
 
     //删除方法绑定
@@ -108,7 +112,7 @@ public partial class SqlServerViewModel() : DemoPageBase("SqlServer", MaterialIc
     [RelayCommand]
     private async Task SqlReset(Student student)
     {
-        QueryStudent = new Student();
+        QueryStudent.clear();
         await SqlSelect();
     }
 }

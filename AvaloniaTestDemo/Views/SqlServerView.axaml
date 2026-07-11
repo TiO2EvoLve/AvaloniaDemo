@@ -16,13 +16,13 @@
         <StackPanel Orientation="Horizontal" Spacing="10">
             <TextBox Width="200" Height="30" PlaceholderText="姓名" Text="{Binding QueryStudent.Name, Mode=TwoWay}"></TextBox>
             <TextBox Width="200" Height="30" PlaceholderText="年龄" Text="{Binding QueryStudent.Age, Mode=TwoWay}"></TextBox>
-            <ComboBox Height="30"
+            <ComboBox Height="30" 
                       PlaceholderText="性别"
                       ItemsSource="{Binding SexOptions}"
                       SelectedItem="{Binding QueryStudent.Sex, Mode=TwoWay}" />
-            <Button Classes="Flat" Command="{Binding SqlSelectCommand}" Content="查询" />
-            <Button Classes="Outlined" Command="{Binding SqlResetCommand}" Content="重置" />
-            <Button Classes="Flat Success" Command="{Binding SqlInsertCommand}" Content="新增" />
+            <Button Classes="Flat" Height="35" Command="{Binding SqlSelectCommand}" Content="查询" />
+            <Button Classes="Outlined" Height="35" Command="{Binding SqlResetCommand}" Content="重置" />
+            <Button Classes="Flat Success" Height="35" Command="{Binding SqlInsertCommand}" Content="新增" />
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="20">
@@ -45,7 +45,7 @@
                     <DataGridTextColumn Header="编号"  FontSize="13" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="姓名"  FontSize="13" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="年龄"  FontSize="13" Binding="{Binding Age}" />
-                    <DataGridTextColumn Header="性别"  FontSize="1" Binding="{Binding Sex}" />
+                    <DataGridTextColumn Header="性别"  FontSize="13" Binding="{Binding Sex}" />
                     <DataGridTemplateColumn Header="操作">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

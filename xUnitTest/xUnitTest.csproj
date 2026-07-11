@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="9.3.0" />
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.1" />
+        <PackageReference Include="Autofac" Version="9.3.1" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.2" />
         <PackageReference Include="DryIoc" Version="5.4.3" />
         <PackageReference Include="Elsa" Version="3.7.1" />
         <PackageReference Include="Hangfire.Core" Version="1.8.23" />
@@ -47,6 +47,10 @@
 
     <ItemGroup>
       <Compile Remove="函数式编程\language-ext\User.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Fsharp\Fsharp.fsproj" />
     </ItemGroup>
 
 </Project>

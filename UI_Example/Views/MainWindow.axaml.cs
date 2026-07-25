@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace UI_Example.Views;
 
@@ -23,5 +24,12 @@ public partial class MainWindow : Window
     private void MinWindow(object? sender, PointerPressedEventArgs e)
     {
         WindowState = WindowState.Minimized;
+    }
+
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Web page = new Web();
+        page.Show();
     }
 }

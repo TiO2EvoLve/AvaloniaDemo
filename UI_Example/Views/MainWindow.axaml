@@ -49,7 +49,7 @@
 
         <Border Grid.Row="1" Margin="10,0,10,10" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
-                <Button Classes="Green" Width="60" Content="绿色" />
+                <Button Classes="Green" Width="60" Content="绿色" Click="Button_OnClick" />
                 <Button Classes="Red" Width="60" Content="红色" />
                 <Button Classes="Orange" Width="60" Content="橙色" />
                 <Button Classes="Cyan" Width="60" Content="青色" />

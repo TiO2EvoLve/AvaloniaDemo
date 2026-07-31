@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         WindowDecorations="BorderOnly"
+        xmlns:controls="clr-namespace:UI_Example.Control"
         TransparencyLevelHint="Mica"
         Background="Transparent"
         Icon="/Assets/avalonia-logo.ico">
@@ -27,8 +28,8 @@
         </Style>
     </Window.Styles>
     
-    <Grid RowDefinitions="Auto,*">
-        <Grid >
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <Grid  PointerPressed="TitleBar_PointerPressed">
             <Menu Background="Bisque">
                 <MenuItem Header="File" >
                     <MenuItem Header="New" />
@@ -59,5 +60,6 @@
             </StackPanel>
         </Border>
 
+        <controls:CircularProgressBar Grid.Row="2" Width="200" Height="200" Value="50"/>
     </Grid>
 </Window>

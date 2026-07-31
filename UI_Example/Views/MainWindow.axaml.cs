@@ -10,7 +10,14 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
+    
+    private void TitleBar_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+        {
+            BeginMoveDrag(e);
+        }
+    }
     private void Close(object? sender, PointerPressedEventArgs e)
     {
         Close();

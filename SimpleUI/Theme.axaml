@@ -1,0 +1,9 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui">
+
+
+    <StyleInclude 
+        Source="avares://SimpleUI/Theme/Button/Buttons.axaml"/>
+
+
+</Styles>

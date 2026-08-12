@@ -1,0 +1,174 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- 设计时预览（可选） -->
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="10">
+                <Button Classes="Green">Button</Button>
+                <Button Classes="Red">Button</Button>
+                <Button Classes="Orange">Button</Button>
+                <Button Classes="Cyan">Button</Button>
+                <Button Classes="Blue">Button</Button>
+                <Button Classes="Purple">Button</Button>
+                <Button Classes="Pink">Button</Button>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <!-- 全局样式 -->
+    <Style Selector="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+    
+    <Style Selector="Button:pointerover ContentPresenter">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- 定义样式 -->
+    <Style Selector="Button.Green">
+        <Setter Property="Background" Value="#52c41a" />
+    </Style>
+    
+    <!-- Green -->
+    <Style Selector="Button.Green:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#73D13D" />
+    </Style>
+    
+    <Style Selector="Button.Red">
+        <Setter Property="Background" Value="#ff4d4f" />
+    </Style>
+    
+    <!-- Red -->
+    <Style Selector="Button.Red:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#FF7875" />
+    </Style>
+    
+    <Style Selector="Button.Orange">
+        <Setter Property="Background" Value="DarkOrange" />
+    </Style>
+    
+    <!-- Orange -->
+    <Style Selector="Button.Orange:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#FFA940" />
+    </Style>
+    
+    <Style Selector="Button.Cyan">
+        <Setter Property="Background" Value="#13c2c2" />
+    </Style>
+    
+    <!-- Cyan -->
+    <Style Selector="Button.Cyan:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#36CFC9" />
+    </Style>
+    
+    <Style Selector="Button.Blue">
+        <Setter Property="Background" Value="DodgerBlue" />
+    </Style>
+    
+    <!-- Blue -->
+    <Style Selector="Button.Blue:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#40A9FF" />
+    </Style>
+    
+    <Style Selector="Button.Purple">
+        <Setter Property="Background" Value="#722ed1" />
+    </Style>
+    
+    <!-- Purple -->
+    <Style Selector="Button.Purple:pointerover ContentPresenter">
+        <Setter Property="Background" Value="#9254DE" />
+    </Style>
+    
+    <Style Selector="Button.Pink">
+        <Setter Property="Background" Value="#FF4DB8" />
+    </Style>
+    
+    <!-- Pink -->
+    <Style Selector="Button.Pink:pointerover ContentPresenter">
+        <Setter Property="Background" Value="HotPink" />
+    </Style>
+
+    <!-- ~1~ 定义样式 @1@ -->
+    <!-- <Style Selector="Button.Green"> -->
+    <!--     <Setter Property="Background" Value="#f6ffed" /> -->
+    <!--     <Setter Property="Foreground" Value="#52c41a" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#b7eb8f" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Green:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#52c41a" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Red"> -->
+    <!--     <Setter Property="Background" Value="#fff1f0" /> -->
+    <!--     <Setter Property="Foreground" Value="#ff4d4f" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#ffa39e" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Red:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#ff4d4f" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Orange"> -->
+    <!--     <Setter Property="Background" Value="#fff7e6" /> -->
+    <!--     <Setter Property="Foreground" Value="#fa8c16" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#ffd591" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Orange:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#fa8c16" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Cyan"> -->
+    <!--     <Setter Property="Background" Value="#e6fffb" /> -->
+    <!--     <Setter Property="Foreground" Value="#13c2c2" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#87e8de" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Cyan:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#13c2c2" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Blue"> -->
+    <!--     <Setter Property="Background" Value="#e6f7ff" /> -->
+    <!--     <Setter Property="Foreground" Value="#1890ff" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#91d5ff" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Blue:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#1890ff" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Purple"> -->
+    <!--     <Setter Property="Background" Value="#f9f0ff" /> -->
+    <!--     <Setter Property="Foreground" Value="#722ed1" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#d3adf7" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Purple:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#722ed1" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Pink"> -->
+    <!--     <Setter Property="Background" Value="#f9f0ff" /> -->
+    <!--     <Setter Property="Foreground" Value="#eb2f96" /> -->
+    <!--     <Setter Property="BorderBrush" Value="#ffadd2" /> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="Button.Pink:pointerover ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#eb2f96" /> -->
+    <!--     <Setter Property="Foreground" Value="White" /> -->
+    <!-- </Style> -->
+
+</Styles>

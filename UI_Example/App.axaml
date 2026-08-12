@@ -10,9 +10,18 @@
         <local:ViewLocator />
     </Application.DataTemplates>
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude 
+                    Source="avares://SimpleUI/Resource.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="avares://UI_Example/Styles/Button.axaml" />
-        
+        <StyleInclude Source="avares://SimpleUI/Theme.axaml"/>
     </Application.Styles>
 </Application>

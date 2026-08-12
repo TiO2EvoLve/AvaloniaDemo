@@ -9,7 +9,9 @@
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         WindowDecorations="BorderOnly"
+        xmlns:cc="using:SimpleUI.Control"
         xmlns:controls="clr-namespace:UI_Example.Control"
+        xmlns:control="clr-namespace:SimpleUI.Control;assembly=SimpleUI"
         TransparencyLevelHint="Mica"
         Background="Transparent"
         Icon="/Assets/avalonia-logo.ico">
@@ -60,6 +62,6 @@
             </StackPanel>
         </Border>
 
-        <controls:CircularProgressBar Grid.Row="2" Width="200" Height="200" Value="50"/>
+        <cc:CircularProgressBar Height="200" Grid.Row="2" Width="300" Value="75"/>
     </Grid>
 </Window>

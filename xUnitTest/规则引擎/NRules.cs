@@ -34,7 +34,7 @@ public class NRules(ITestOutputHelper TS)
         TS.WriteLine($"Base Premium: {quote.BasePremium}, Final Premium: {quote.FinalPremium}");
     }
 }
-// 假设这是你的领域模型
+// 域模型
 public class InsuranceQuote {
     public Driver Driver { get; set; }
     public decimal BasePremium { get; set; }

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <Color x:Key="PrimaryColor">
+        #6750A4
+    </Color>
+
+
+    <SolidColorBrush 
+        x:Key="PrimaryBrush"
+        Color="{StaticResource PrimaryColor}"/>
+
+
+    <SolidColorBrush
+        x:Key="TextBrush"
+        Color="#202124"/>
+
+
+</ResourceDictionary>

@@ -18,7 +18,7 @@
                 <ComboBoxItem Content="选项3" x:Name="BoxItem3" />
             </ComboBox>
         </StackPanel>
-        <Grid Grid.Row="1" RowSpacing="10" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="20"
+        <Grid Grid.Row="1" RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="20"
               IsVisible="{Binding #BoxItem1.IsSelected, ElementName=BoxItem1}">
             <!-- 文本绑定 -->
             <suki:GlassCard HorizontalAlignment="Stretch" IsInteractive="True">
@@ -29,9 +29,9 @@
                             Minimum="0"
                             TickFrequency="1"
                             Value="{Binding Number}" />
-                    
                 </DockPanel>
             </suki:GlassCard>
+            
             <suki:GlassCard Grid.Row="1" IsInteractive="True" HorizontalAlignment="Stretch">
                 <!-- 枚举绑定 -->
                 <ComboBox
@@ -39,8 +39,18 @@
                     SelectedItem="{Binding SelectedSeason}" />
             </suki:GlassCard>
             <suki:GlassCard Grid.Row="2" IsInteractive="True" HorizontalAlignment="Stretch">
-                
+                <TextBlock Text="{Binding SelectedSeason}"></TextBlock>
             </suki:GlassCard>
+            
+            <suki:GlassCard Grid.Row="3" IsInteractive="True" HorizontalAlignment="Stretch">
+                <!-- CheckBox绑定 -->
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <CheckBox IsChecked="{Binding IsCheck}" Content="选项一" VerticalAlignment="Center"></CheckBox>
+                    <ToggleSwitch IsChecked="{Binding IsCheck}" OnContent="开" OffContent="关" VerticalAlignment="Center"></ToggleSwitch>
+                </StackPanel>
+            </suki:GlassCard>
+            
+            
         </Grid>
 
     </Grid>

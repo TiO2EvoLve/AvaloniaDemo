@@ -57,6 +57,7 @@ public class App : Application
             .AddView<HarmonyModView, HarmonyModViewModel>(services)
             .AddView<LineRenderView, LineRenderViewModel>(services)
             .AddView<SqlServerView, SqlServerViewModel>(services)
+            .AddView<PhotoDropView, PhotoDropViewModel>(services)
             ;
     }
 

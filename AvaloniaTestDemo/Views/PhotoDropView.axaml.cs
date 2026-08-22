@@ -6,11 +6,15 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
 using Avalonia.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaloniaTestDemo.Views;
 
 public partial class PhotoDropView : UserControl
 {
+    
+    private Bitmap bitmap;
+    
     public PhotoDropView()
     {
         InitializeComponent();
@@ -27,8 +31,7 @@ public partial class PhotoDropView : UserControl
         var files = e.DataTransfer.TryGetFiles();
         if (files == null || files.Length == 0)
             return;
-
-        // TryGetFiles 返回的是 IStorageItem
+        
         // 这里只接受文件，不接受文件夹
         var file = files.OfType<IStorageFile>().FirstOrDefault();
 

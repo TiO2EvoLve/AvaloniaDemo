@@ -6,6 +6,5 @@
         xmlns:webview="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.WebView"
         x:Class="UI_Example.Views.Web"
         Title="Web">
-    <webview:NativeWebView
-        Source="https://www.baidu.com"/>
+    <webview:NativeWebView Source="https://www.bilibili.com"/>
 </Window>

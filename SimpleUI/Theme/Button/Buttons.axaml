@@ -22,6 +22,7 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     
     <Style Selector="Button:pointerover ContentPresenter">

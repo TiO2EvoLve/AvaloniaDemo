@@ -22,17 +22,17 @@
 
     <Window.Styles>
         <Style Selector="MenuItem">
-            <Setter Property="Foreground" Value="Coral"></Setter>
+            <Setter Property="Foreground" Value="WhiteSmoke"></Setter>
             <Setter Property="FontFamily" Value="Inter, 苹方, Microsoft YaHei, sans-serif"></Setter>
         </Style>
         <Style Selector="MenuItem:pointerover ContentPresenter">
-            <Setter Property="Foreground" Value="DarkOrange"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </Window.Styles>
     
-    <Grid RowDefinitions="Auto,Auto,Auto">
+    <Grid RowDefinitions="Auto,*">
         <Grid  PointerPressed="TitleBar_PointerPressed">
-            <Menu Background="Bisque">
+            <Menu Background="#1E8FFD" >
                 <MenuItem Header="File" >
                     <MenuItem Header="New" />
                     <MenuItem Header="Open" />
@@ -51,9 +51,9 @@
         </Grid>
 
         <Border Grid.Row="1" Margin="10,10,10,10" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                 <Button Classes="Green" Width="60" Content="绿色" Click="Button_OnClick" />
-                <Button Classes="Red" Width="60" Content="红色" />
+                <Button Classes="Red" Width="60" Content="删除" VerticalContentAlignment="Center"/>
                 <Button Classes="Orange" Width="60" Content="橙色" />
                 <Button Classes="Cyan" Width="60" Content="青色" />
                 <Button Classes="Blue" Width="60" Content="蓝色" />

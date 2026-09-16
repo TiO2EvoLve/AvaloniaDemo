@@ -11,8 +11,6 @@
         ExtendClientAreaToDecorationsHint="True"
         x:Class="AvaloniaTestDemo.Windows.Add"
         WindowDecorations="None"
-        TransparencyLevelHint="Transparent" 
-        Background="Transparent"
         Title="Add">
     
     <Design.DataContext>

@@ -42,7 +42,7 @@
             <Border x:Name="DraggableBorder"
                     Width="50"
                     Height="50"
-                    CornerRadius="10"
+                    CornerRadius="2"
                     Background="DodgerBlue"
                     Cursor="Hand"
                     Canvas.Left="100"

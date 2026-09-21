@@ -3,7 +3,7 @@ using Xunit.Abstractions;
 using static LanguageExt.Prelude;
 namespace xUnitTest.函数式编程.language_ext;
 
-public class Reader演示(ITestOutputHelper testOutputHelper)
+public class Reader演示(ITestOutputHelper TS)
 {
     [Fact]
     public void Run()
@@ -13,6 +13,6 @@ public class Reader演示(ITestOutputHelper testOutputHelper)
 
         var result = reader.Run("开发环境");
 
-        testOutputHelper.WriteLine(result.ToString());
+        TS.WriteLine(result.ToString());
     }
 }

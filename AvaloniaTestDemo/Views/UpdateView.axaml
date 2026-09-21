@@ -1,0 +1,39 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:UpdateViewModel"
+             xmlns:AvalonEdit="using:AvaloniaEdit"
+             x:Class="AvaloniaTestDemo.Views.UpdateView">
+    <Design.DataContext>
+        <vm:UpdateViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="Auto,Auto,*" Margin="20" RowSpacing="10">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20">
+            <Button Command="{Binding CheckUpdateCommand}" Content="Check for Updates"/>
+            <Button IsVisible="{Binding IsUpdating}" Command="{Binding ApplyUpdateCommand}" Content="Download Updates"/>
+            <TextBlock Text="{Binding Version}" VerticalAlignment="Center"/>
+        </StackPanel>
+        <ProgressBar Grid.Row="1" Minimum="0" Maximum="100" Value="{Binding DownloadProgress}" Height="18" />
+        <Border Grid.Row="2">
+            <AvalonEdit:TextEditor  Document="{Binding LogDoc}"
+                                    x:Name="logEditor"
+                                    TextChanged="LogEditor_OnTextChanged"
+                                    HorizontalScrollBarVisibility="Auto"
+                                    VerticalScrollBarVisibility="Visible"
+                                    IsReadOnly="True"
+                                    FontWeight="Light"
+                                    Padding="20"
+                                    Background="#2C2C2C"
+                                    Foreground="WhiteSmoke"
+                                    FontSize="14"
+                                    ShowLineNumbers="True"
+                                    Watermark="暂没有日志">
+            </AvalonEdit:TextEditor>
+        </Border>
+       
+    </Grid>
+</UserControl>

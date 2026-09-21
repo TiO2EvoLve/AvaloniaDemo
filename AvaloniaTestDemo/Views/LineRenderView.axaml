@@ -12,9 +12,7 @@
     </Design.DataContext>
     
     <Grid Margin="16">
-
         <Canvas>
-
             <Path
                 Stroke="DeepSkyBlue"
                 StrokeDashArray="5,1"
@@ -37,8 +35,6 @@
                 DataContext="{Binding EndNode}"
                 Canvas.Left="{Binding X}"
                 Canvas.Top="{Binding Y}" />
-
         </Canvas>
-
     </Grid>
 </UserControl>

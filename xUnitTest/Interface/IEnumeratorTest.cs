@@ -5,33 +5,33 @@ using System.Collections;
 namespace xUnitTest.Interface;
 
 //可枚举IEnumerator接口测试
-public class IEnumeratorTest(ITestOutputHelper testOutputHelper)
+public class IEnumeratorTest(ITestOutputHelper TS)
 {
     [Fact]
     public void Run()
     {
-        testOutputHelper.WriteLine("=== DaysOfWeek (手动实现IEnumerator) ===");
+        TS.WriteLine("=== DaysOfWeek (手动实现IEnumerator) ===");
         var days = new DaysOfWeek();
-        foreach (string day in days) Console.WriteLine($"今天是：{day}");
+        foreach (string day in days) TS.WriteLine($"今天是：{day}");
 
-        testOutputHelper.WriteLine("\n=== NumberSequence (使用yield return) ===");
+        TS.WriteLine("\n=== NumberSequence (使用yield return) ===");
         var numbers = new NumberSequence(10, 5);
-        foreach (var num in numbers) Console.WriteLine($"数字：{num}");
+        foreach (var num in numbers) TS.WriteLine($"数字：{num}");
 
-        testOutputHelper.WriteLine("\n=== SmartCollection (泛型集合) ===");
+        TS.WriteLine("\n=== SmartCollection (泛型集合) ===");
         var smartCollection = new SmartCollection<string>("Apple", "Banana", "Cherry");
         smartCollection.Add("Date");
 
-        foreach (var fruit in smartCollection) Console.WriteLine($"水果：{fruit}");
+        foreach (var fruit in smartCollection) TS.WriteLine($"水果：{fruit}");
 
-        testOutputHelper.WriteLine("\n=== 与LINQ结合使用 ===");
+        TS.WriteLine("\n=== 与LINQ结合使用 ===");
         var evenNumbers = new NumberSequence(1, 10)
             .Where(n => n % 2 == 0)
             .Select(n => n * 2);
 
-        foreach (var num in evenNumbers) Console.WriteLine($"偶数乘以2：{num}");
+        foreach (var num in evenNumbers) TS.WriteLine($"偶数乘以2：{num}");
 
-        testOutputHelper.WriteLine("\n=== 直接使用枚举器 ===");
+        TS.WriteLine("\n=== 直接使用枚举器 ===");
         DemonstrateEnumerator();
     }
 

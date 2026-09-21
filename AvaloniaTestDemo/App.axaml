@@ -16,5 +16,6 @@
         <suki:SukiTheme Locale="zh-CN" ThemeColor="Blue" />
         <avalonia:MaterialIconStyles />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
     </Application.Styles>
 </Application>

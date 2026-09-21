@@ -58,6 +58,7 @@ public class App : Application
             .AddView<SqlServerView, SqlServerViewModel>(services)
             .AddView<PhotoDropView, PhotoDropViewModel>(services)
             .AddView<ModelLoadView, ModelLoadViewModel>(services)
+            .AddView<UpdateView, UpdateViewModel>(services)
             ;
     }
 

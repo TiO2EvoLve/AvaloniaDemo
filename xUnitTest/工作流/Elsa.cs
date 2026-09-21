@@ -25,7 +25,6 @@ public class Elsa
                 new WriteLine("We can do more than a one-liner!")
             }
         };
-        
 
         var workflowRunner = serviceProvider.GetRequiredService<IWorkflowRunner>();
         

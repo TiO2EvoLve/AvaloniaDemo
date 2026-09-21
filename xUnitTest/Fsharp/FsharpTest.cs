@@ -7,8 +7,7 @@ public class FsharpTest(ITestOutputHelper TS)
     [Fact]
     public void Run()
     {
-        var result =
-            Math.factorial(0);
+        var result = Math.factorial(0);
         TS.WriteLine(result.ToString());
     }
 }

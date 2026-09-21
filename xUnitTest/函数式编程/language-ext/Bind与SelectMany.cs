@@ -3,7 +3,7 @@ using Xunit.Abstractions;
 using static LanguageExt.Prelude;
 namespace xUnitTest.函数式编程.language_ext;
 
-public class Bind与SelectMany(ITestOutputHelper testOutputHelper)
+public class Bind与SelectMany(ITestOutputHelper TS)
 {
     [Fact]
     public void Run()
@@ -15,6 +15,6 @@ public class Bind与SelectMany(ITestOutputHelper testOutputHelper)
             from y in Parse("10")
             select x + y;
 
-        testOutputHelper.WriteLine(result.IfNone(0).ToString());
+        TS.WriteLine(result.IfNone(0).ToString());
     }
 }

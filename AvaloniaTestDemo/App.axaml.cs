@@ -57,7 +57,6 @@ public class App : Application
             .AddView<LineRenderView, LineRenderViewModel>(services)
             .AddView<SqlServerView, SqlServerViewModel>(services)
             .AddView<PhotoDropView, PhotoDropViewModel>(services)
-            .AddView<ModelLoadView, ModelLoadViewModel>(services)
             .AddView<UpdateView, UpdateViewModel>(services)
             ;
     }

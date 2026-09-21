@@ -1,12 +1,15 @@
-﻿using Quartz;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Quartz;
 using Quartz.Impl;
 
 namespace xUnitTest.时间调度.Quartz;
 
-public class PrintJob : IJob
+public class PrintJob
 {
-    public ValueTask Execute(IJobExecutionContext context, CancellationToken cancellationToken = new CancellationToken())
+    [Fact]
+    private void Run()
     {
-        throw new NotImplementedException();
+        
     }
 }

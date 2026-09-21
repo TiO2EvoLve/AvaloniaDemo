@@ -12,7 +12,7 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class UpdateViewModel() : DemoPageBase("自动更新", MaterialIconKind.Update, 100)
 {
-    [ObservableProperty] public string version = "V1.0.4";
+    [ObservableProperty] public string version = "V1.0.0";
     [ObservableProperty] public int downloadProgress = 0;
     [ObservableProperty] public bool isUpdating = false;
     //日志内容
@@ -23,7 +23,6 @@ public partial class UpdateViewModel() : DemoPageBase("自动更新", MaterialIc
     [RelayCommand]
     private async Task CheckUpdate()
     {
-        AddLog("开始检查更新。。。");
         try
         {
             await CheckUpdateAsync();
@@ -72,7 +71,6 @@ public partial class UpdateViewModel() : DemoPageBase("自动更新", MaterialIc
             IsUpdating = false;
             return;
         }
-        
         AddLog("开始下载更新。");
         await manager.DownloadUpdatesAsync(
             update,
@@ -81,16 +79,15 @@ public partial class UpdateViewModel() : DemoPageBase("自动更新", MaterialIc
                 DownloadProgress = progress;
             });
         AddLog("更新下载完成，准备应用更新并重启程序。");
-        manager.ApplyUpdatesAndRestart(update);
+        //需要自动安装就打开
+        //manager.ApplyUpdatesAndRestart(update);
     }
     // 添加日志
-    public void AddLog(string msg)
+    private void AddLog(string msg)
     {
         Dispatcher.UIThread.Post(() =>
         {
-            LogDoc.Insert(
-                LogDoc.TextLength,
-                $"{msg}{Environment.NewLine}");
+            LogDoc.Insert(LogDoc.TextLength,$"{msg}{Environment.NewLine}");
         });
     }
 }

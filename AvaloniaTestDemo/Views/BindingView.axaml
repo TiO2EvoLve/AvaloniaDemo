@@ -49,9 +49,6 @@
                     <ToggleSwitch IsChecked="{Binding IsCheck}" OnContent="开" OffContent="关" VerticalAlignment="Center"></ToggleSwitch>
                 </StackPanel>
             </suki:GlassCard>
-            
-            
         </Grid>
-
     </Grid>
 </UserControl>

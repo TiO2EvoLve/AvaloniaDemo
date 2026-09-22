@@ -218,7 +218,7 @@
                     Height="80"
                     Margin="30,10,30,10"
                     Classes="AppIcon"
-                    Source="avares://AvaloniaTestDemo/Assets/logo.png" />
+                    Source="avares://AvaloniaTest/Assets/logo.png" />
                 <TextBlock
                     Margin="0,0,0,10"
                     HorizontalAlignment="Center"

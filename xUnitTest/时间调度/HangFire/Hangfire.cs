@@ -1,6 +1,5 @@
 ﻿using Hangfire;
 using Hangfire.MemoryStorage;
-using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 

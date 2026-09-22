@@ -38,9 +38,9 @@ public partial class UpdateViewModel() : DemoPageBase("自动更新", MaterialIc
         AddLog("开始检查更新。。。");
         try
         {
-            AddLog("正在连接更新源: https://github.com/TiO2EvoLve/updateTest");
+            AddLog("正在连接更新源: https://github.com/TiO2EvoLve/AvaloniaDemo");
             manager = new UpdateManager(
-                new GithubSource("https://github.com/TiO2EvoLve/updateTest",
+                new GithubSource("https://github.com/TiO2EvoLve/AvaloniaDemo",
                     null,
                     false));
 

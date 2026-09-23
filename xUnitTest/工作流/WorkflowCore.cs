@@ -27,26 +27,28 @@ public class WorkflowCoreDemo(ITestOutputHelper TS)
 
         await host.StartWorkflow("HelloWorld");
 
+        await Task.Delay(3000);
+
         host.Stop();
 
         TS.WriteLine("工作流执行成功！");
     }
+    
 }
-
-public class 步骤1() : StepBody
+public class 步骤1(ITestOutputHelper TS) : StepBody
 {
     public override ExecutionResult Run(IStepExecutionContext context)
     {
-        Console.WriteLine("步骤一执行");
+        TS.WriteLine("步骤一执行");
         return ExecutionResult.Next();
     }
 }
 
-public class 步骤2() : StepBody
+public class 步骤2(ITestOutputHelper TS) : StepBody
 {
     public override ExecutionResult Run(IStepExecutionContext context)
     {
-        Console.WriteLine("步骤二执行");
+        TS.WriteLine("步骤二执行");
         return ExecutionResult.Next();
     }
 }
@@ -63,3 +65,4 @@ public class HelloWorldWorkflow : IWorkflow
             .Then<步骤2>();
     }
 }
+

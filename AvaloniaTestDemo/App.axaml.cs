@@ -59,6 +59,7 @@ public class App : Application
             .AddView<PhotoDropView, PhotoDropViewModel>(services)
             .AddView<UpdateView, UpdateViewModel>(services)
             .AddView<LiteDBView, LiteDBViewModel>(services)
+            .AddView<WorkFlowView, WorkFlowViewModel>(services)
             ;
     }
 

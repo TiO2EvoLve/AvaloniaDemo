@@ -1,0 +1,101 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="520"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:WorkFlowViewModel"
+             x:Class="AvaloniaTestDemo.Views.WorkFlowView">
+    <Design.DataContext>
+        <vm:WorkFlowViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Content="开始" Width="120" Height="38"
+                        Classes="Flat" Background="DodgerBlue"
+                        Command="{Binding StartCommand}" />
+                <Button Classes="Flat" Background="Coral" Content="取消" Width="120" Height="38"
+                        Command="{Binding CancelCommand}" />
+            </StackPanel>
+
+            <Border Grid.Column="1" Margin="16,0,0,0" Padding="12,8"
+                    CornerRadius="8" BorderBrush="#3B82F6" BorderThickness="1">
+                <TextBlock Text="{Binding CurrentStatus}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="2*,1*">
+            <Border BorderThickness="1" CornerRadius="12" Padding="20">
+                <StackPanel Spacing="18">
+                    <TextBlock Text="WorkflowCore 流程演示" FontSize="20" FontWeight="Bold" />
+
+                    <ItemsControl ItemsSource="{Binding Steps}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:WorkflowStepItem">
+                                <Grid Margin="0,0,0,14" ColumnDefinitions="18,12,*">
+
+                                    <Ellipse Width="14" Height="14" Fill="{Binding StatusBrush}" VerticalAlignment="Center" />
+                                    <Border Grid.Column="1" 
+                                            Width="2" Height="64" 
+                                            CornerRadius="10"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="1" 
+                                            IsVisible="True" 
+                                            Margin="0,8,0,-8" />
+                                    <Border Grid.Column="2" 
+                                            Padding="12,10" 
+                                            CornerRadius="10"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="1">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold"  />
+                                            <TextBlock Text="{Binding Status}" Foreground="{Binding StatusBrush}" FontSize="12" />
+                                            <TextBlock Text="{Binding Description}" FontSize="12" TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Margin="20,0,0,0" 
+                    CornerRadius="10"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Padding="20">
+                <StackPanel Spacing="18">
+                    <TextBlock Text="审批操作区" FontSize="20" FontWeight="Bold" />
+
+                    <Border Padding="12" 
+                            CornerRadius="10"
+                            BorderBrush="LightGray"
+                            BorderThickness="1">
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="审批状态" FontSize="12" />
+                            <TextBlock Text="{Binding ApprovalStatus}" FontSize="16" FontWeight="Bold"  />
+                        </StackPanel>
+                    </Border>
+
+                    <Button Classes="Flat" Background="LimeGreen" Content="审批通过" Height="40" Command="{Binding ApproveCommand}"
+                            IsEnabled="{Binding IsApprovalWaiting}"  />
+
+                    <TextBlock Text="流程在审批节点时会停住，等待人工审批后再继续执行后续步骤。" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

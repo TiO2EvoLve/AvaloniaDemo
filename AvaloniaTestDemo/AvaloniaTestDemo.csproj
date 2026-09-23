@@ -12,6 +12,7 @@
         <Product>AvaloniaTest</Product>
         <AssemblyTitle>AvaloniaTest</AssemblyTitle>
         <ApplicationIcon>Assets\avalonia-logo.ico</ApplicationIcon>
+        <PackageIcon>Assets\logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -44,11 +45,7 @@
         <PackageReference Include="Stateless" Version="5.20.1" />
         <PackageReference Include="SukiUI" Version="7.0.1" />
         <PackageReference Include="System.Reactive" Version="7.0.0" />
-        <PackageReference Include="Velopack" Version="1.2.0" />
-        <PackageReference Include="Velopack.Build" Version="0.0.1298">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Velopack" Version="1.2.158" />
         <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
 </Project>

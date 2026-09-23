@@ -74,13 +74,13 @@
                     Header="姓名"
                     FontSize="18"
                     Binding="{Binding Name}"
-                    Width="*"/>
+                    Width="100"/>
 
                 <DataGridTextColumn
                     Header="年龄"
                     FontSize="18"
                     Binding="{Binding Age}"
-                    Width="150"/>
+                    Width="100"/>
 
             </DataGrid.Columns>
 

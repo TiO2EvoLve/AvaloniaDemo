@@ -6,7 +6,7 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class LinQViewModel() : DemoPageBase("LinQ", MaterialIconKind.Fingerprint, int.MinValue)
+public partial class LinQViewModel() : DemoPageBase("LinQ", MaterialIconKind.Fingerprint)
 {
     [RelayCommand]
     private void 筛选()

@@ -5,7 +5,7 @@
         Title="发现新版本"
         Width="610" Height="590" MinWidth="610" MinHeight="590"
         CanResize="False"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         x:DataType="views:ModernUpdateWindow"
         Background="#F4F6F8">

@@ -5,8 +5,7 @@ namespace xUnitTest.依赖注入.Autofac;
 
 public class AutofacDI(ITestOutputHelper testOutputHelper)
 {
-
-
+    
     [Fact]
     public void Run()
     {

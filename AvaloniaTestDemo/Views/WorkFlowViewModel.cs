@@ -35,7 +35,7 @@ public partial class WorkFlowViewModel : DemoPageBase
         new ("流程结束", "待执行", Brushes.Gray)
     ];
 
-    public WorkFlowViewModel() : base("工作流", MaterialIconKind.Work, 100)
+    public WorkFlowViewModel() : base("工作流", MaterialIconKind.Work)
     {
         ResetWorkflowState();
     }

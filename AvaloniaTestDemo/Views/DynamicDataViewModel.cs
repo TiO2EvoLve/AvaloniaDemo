@@ -21,7 +21,7 @@ public partial class DynamicDataViewModel : DemoPageBase
 
     private int _idSeed = 1;
 
-    public DynamicDataViewModel() : base("Dynamic Data", MaterialIconKind.MicrosoftDynamics365, int.MinValue)
+    public DynamicDataViewModel() : base("Dynamic Data", MaterialIconKind.MicrosoftDynamics365)
     {
         _people = new SourceCache<Person, int>(p => p.Id);
 

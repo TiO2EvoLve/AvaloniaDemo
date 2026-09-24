@@ -32,7 +32,7 @@ public partial class StateMachineViewModel : DemoPageBase
     [ObservableProperty]
     private string currentStateText;
 
-    public StateMachineViewModel() : base("状态机", MaterialIconKind.StateMachine,1)
+    public StateMachineViewModel() : base("状态机", MaterialIconKind.StateMachine)
     {
         _machine = new StateMachine<State, Trigger>(State.Created);
 

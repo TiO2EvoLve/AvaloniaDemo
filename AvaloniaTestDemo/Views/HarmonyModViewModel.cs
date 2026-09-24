@@ -6,7 +6,7 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class HarmonyModViewModel() : DemoPageBase("Harmony Mod", MaterialIconKind.Code, 100)
+public partial class HarmonyModViewModel() : DemoPageBase("Harmony Mod", MaterialIconKind.Code)
 {
     [ObservableProperty] private string _name = "World";
     [ObservableProperty] private string _result = string.Empty;

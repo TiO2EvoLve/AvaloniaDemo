@@ -4,7 +4,7 @@
         Title="检查更新"
         Width="460" Height="300"
         CanResize="False"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         Background="#F4F6F8">
     <Window.Styles>

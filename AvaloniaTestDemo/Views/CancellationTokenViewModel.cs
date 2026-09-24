@@ -7,7 +7,7 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class CancellationTokenViewModel() : DemoPageBase("消息取消", MaterialIconKind.CalendarCheckOutline,int.MinValue)
+public partial class CancellationTokenViewModel() : DemoPageBase("消息取消", MaterialIconKind.CalendarCheckOutline)
 {
     private CancellationTokenSource? _cts;
     

@@ -20,7 +20,7 @@ public partial class LineRenderViewModel : DemoPageBase
     private readonly Stopwatch _stopwatch = new();
     private double _lastTime;
 
-    public LineRenderViewModel() : base("Line Render", MaterialIconKind.LineScan, 100)
+    public LineRenderViewModel() : base("Line Render", MaterialIconKind.LineScan)
     { 
         
         StartNode = new NodeViewModel

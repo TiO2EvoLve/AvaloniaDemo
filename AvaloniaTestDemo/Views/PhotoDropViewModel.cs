@@ -4,7 +4,7 @@ using Material.Icons;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class PhotoDropViewModel() : DemoPageBase("图片拖拽", MaterialIconKind.Fingerprint, int.MinValue)
+public partial class PhotoDropViewModel() : DemoPageBase("图片拖拽", MaterialIconKind.Fingerprint)
 {
     [ObservableProperty]
     private Bitmap? previewImage;

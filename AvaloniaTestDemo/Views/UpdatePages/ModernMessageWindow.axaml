@@ -4,7 +4,7 @@
         x:Class="AvaloniaTestDemo.Views.UpdatePages.ModernMessageWindow"
         Width="460" Height="300"
         CanResize="False"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         x:DataType="updatePages:ModernMessageWindow"
         Background="#F4F6F8">

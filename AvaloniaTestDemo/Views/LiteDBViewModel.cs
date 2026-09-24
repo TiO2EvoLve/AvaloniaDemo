@@ -28,7 +28,7 @@ public partial class LiteDBViewModel : DemoPageBase
 
     public ObservableCollection<User> Users { get; } = new ();
 
-    public LiteDBViewModel() : base("LiteDB", MaterialIconKind.Database, int.MinValue) 
+    public LiteDBViewModel() : base("LiteDB", MaterialIconKind.Database) 
     {
         _database = new AppDatabase();
 

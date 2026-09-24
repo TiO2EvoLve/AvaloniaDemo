@@ -29,7 +29,7 @@ public partial class DragDropViewModel : DemoPageBase
     private double _startLeft;
     private double _startTop;
 
-    public DragDropViewModel() : base("拖动", MaterialIconKind.Drag, int.MinValue)
+    public DragDropViewModel() : base("拖动", MaterialIconKind.Drag)
     {
     }
 

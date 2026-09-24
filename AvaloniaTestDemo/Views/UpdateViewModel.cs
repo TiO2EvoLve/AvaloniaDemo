@@ -28,7 +28,7 @@ public partial class UpdateViewModel : DemoPageBase
     }
 
 
-    public UpdateViewModel(SparkleUpdater updater) : base("自动更新", MaterialIconKind.Update, 100)
+    public UpdateViewModel(SparkleUpdater updater) : base("自动更新", MaterialIconKind.Update)
     {
         _updater = updater;
         _updater.DownloadStarted += OnDownloadStarted;

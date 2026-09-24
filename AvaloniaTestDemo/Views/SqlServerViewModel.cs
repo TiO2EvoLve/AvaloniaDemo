@@ -21,7 +21,7 @@ public partial class SqlServerViewModel : DemoPageBase
     [ObservableProperty] private Student queryStudent = new(); //查询条件绑定
     public List<string> SexOptions { get; } = ["男", "女"]; // 性别选项绑定
 
-    public SqlServerViewModel() : base("SqlServer", MaterialIconKind.Database, 0)
+    public SqlServerViewModel() : base("SqlServer", MaterialIconKind.Database)
     {
         SqlSelect().ConfigureAwait(true); //初始化查询
     }

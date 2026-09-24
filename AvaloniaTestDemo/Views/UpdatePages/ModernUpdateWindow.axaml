@@ -1,0 +1,71 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:AvaloniaTestDemo.Views.UpdatePages"
+        x:Class="AvaloniaTestDemo.Views.UpdatePages.ModernUpdateWindow"
+        Title="发现新版本"
+        Width="610" Height="590" MinWidth="610" MinHeight="590"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        RequestedThemeVariant="Light"
+        x:DataType="views:ModernUpdateWindow"
+        Background="#F4F6F8">
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="22,12" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+    </Window.Styles>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" Height="176" Background="#E7F4F2" CornerRadius="0,0,26,26">
+            <Grid Margin="38,28">
+                <Border Width="58" Height="58" CornerRadius="18" Background="#0F766E"
+                        HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock Text="↑" FontSize="32" FontWeight="Bold" Foreground="White"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel Margin="0,72,0,0" Spacing="6">
+                    <TextBlock Text="发现新版本" FontSize="28" FontWeight="Bold" Foreground="#134E4A" />
+                    <TextBlock Text="{Binding AppName, StringFormat='{}{0} 已准备就绪，带来更流畅的体验'}"
+                               FontSize="14" Foreground="#3F6F6A" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" Margin="38,24,38,12" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="16">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="版本更新" Foreground="#8A97A6" FontSize="13" />
+                        <TextBlock Text="{Binding Version, StringFormat='v{0}'}"
+                                   Foreground="#1A2332" FontSize="22" FontWeight="SemiBold" />
+                    </StackPanel>
+                    <Border Grid.Column="1" Background="#D1FAE5" CornerRadius="10" Padding="12,7"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="安全更新" Foreground="#065F46" FontSize="12" FontWeight="SemiBold" />
+                    </Border>
+                </Grid>
+                <Border Background="White" BorderBrush="#E6E9EE" BorderThickness="1"
+                        CornerRadius="14" Padding="18">
+                    <StackPanel Spacing="9" >
+                        <TextBlock Text="本次更新内容" Foreground="#1A2332" FontSize="15" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Description}" Foreground="#4B5563" FontSize="14"
+                                   TextWrapping="Wrap" LineHeight="22" />
+                    </StackPanel>
+                </Border>
+                <TextBlock Text="下载完成后，将由安装程序引导完成更新。"
+                           Foreground="#8A97A6" FontSize="12" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" Background="White" BorderBrush="#E6E9EE" BorderThickness="0,1,0,0" Padding="38,18">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                <Button Content="跳过此版本" Click="Skip_Click" Background="Transparent" Foreground="#6B7280" />
+                <Button Grid.Column="2" Content="稍后提醒" Click="Later_Click"
+                        Background="#F3F4F6" Foreground="#374151" />
+                <Button Grid.Column="3" Content="立即更新" Click="Update_Click"
+                        Background="#0F766E" Foreground="White" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

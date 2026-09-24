@@ -8,8 +8,12 @@ using AvaloniaTestDemo.Services;
 using AvaloniaTestDemo.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Avalonia.Collections;
+using NetSparkleUpdater;
+using NetSparkleUpdater.Enums;
+using NetSparkleUpdater.SignatureVerifiers;
 using SukiUI.Dialogs;
 using SukiUI.Toasts;
+using UpdateTest;
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
@@ -25,8 +29,26 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            
             var services = new ServiceCollection();
             services.AddSingleton(desktop);
+            
+            //注册自动更新服务
+            services.AddSingleton<SparkleUpdater>(_ =>
+            {
+                //更新地址
+                const string appCastUrl = "https://gitee.com/tio2evolve/UpdateTest/releases/download/V1.0.1/update.xml";
+                var verifier = new Ed25519Checker(SecurityMode.Unsafe, string.Empty, string.Empty);
+                var updater = new SparkleUpdater(appCastUrl, verifier)
+                {
+                    UIFactory = new ModernUpdaterFactory(),
+                    UserInteractionMode = UserInteractionMode.DownloadAndInstall,
+                };
+                return updater;
+            });
+
+            services.AddSingleton<UpdateViewModel>();
+            
             var views = ConfigureViews(services);
             var provider = ConfigureServices(services);
             DataTemplates.Add(new ViewLocator(views));
@@ -38,7 +60,6 @@ public class App : Application
     private static SukiViews ConfigureViews(ServiceCollection services)
     {
         return new SukiViews()
-
             // Add main view
             .AddView<MainWindow, MainWindowViewModel>(services)
             // Add pages

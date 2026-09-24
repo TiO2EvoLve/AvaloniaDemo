@@ -12,12 +12,22 @@
     </Design.DataContext>
     
     <Grid RowDefinitions="Auto,Auto,*" Margin="20" RowSpacing="10">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="20">
-            <Button Command="{Binding CheckUpdateCommand}" Content="Check for Updates"/>
-            <Button IsVisible="{Binding IsUpdating}" Command="{Binding ApplyUpdateCommand}" Content="Download Updates"/>
-            <TextBlock Text="{Binding Version}" VerticalAlignment="Center"/>
+       
+        <StackPanel Spacing="10">
+            <TextBox Text="{Binding UpdateStatus}" TextWrapping="Wrap" />
+            <ProgressBar Minimum="0"
+                         Maximum="100"
+                         Value="{Binding DownloadProgress}"
+                         IsVisible="{Binding IsDownloading}"
+                         Height="12" />
+            <TextBlock Text="{Binding DownloadProgress, StringFormat='{}{0:0}%'}"
+                       IsVisible="{Binding IsDownloading}"
+                       HorizontalAlignment="Right" />
+            <Button Command="{Binding UpdateCommand}"
+                    Content="立即检查更新"
+                    IsEnabled="{Binding IsChecking, Converter={x:Static BoolConverters.Not}}"
+                    HorizontalAlignment="Left" />
         </StackPanel>
-        <ProgressBar Grid.Row="1" IsVisible="{Binding IsUpdating}"  Minimum="0" Maximum="100" Value="{Binding DownloadProgress}" Height="18" />
         <Border Grid.Row="2">
             <AvalonEdit:TextEditor  Document="{Binding LogDoc}"
                                     x:Name="logEditor"

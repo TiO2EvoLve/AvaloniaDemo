@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:updatePages="clr-namespace:AvaloniaTestDemo.Views.UpdatePages"
+        x:Class="AvaloniaTestDemo.Views.UpdatePages.ModernMessageWindow"
+        Width="460" Height="300"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        RequestedThemeVariant="Light"
+        x:DataType="updatePages:ModernMessageWindow"
+        Background="#F4F6F8">
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="22,11" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+    </Window.Styles>
+
+    <Border Margin="20" Background="White" CornerRadius="18"
+            BorderBrush="#E6E9EE" BorderThickness="1" Padding="28">
+        <Grid RowDefinitions="Auto,*,Auto">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                <Border Width="58" Height="58" CornerRadius="18"
+                        Background="{Binding AccentBackground}">
+                    <TextBlock Text="{Binding IconGlyph}" FontSize="28" FontWeight="Bold"
+                               Foreground="{Binding AccentForeground}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center" Spacing="5">
+                    <TextBlock Text="{Binding Heading}" FontSize="22" FontWeight="Bold" Foreground="#1A2332" />
+                    <TextBlock Text="{Binding Detail}" FontSize="13" Foreground="#5C6B7A" TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Margin="0,20,0,0" Background="#F7F8FA"
+                    BorderBrush="#E6E9EE" BorderThickness="1" CornerRadius="12" Padding="16"
+                    VerticalAlignment="Top">
+                <TextBlock Text="{Binding Hint}" Foreground="#4B5563" FontSize="13" TextWrapping="Wrap" />
+            </Border>
+
+            <Button Grid.Row="2" Content="知道了" HorizontalAlignment="Right"
+                    Background="#0F766E" Foreground="White"
+                    Click="Ok_Click" />
+        </Grid>
+    </Border>
+</Window>

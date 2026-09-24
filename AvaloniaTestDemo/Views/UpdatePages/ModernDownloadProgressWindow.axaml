@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:updatePages="clr-namespace:AvaloniaTestDemo.Views.UpdatePages"
+        x:Class="AvaloniaTestDemo.Views.UpdatePages.ModernDownloadProgressWindow"
+        Width="510" Height="360" CanResize="False" WindowStartupLocation="CenterScreen"
+        Background="#0B1220" TransparencyLevelHint="Mica"
+        x:DataType="updatePages:ModernDownloadProgressWindow">
+    
+    
+    <Window.Styles>
+        <Style Selector="Button"><Setter Property="CornerRadius" Value="10" /><Setter Property="Padding" Value="22,11" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+        <Style Selector="ProgressBar"><Setter Property="CornerRadius" Value="7" /><Setter Property="Height" Value="12" /></Style>
+    </Window.Styles>
+    <Grid Margin="36" RowDefinitions="Auto,Auto,Auto,*,Auto">
+        <Border Width="54" Height="54" CornerRadius="18" Background="#312E81" HorizontalAlignment="Left">
+            <TextBlock Text="↓" FontSize="29" FontWeight="Bold" Foreground="#C7D2FE" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+        <StackPanel Grid.Row="1" Margin="0,18,0,0" Spacing="5">
+            <TextBlock Text="{Binding Heading}" FontSize="22" FontWeight="SemiBold" Foreground="White" />
+            <TextBlock Text="{Binding Detail}" FontSize="13" Foreground="#94A3B8" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="0,24,0,0" Spacing="9">
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding Progress}" Background="#1E293B" Foreground="#818CF8" />
+            <Grid ColumnDefinitions="*,Auto"><TextBlock Text="正在安全下载" Foreground="#CBD5E1" FontSize="12" /><TextBlock Grid.Column="1" Text="{Binding Progress, StringFormat='{}{0:0}%'}" Foreground="#C7D2FE" FontWeight="SemiBold" /></Grid>
+        </StackPanel>
+        <TextBlock Grid.Row="3" Text="{Binding ErrorText}" Foreground="#FCA5A5" TextWrapping="Wrap" VerticalAlignment="Center" IsVisible="{Binding HasError}" />
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+            <Button Content="取消" Click="Cancel_Click" Background="#1E293B" Foreground="#E2E8F0" />
+            <Button Content="{Binding ActionText}" Click="Install_Click" Background="#6366F1" Foreground="White" IsVisible="{Binding IsReady}" />
+        </StackPanel>
+    </Grid>
+</Window>

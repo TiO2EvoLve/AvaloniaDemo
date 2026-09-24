@@ -9,9 +9,6 @@
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         WindowDecorations="BorderOnly"
-        xmlns:cc="using:SimpleUI.Control"
-        xmlns:controls="clr-namespace:UI_Example.Control"
-        xmlns:control="clr-namespace:SimpleUI.Control;assembly=SimpleUI"
         TransparencyLevelHint="Mica"
         Background="Transparent"
         Icon="/Assets/avalonia-logo.ico">

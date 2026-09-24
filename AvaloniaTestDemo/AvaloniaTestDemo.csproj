@@ -32,6 +32,7 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.3.0.6" />
+        <PackageReference Include="CalcBinding" Version="2.5.2" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
         <PackageReference Include="DynamicData" Version="9.4.33" />
         <PackageReference Include="LiteDB" Version="5.0.21" />

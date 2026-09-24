@@ -10,6 +10,7 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKind.LinkVariant)
 {
+    ////////////////////////////////////变量绑定////////////////////////////////////
     //滑动条绑定数字
     [ObservableProperty] private int number;
 
@@ -37,4 +38,10 @@ public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKi
     //checkbox绑定
     [ObservableProperty]
     private bool isCheck;
+    
+    ////////////////////////////////////转换器绑定////////////////////////////////////
+    [ObservableProperty] public bool boolValue;
+    [ObservableProperty] public bool boolValue2  = true;
+    [ObservableProperty] public string stringValue;
+    
 }

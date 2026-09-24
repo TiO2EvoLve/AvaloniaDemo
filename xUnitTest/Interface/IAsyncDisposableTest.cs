@@ -3,23 +3,23 @@ using Xunit.Abstractions;
 namespace xUnitTest.Interface;
 
 //异步释放资源IAsyncDisposable接口测试
-public class IAsyncDisposableTest(ITestOutputHelper testOutputHelper)
+public class IAsyncDisposableTest(ITestOutputHelper TS)
 {
     [Fact]
     public async Task Run()
     {
         // 使用示例 - C# 8.0+
-        await using (new DatabaseConnection())
+        await using (new DatabaseConnection(TS))
         {
             // 使用连接
-            testOutputHelper.WriteLine("使用数据库连接中...");
+            TS.WriteLine("使用数据库连接中...");
         } // 自动调用DisposeAsync()
         // 或者手动调用
-        var resource = new DatabaseConnection();
+        var resource = new DatabaseConnection(TS);
         await resource.DisposeAsync();
     }
 }
-public class DatabaseConnection : IAsyncDisposable, IDisposable
+public class DatabaseConnection(ITestOutputHelper TS) : IAsyncDisposable, IDisposable
 {
     private bool _disposed;
 
@@ -44,6 +44,6 @@ public class DatabaseConnection : IAsyncDisposable, IDisposable
     private async Task CloseConnectionAsync()
     {
         await Task.Delay(100); // 模拟异步操作
-        Console.WriteLine("数据库连接已异步关闭");
+        TS.WriteLine("数据库连接已异步关闭");
     }
 }

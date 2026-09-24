@@ -2,25 +2,435 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="450"
              xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
              x:DataType="vm:StateMachineViewModel"
              x:Class="AvaloniaTestDemo.Views.StateMachineView">
     <Design.DataContext>
         <vm:StateMachineViewModel />
     </Design.DataContext>
-    
-    <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-            <TextBlock Text="{Binding CurrentStateText}" FontSize="16"/>
-            <StackPanel HorizontalAlignment="Center" Spacing="10" Orientation="Horizontal">
-                <Button Classes="Flat" Background="LimeGreen" Content="支付" Command="{Binding PayCommand}"/>
-                <Button Classes="Flat" Background="Coral" Content="发货"  Command="{Binding ShipCommand}"/>
-                <Button Classes="Flat" Background="DodgerBlue" Content="完成" Command="{Binding CompleteCommand}"/>
-                <Button Classes="Flat" Background="DimGray" Content="取消" Command="{Binding CancelCommand}"/>
-                <Button Classes="Flat" Background="MediumPurple" Content="重置" Command="{Binding ResetCommand}"/>
+
+    <Grid Background="#F5F7FA">
+
+        <Grid RowDefinitions="Auto,*"
+              Margin="30">
+
+            <!-- 页面标题 -->
+            <StackPanel Grid.Row="0"
+                        Margin="0,0,0,25"
+                        Spacing="5">
+
+                <TextBlock
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#1F2937"
+                    Text="Stateless 状态机演示" />
+
+                <TextBlock
+                    FontSize="14"
+                    Foreground="#6B7280"
+                    Text="通过红绿灯状态变化，直观展示状态机的状态与状态迁移" />
+
             </StackPanel>
-        </StackPanel>
-           
+
+
+            <!-- 主体 -->
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,360"
+                  ColumnSpacing="25">
+
+
+                <!-- ========================= -->
+                <!-- 左侧：交通灯 -->
+                <!-- ========================= -->
+                <Border Grid.Column="0"
+                        Background="White"
+                        CornerRadius="20"
+                        Padding="35"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1">
+
+                    <StackPanel Spacing="25">
+
+
+                        <!-- 标题 -->
+                        <StackPanel Spacing="4">
+
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Foreground="#374151"
+                                Text="交通信号灯" />
+
+                            <TextBlock
+                                FontSize="13"
+                                Foreground="#9CA3AF"
+                                Text="当前状态会以高亮颜色显示" />
+
+                        </StackPanel>
+
+
+                        <!-- 三个灯 -->
+                        <Border
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Padding="35,25"
+                            Background="#F3F4F6"
+                            CornerRadius="30">
+
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="35">
+
+
+                                <!-- 红灯 -->
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Spacing="10">
+
+                                    <Border
+                                        Width="130"
+                                        Height="130"
+                                        CornerRadius="65"
+                                        Background="#F9FAFB"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+
+                                        <Ellipse
+                                            Margin="12"
+                                            Fill="{Binding RedBrush}" />
+
+                                    </Border>
+
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="SemiBold"
+                                        Foreground="#EF4444"
+                                        Text="红灯" />
+
+                                </StackPanel>
+
+
+                                <!-- 黄灯 -->
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Spacing="10">
+
+                                    <Border
+                                        Width="130"
+                                        Height="130"
+                                        CornerRadius="65"
+                                        Background="#F9FAFB"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+
+                                        <Ellipse
+                                            Margin="12"
+                                            Fill="{Binding YellowBrush}" />
+
+                                    </Border>
+
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="SemiBold"
+                                        Foreground="#F59E0B"
+                                        Text="黄灯" />
+
+                                </StackPanel>
+
+
+                                <!-- 绿灯 -->
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Spacing="10">
+
+                                    <Border
+                                        Width="130"
+                                        Height="130"
+                                        CornerRadius="65"
+                                        Background="#F9FAFB"
+                                        BorderBrush="#E5E7EB"
+                                        BorderThickness="1">
+
+                                        <Ellipse
+                                            Margin="12"
+                                            Fill="{Binding GreenBrush}" />
+
+                                    </Border>
+
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="SemiBold"
+                                        Foreground="#22C55E"
+                                        Text="绿灯" />
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- 状态变化 -->
+                        <Border
+                            Padding="20"
+                            Background="#F8FAFC"
+                            CornerRadius="14"
+                            BorderBrush="#E5E7EB"
+                            BorderThickness="1">
+
+                            <StackPanel Spacing="8">
+
+                                <TextBlock
+                                    FontSize="13"
+                                    Foreground="#9CA3AF"
+                                    Text="状态信息" />
+
+                                <TextBlock
+                                    FontSize="20"
+                                    FontWeight="SemiBold"
+                                    Foreground="#374151"
+                                    Text="{Binding CurrentStateText}" />
+
+                                <TextBlock
+                                    FontSize="14"
+                                    Foreground="#6B7280"
+                                    Text="{Binding LastTransition}" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- ========================= -->
+                <!-- 右侧：控制面板 -->
+                <!-- ========================= -->
+                <Border Grid.Column="1"
+                        Background="White"
+                        CornerRadius="20"
+                        Padding="25"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1">
+
+                    <StackPanel Spacing="20">
+
+
+                        <!-- 控制面板标题 -->
+                        <StackPanel Spacing="4">
+
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Foreground="#374151"
+                                Text="控制面板" />
+
+                            <TextBlock
+                                FontSize="13"
+                                Foreground="#9CA3AF"
+                                Text="可以手动跳转到任意状态" />
+
+                        </StackPanel>
+
+
+                        <!-- 当前状态 -->
+                        <Border
+                            Padding="18"
+                            Background="#F8FAFC"
+                            CornerRadius="14">
+
+                            <StackPanel Spacing="5">
+
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    Text="当前状态" />
+
+                                <TextBlock
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="#374151"
+                                    Text="{Binding CurrentStateText}" />
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- 状态按钮 -->
+                        <StackPanel Spacing="10">
+
+                            <TextBlock
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#4B5563"
+                                Text="手动切换" />
+
+
+                            <!-- 红灯 -->
+                            <Button
+                                Height="45"
+                                Background="#EF4444"
+                                Foreground="White"
+                                CornerRadius="10"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding ToRedCommand}">
+
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+
+                                    <TextBlock
+                                        FontSize="16"
+                                        Text="●" />
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="切换到红灯" />
+
+                                </StackPanel>
+
+                            </Button>
+
+
+                            <!-- 黄灯 -->
+                            <Button
+                                Height="45"
+                                Background="#F59E0B"
+                                Foreground="White"
+                                CornerRadius="10"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding ToYellowCommand}">
+
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+
+                                    <TextBlock
+                                        FontSize="16"
+                                        Text="●" />
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="切换到黄灯" />
+
+                                </StackPanel>
+
+                            </Button>
+
+
+                            <!-- 绿灯 -->
+                            <Button
+                                Height="45"
+                                Background="#22C55E"
+                                Foreground="White"
+                                CornerRadius="10"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding ToGreenCommand}">
+
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+
+                                    <TextBlock
+                                        FontSize="16"
+                                        Text="●" />
+
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="切换到绿灯" />
+
+                                </StackPanel>
+
+                            </Button>
+
+                        </StackPanel>
+
+
+                        <!-- Stateless 信息 -->
+                        <Border
+                            Padding="18"
+                            Background="#F8FAFC"
+                            CornerRadius="14">
+
+                            <StackPanel Spacing="10">
+
+                                <TextBlock
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Foreground="#4B5563"
+                                    Text="状态机信息" />
+
+                                <TextBlock
+                                    FontSize="13"
+                                    Foreground="#6B7280"
+                                    Text="{Binding PermittedTriggersText}"
+                                    TextWrapping="Wrap" />
+
+                                <TextBlock
+                                    FontSize="13"
+                                    Foreground="#6B7280"
+                                    Text="{Binding LastTransition}"
+                                    TextWrapping="Wrap" />
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- 自动运行 -->
+                        <Border
+                            Padding="15"
+                            Background="#F0FDF4"
+                            CornerRadius="12">
+
+                            <Grid ColumnDefinitions="*,Auto">
+
+                                <StackPanel Spacing="3">
+
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Foreground="#166534"
+                                        Text="自动状态切换" />
+
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="#65A30D"
+                                        Text="每 3 秒自动切换一次状态" />
+
+                                </StackPanel>
+
+                                <Button
+                                    Grid.Column="1"
+                                    Padding="15,8"
+                                    Background="White"
+                                    Foreground="#166534"
+                                    BorderBrush="#BBF7D0"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Content="{Binding AutoRunButtonText}"
+                                    Command="{Binding ToggleAutoRunCommand}" />
+
+                            </Grid>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </Grid>
+
     </Grid>
+
+
 </UserControl>

@@ -6,6 +6,7 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class StateMachineView : UserControl
 {
+    
     public StateMachineView()
     {
         InitializeComponent();

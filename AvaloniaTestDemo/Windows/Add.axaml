@@ -23,7 +23,6 @@
                 <Border Background="Lavender" Width="30" Height="30" PointerPressed="Close" HorizontalAlignment="Right">
                     <avalonia:MaterialIcon Kind="Close"/>
                 </Border>
-                
             </StackPanel>
             <StackPanel Grid.Row="1">
             <TextBlock Text="学生信息" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>

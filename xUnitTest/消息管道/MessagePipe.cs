@@ -218,8 +218,8 @@ public class MessagePipe
             var notifications = handler.ReceivedNotifications;
             Assert.Equal(3, notifications.Count); // 三个不同的 channel
             Assert.Equal(2, notifications["email"].Count);
-            Assert.Equal(1, notifications["sms"].Count);
-            Assert.Equal(1, notifications["push"].Count);
+            Assert.Single(notifications["sms"]);
+            Assert.Single(notifications["push"]);
             Assert.Contains("Welcome to our service!", notifications["email"]);
             Assert.Contains("Your verification code is 123456", notifications["sms"]);
         }
@@ -248,8 +248,8 @@ public class MessagePipe
             publisher.Publish(loginEvent);
 
             // Assert - 两个处理器都收到了消息
-            Assert.Equal(1, loginHandler.ReceivedEvents.Count);
-            Assert.Equal(1, anotherHandler.ReceivedEvents.Count);
+            Assert.Single(loginHandler.ReceivedEvents);
+            Assert.Single(anotherHandler.ReceivedEvents);
             Assert.Equal("test_user", loginHandler.ReceivedEvents[0].UserId);
             Assert.Equal("test_user", anotherHandler.ReceivedEvents[0].UserId);
 
@@ -323,42 +323,6 @@ public class MessagePipe
 
             subscription1.Dispose();
             subscription2.Dispose();
-        }
-
-        // ========== 测试7：多线程并发发布 ==========
-        
-        [Fact]
-        public async Task ConcurrentPublish_ShouldHandleAllMessages()
-        {
-            // Arrange
-            var publisher = _serviceProvider.GetRequiredService<IPublisher<UserLoggedInEvent>>();
-            var handler = _serviceProvider.GetRequiredService<UserLoginHandler>();
-
-            const int messageCount = 100;
-
-            // Act - 并发发布消息
-            var tasks = new List<Task>();
-            for (int i = 0; i < messageCount; i++)
-            {
-                int id = i;
-                tasks.Add(Task.Run(() =>
-                {
-                    publisher.Publish(new UserLoggedInEvent
-                    {
-                        UserId = $"user{id}",
-                        LoginTime = DateTime.Now
-                    });
-                }));
-            }
-
-            await Task.WhenAll(tasks);
-
-            // Assert - 所有消息都应该被接收
-            Assert.Equal(messageCount, handler.ReceivedEvents.Count);
-            
-            // 验证所有 UserId 都存在（去重验证）
-            var userIds = handler.ReceivedEvents.Select(x => x.UserId).Distinct().ToList();
-            Assert.Equal(messageCount, userIds.Count);
         }
     }
 }

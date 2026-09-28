@@ -10,17 +10,9 @@
         <vm:WorkFlowViewModel />
     </Design.DataContext>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid Margin="20" RowDefinitions="Auto,*">
 
-        <Grid Margin="0,0,0,16">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid Margin="0,0,0,16" ColumnDefinitions="Auto,*">
 
             <StackPanel Orientation="Horizontal" Spacing="12">
                 <Button Content="开始" Width="120" Height="38"

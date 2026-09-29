@@ -47,7 +47,7 @@
             </StackPanel>
         </Grid>
 
-        <Border Grid.Row="1" Margin="10,10,10,10" >
+        <Border Classes="Card" Grid.Row="1" Margin="20" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
                 <Button Classes="Green" Width="60" Content="绿色" Click="Button_OnClick" />
                 <Button Classes="Red" Width="60" Content="删除" VerticalContentAlignment="Center"/>

@@ -13,6 +13,7 @@ public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKi
     ////////////////////////////////////变量绑定////////////////////////////////////
     //滑动条绑定数字
     [ObservableProperty] private int number;
+    private int Number2 { get; set; }
 
     // 下拉框当前选择的项
     [ObservableProperty]
@@ -39,6 +40,17 @@ public partial class BindingViewModel() :  DemoPageBase("绑定", MaterialIconKi
     [ObservableProperty]
     private bool isCheck;
     
+    
+    ////////////////////////////////////关联绑定////////////////////////////////////
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Area))]
+    private int width;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Area))]
+    private int height;
+
+    public int Area => Width * Height;
     ////////////////////////////////////转换器绑定////////////////////////////////////
     [ObservableProperty] public bool boolValue;
     [ObservableProperty] public bool boolValue2  = true;

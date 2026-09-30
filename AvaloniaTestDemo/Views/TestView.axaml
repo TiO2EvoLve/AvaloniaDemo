@@ -12,5 +12,8 @@
         <vm:TestViewModel/>
     </Design.DataContext>
     
+    <Grid>
+        
+    </Grid>
    
 </UserControl>

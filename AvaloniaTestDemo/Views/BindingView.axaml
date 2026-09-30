@@ -13,11 +13,12 @@
     <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
         <StackPanel Margin="20">
             <ComboBox>
-                <ComboBoxItem Content="变量绑定" x:Name="BoxItem1" />
+                <ComboBoxItem Content="变量绑定" x:Name="BoxItem1" IsSelected="True"/>
                 <ComboBoxItem Content="关联绑定" x:Name="BoxItem2" />
                 <ComboBoxItem Content="转换器" x:Name="BoxItem3" />
             </ComboBox>
         </StackPanel>
+        <!-- 变量绑定 -->
         <Grid Grid.Row="1" RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch"
               Margin="20"
               IsVisible="{Binding #BoxItem1.IsSelected, ElementName=BoxItem1}">
@@ -51,10 +52,18 @@
                 </StackPanel>
             </suki:GlassCard>
         </Grid>
+        <!-- 关联绑定 -->
         <Grid Grid.Row="1" IsVisible="{Binding #BoxItem2.IsSelected, ElementName=BoxItem2}">
-
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                <TextBox Width="100" Text="{Binding Width}"></TextBox>
+                <TextBlock Text="X" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="100" Text="{Binding Height}"></TextBox>
+                <TextBlock Text="=" VerticalAlignment="Center"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Text="{Binding Area}"></TextBlock>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Grid.RowDefinitions="Auto,Auto" IsVisible="{Binding #BoxItem3.IsSelected, ElementName=BoxItem3}">
+        <!-- 转换器 -->
+        <Grid Grid.Row="1" Grid.RowDefinitions="Auto,Auto,Auto" IsVisible="{Binding #BoxItem3.IsSelected, ElementName=BoxItem3}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
                 <CheckBox Content="BoolValue" IsChecked="{Binding BoolValue}"> </CheckBox>
                 <CheckBox Content="BoolValue2" IsChecked="{Binding BoolValue2}"> </CheckBox>
@@ -65,20 +74,21 @@
                     Minimum="0"
                     TickFrequency="1"
                     Value="{Binding Number}" />
+            <StackPanel Grid.Row="2"  HorizontalAlignment="Center" Spacing="10">
+                <TextBlock Text="这句仅当BoolValue为假时显示" IsVisible="{Binding !BoolValue}" />
+                <TextBlock Text="这句仅当BoolValue和BoolValue2都为真时显示">
+                    <TextBlock.IsVisible>
+                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                            <Binding Path="BoolValue" />
+                            <Binding Path="BoolValue2" />
+                        </MultiBinding>
+                    </TextBlock.IsVisible>
+                </TextBlock>
+                <TextBlock Text="这句仅当输入框不为空时显示"
+                           IsVisible="{Binding StringValue, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                <TextBlock Text="{Binding Number, StringFormat='价格：{0:C}'}" />
+            </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Spacing="10">
-            <TextBlock Text="这句仅当BoolValue为假时显示" IsVisible="{Binding !BoolValue}" />
-            <TextBlock Text="这句仅当BoolValue和BoolValue2都为真时显示">
-                <TextBlock.IsVisible>
-                    <MultiBinding Converter="{x:Static BoolConverters.And}">
-                        <Binding Path="BoolValue" />
-                        <Binding Path="BoolValue2" />
-                    </MultiBinding>
-                </TextBlock.IsVisible>
-            </TextBlock>
-            <TextBlock Text="这句仅当输入框不为空时显示"
-                       IsVisible="{Binding StringValue, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-            <TextBlock Text="{Binding Number, StringFormat='价格：{0:C}'}" />
-        </StackPanel>
+        
     </Grid>
 </UserControl>

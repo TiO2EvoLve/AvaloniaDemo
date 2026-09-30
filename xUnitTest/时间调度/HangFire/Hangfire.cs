@@ -63,8 +63,7 @@ public class HangfireTests : IDisposable
         BackgroundJob.Schedule(
             () => HangfireJob.Print($"计划时间：{runAt:HH:mm:ss}"),
             runAt);
-
-        Thread.Sleep(5000);
+        
     }
 
     /// <summary>

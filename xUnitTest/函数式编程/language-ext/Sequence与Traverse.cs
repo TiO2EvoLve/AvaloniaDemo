@@ -12,8 +12,8 @@ public class Sequence与Traverse(ITestOutputHelper testOutputHelper)
         var seqOfOptions = Seq(Some(1), Some(2), Some(3));
 
         // 手动实现 sequence: 将 Seq<Option<T>> 转为 Option<Seq<T>>（遇到 None 则返回 None）
-        Option<Seq<int>> maybeSeq = seqOfOptions.Fold(Some<Seq<int>>(Seq<int>()), (accOpt, itemOpt) =>
-            accOpt.Bind(acc => itemOpt.Map(item => acc.Add(item)))
+        Option<Seq<int>> maybeSeq = seqOfOptions.Fold(Some(Seq<int>()), (accOpt, itemOpt) =>
+            accOpt.Bind(acc => itemOpt.Map(acc.Add))
         );
 
         maybeSeq.Match(
@@ -29,7 +29,7 @@ public class Sequence与Traverse(ITestOutputHelper testOutputHelper)
         var parsedSeq = stringSeq.Map(TryParse);
 
         // 使用相同的折叠方法来 sequence
-        var traversed = parsedSeq.Fold(Some<Seq<int>>(Seq<int>()), (accOpt, itemOpt) =>
+        var traversed = parsedSeq.Fold(Some(Seq<int>()), (accOpt, itemOpt) =>
             accOpt.Bind(acc => itemOpt.Map(item => acc.Add(item)))
         );
 

@@ -30,7 +30,6 @@ public class AuthorAttribute : Attribute
     {
         Name = name;
     }
-
     public string Name { get; }
     public string Version { get; set; }
 }

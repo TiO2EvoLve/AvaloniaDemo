@@ -48,6 +48,7 @@
         <PackageReference Include="Stateless" Version="5.20.1" />
         <PackageReference Include="SukiUI" Version="7.0.1" />
         <PackageReference Include="System.Reactive" Version="7.0.0" />
+        <PackageReference Include="WorkflowCore" Version="3.21.0" />
         <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
 

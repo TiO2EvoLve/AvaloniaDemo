@@ -1,19 +1,28 @@
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Collections;
 using Avalonia.Markup.Xaml;
+
 using AvaloniaTestDemo.Common;
 using AvaloniaTestDemo.Services;
 using AvaloniaTestDemo.Views;
+using AvaloniaTestDemo.Views.WorkFlow;
+
 using Microsoft.Extensions.DependencyInjection;
-using Avalonia.Collections;
+
 using NetSparkleUpdater;
 using NetSparkleUpdater.Enums;
 using NetSparkleUpdater.SignatureVerifiers;
+
 using SukiUI.Dialogs;
 using SukiUI.Toasts;
+
 using UpdateTest;
+
+using WorkflowCore.Interface;
+
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
@@ -29,40 +38,103 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            
             var services = new ServiceCollection();
+
             services.AddSingleton(desktop);
-            
-            //注册自动更新服务
+
+
+            // ==========================================
+            // WorkflowCore
+            // ==========================================
+
+            services.AddWorkflow();
+            services.AddLogging();
+
+            services.AddSingleton<WorkFlowViewModel>();
+
+
+            // ==========================================
+            // 自动更新
+            // ==========================================
+
             services.AddSingleton<SparkleUpdater>(_ =>
             {
-                //更新地址
                 const string appCastUrl = "https://gitee.com/tio2evolve/UpdateTest/releases/download/V1.0.1/update.xml";
-                var verifier = new Ed25519Checker(SecurityMode.Unsafe, string.Empty, string.Empty);
-                var updater = new SparkleUpdater(appCastUrl, verifier)
+
+                var verifier = new Ed25519Checker(
+                    SecurityMode.Unsafe,
+                    string.Empty,
+                    string.Empty);
+
+                var updater = new SparkleUpdater(
+                    appCastUrl,
+                    verifier)
                 {
                     UIFactory = new ModernUpdaterFactory(),
                     UserInteractionMode = UserInteractionMode.DownloadAndInstall,
                 };
+
                 return updater;
             });
 
             services.AddSingleton<UpdateViewModel>();
-            
+
+
+            // ==========================================
+            // 注册 View / ViewModel
+            // ==========================================
+
             var views = ConfigureViews(services);
+
+
+            // ==========================================
+            // 其他服务
+            // ==========================================
+
             var provider = ConfigureServices(services);
+
+
+            // ==========================================
+            // WorkflowCore 注册
+            // ==========================================
+
+            var host = provider.GetRequiredService<IWorkflowHost>();
+
+            host.RegisterWorkflow<
+                ApprovalWorkflow,
+                ApprovalWorkflowData>();
+
+            host.Start();
+
+
+            // ==========================================
+            // Avalonia ViewLocator
+            // ==========================================
+
             DataTemplates.Add(new ViewLocator(views));
-            desktop.MainWindow = views.CreateView<MainWindowViewModel>(provider) as Window;
+
+
+            // ==========================================
+            // 创建主窗口
+            // ==========================================
+
+            desktop.MainWindow =
+                views.CreateView<MainWindowViewModel>(provider) as Window;
         }
+
         base.OnFrameworkInitializationCompleted();
     }
 
-    private static SukiViews ConfigureViews(ServiceCollection services)
+
+    private static SukiViews ConfigureViews(
+        ServiceCollection services)
     {
         return new SukiViews()
-            // Add main view
+
+            // Main Window
             .AddView<MainWindow, MainWindowViewModel>(services)
-            // Add pages
+
+            // Pages
             .AddView<LinQView, LinQViewModel>(services)
             .AddView<SettingView, SettingViewModel>(services)
             .AddView<ReactiveView, ReactiveViewModel>(services)
@@ -80,23 +152,30 @@ public class App : Application
             .AddView<PhotoDropView, PhotoDropViewModel>(services)
             .AddView<UpdateView, UpdateViewModel>(services)
             .AddView<LiteDBView, LiteDBViewModel>(services)
-            .AddView<WorkFlowView, WorkFlowViewModel>(services)
-            ;
+            .AddView<WorkFlowView, WorkFlowViewModel>(services);
     }
 
-    private static ServiceProvider ConfigureServices(ServiceCollection services)
+
+    private static ServiceProvider ConfigureServices(
+        ServiceCollection services)
     {
         services.AddSingleton<PageNavigationService>();
+
         services.AddSingleton<ISukiToastManager, SukiToastManager>();
+
         services.AddSingleton<ISukiDialogManager, SukiDialogManager>();
-        services.AddSingleton<PageNavigationService>();
+
         services.AddSingleton<IAvaloniaReadOnlyList<DemoPageBase>>(sp =>
         {
-            var pages = sp.GetServices<DemoPageBase>().OrderBy(x => x.Index).ThenBy(x => x.DisplayName);
+            var pages = sp
+                .GetServices<DemoPageBase>()
+                .OrderBy(x => x.Index)
+                .ThenBy(x => x.DisplayName);
+
             return new AvaloniaList<DemoPageBase>(pages);
         });
 
+        // 整个应用只在这里创建一次 ServiceProvider
         return services.BuildServiceProvider();
     }
-    
 }

@@ -63,7 +63,7 @@
             </StackPanel>
         </Grid>
         <!-- 转换器 -->
-        <Grid Grid.Row="1" Grid.RowDefinitions="Auto,Auto,Auto" IsVisible="{Binding #BoxItem3.IsSelected, ElementName=BoxItem3}">
+        <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto" IsVisible="{Binding #BoxItem3.IsSelected, ElementName=BoxItem3}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
                 <CheckBox Content="BoolValue" IsChecked="{Binding BoolValue}"> </CheckBox>
                 <CheckBox Content="BoolValue2" IsChecked="{Binding BoolValue2}"> </CheckBox>

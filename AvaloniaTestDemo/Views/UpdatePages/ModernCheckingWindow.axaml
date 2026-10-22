@@ -7,6 +7,7 @@
         WindowStartupLocation="CenterOwner"
         RequestedThemeVariant="Light"
         Background="#F4F6F8">
+    
     <Window.Styles>
         <Style Selector="Button">
             <Setter Property="FontWeight" Value="SemiBold" />

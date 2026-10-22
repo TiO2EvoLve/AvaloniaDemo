@@ -11,7 +11,6 @@
     </Design.DataContext>
 
     <Grid Background="#F5F7FA">
-
         <Grid RowDefinitions="Auto,*"
               Margin="30">
 
@@ -19,27 +18,22 @@
             <StackPanel Grid.Row="0"
                         Margin="0,0,0,25"
                         Spacing="5">
-
                 <TextBlock
                     FontSize="28"
                     FontWeight="Bold"
                     Foreground="#1F2937"
                     Text="Stateless 状态机演示" />
-
                 <TextBlock
                     FontSize="14"
                     Foreground="#6B7280"
                     Text="通过红绿灯状态变化，直观展示状态机的状态与状态迁移" />
-
             </StackPanel>
-
-
+            
             <!-- 主体 -->
             <Grid Grid.Row="1"
                   ColumnDefinitions="*,360"
                   ColumnSpacing="25">
-
-
+                
                 <!-- ========================= -->
                 <!-- 左侧：交通灯 -->
                 <!-- ========================= -->
@@ -51,8 +45,6 @@
                         BorderThickness="1">
 
                     <StackPanel Spacing="25">
-
-
                         <!-- 标题 -->
                         <StackPanel Spacing="4">
 
@@ -66,7 +58,6 @@
                                 FontSize="13"
                                 Foreground="#9CA3AF"
                                 Text="当前状态会以高亮颜色显示" />
-
                         </StackPanel>
 
 

@@ -21,7 +21,6 @@ public partial class HarmonyModViewModel() : DemoPageBase("Harmony Mod", Materia
         Result = t.GetGreeting(Name);
     }
     
-
     [RelayCommand]
     private void ApplyPatch()
     {

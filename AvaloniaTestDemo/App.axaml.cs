@@ -44,7 +44,7 @@ public class App : Application
 
 
             // ==========================================
-            // WorkflowCore
+            // 注册WorkflowCore
             // ==========================================
 
             services.AddWorkflow();
@@ -54,7 +54,7 @@ public class App : Application
 
 
             // ==========================================
-            // 自动更新
+            // 注册自动更新
             // ==========================================
 
             services.AddSingleton<SparkleUpdater>(_ =>

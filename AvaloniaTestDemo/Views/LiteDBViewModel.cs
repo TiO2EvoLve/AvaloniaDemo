@@ -196,6 +196,7 @@ public class AppDatabase : IDisposable
         Directory.CreateDirectory(directory);
 
         string databasePath = Path.Combine(directory, "data.db");
+        Console.WriteLine(databasePath);
 
         _database = new LiteDatabase(databasePath);
 

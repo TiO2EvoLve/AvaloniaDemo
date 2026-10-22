@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using SukiUI.Dialogs;
 using SukiUI.Toasts;
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
-
 namespace AvaloniaTestDemo;
 
 public partial class MainWindowViewModel : ObservableObject

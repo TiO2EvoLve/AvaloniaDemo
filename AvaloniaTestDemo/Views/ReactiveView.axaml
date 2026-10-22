@@ -33,7 +33,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" Spacing="10">
             <Button Command="{Binding ShakeCommand}" Content="开启防抖"/>
-            <TextBox Watermark="输入关键词"
+            <TextBox PlaceholderText="输入关键词"
                      Text="{Binding SearchText}" />
             <TextBlock HorizontalAlignment="Center" Text="{Binding Result}" />
         </StackPanel>

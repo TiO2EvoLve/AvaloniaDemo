@@ -41,31 +41,24 @@ public class App : Application
             var services = new ServiceCollection();
 
             services.AddSingleton(desktop);
-
-
+            
             // ==========================================
             // 注册WorkflowCore
             // ==========================================
-
             services.AddWorkflow();
             services.AddLogging();
-
             services.AddSingleton<WorkFlowViewModel>();
-
-
+            
             // ==========================================
             // 注册自动更新
             // ==========================================
-
             services.AddSingleton<SparkleUpdater>(_ =>
             {
                 const string appCastUrl = "https://gitee.com/tio2evolve/UpdateTest/releases/download/V1.0.1/update.xml";
-
                 var verifier = new Ed25519Checker(
                     SecurityMode.Unsafe,
                     string.Empty,
                     string.Empty);
-
                 var updater = new SparkleUpdater(
                     appCastUrl,
                     verifier)
@@ -73,55 +66,32 @@ public class App : Application
                     UIFactory = new ModernUpdaterFactory(),
                     UserInteractionMode = UserInteractionMode.DownloadAndInstall,
                 };
-
                 return updater;
             });
-
             services.AddSingleton<UpdateViewModel>();
-
-
             // ==========================================
             // 注册 View / ViewModel
             // ==========================================
-
             var views = ConfigureViews(services);
-
-
             // ==========================================
             // 其他服务
             // ==========================================
-
             var provider = ConfigureServices(services);
-
-
             // ==========================================
             // WorkflowCore 注册
             // ==========================================
-
             var host = provider.GetRequiredService<IWorkflowHost>();
-
-            host.RegisterWorkflow<
-                ApprovalWorkflow,
-                ApprovalWorkflowData>();
-
+            host.RegisterWorkflow<ApprovalWorkflow, ApprovalWorkflowData>();
             host.Start();
-
-
             // ==========================================
             // Avalonia ViewLocator
             // ==========================================
-
             DataTemplates.Add(new ViewLocator(views));
-
-
             // ==========================================
             // 创建主窗口
             // ==========================================
-
-            desktop.MainWindow =
-                views.CreateView<MainWindowViewModel>(provider) as Window;
+            desktop.MainWindow = views.CreateView<MainWindowViewModel>(provider) as Window;
         }
-
         base.OnFrameworkInitializationCompleted();
     }
 
@@ -156,15 +126,11 @@ public class App : Application
     }
 
 
-    private static ServiceProvider ConfigureServices(
-        ServiceCollection services)
+    private static ServiceProvider ConfigureServices(ServiceCollection services)
     {
         services.AddSingleton<PageNavigationService>();
-
         services.AddSingleton<ISukiToastManager, SukiToastManager>();
-
         services.AddSingleton<ISukiDialogManager, SukiDialogManager>();
-
         services.AddSingleton<IAvaloniaReadOnlyList<DemoPageBase>>(sp =>
         {
             var pages = sp
@@ -174,7 +140,6 @@ public class App : Application
 
             return new AvaloniaList<DemoPageBase>(pages);
         });
-
         // 整个应用只在这里创建一次 ServiceProvider
         return services.BuildServiceProvider();
     }

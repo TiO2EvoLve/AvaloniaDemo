@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class SupabaseViewModel() : DemoPageBase("Supabase数据库", MaterialIconKind.SqlQuery)
+public partial class SupabaseViewModel() : DemoPageBase("Supabase数据库", MaterialIconKind.SqlQuery,0)
 {
     [ObservableProperty] private UserData selectData;
     [ObservableProperty]

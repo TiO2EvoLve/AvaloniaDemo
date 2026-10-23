@@ -1,4 +1,3 @@
-
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Media;

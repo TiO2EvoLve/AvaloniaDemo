@@ -73,7 +73,7 @@ public partial class QRCodeViewModel(ISukiToastManager toastManager) : DemoPageB
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Save QRCode error: {ex}");
+            Console.WriteLine($"Save QRCode error: {ex}");
         }
     }
     private void ShowTypeDemoToast(NotificationType toastType)

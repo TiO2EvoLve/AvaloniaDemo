@@ -93,10 +93,9 @@ public class App : Application
     private static SukiViews ConfigureViews(
         ServiceCollection services)
     {
-        return new SukiViews()
-
+        return new SukiViews() 
                 // Main Window
-                .AddView<MainWindow, MainWindowViewModel>(services)
+                // .AddView<MainWindow, MainWindowViewModel>(services)
 
                 // Pages
                 .AddView<LinQView, LinQViewModel>(services)

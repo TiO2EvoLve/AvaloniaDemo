@@ -11,32 +11,27 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class LiteDBViewModel : DemoPageBase
 {
-    
     private readonly AppDatabase _database;
 
-    [ObservableProperty]
-    private string name = string.Empty;
+    [ObservableProperty] private int age = 20;
 
-    [ObservableProperty]
-    private int age = 20;
+    [ObservableProperty] private string message = "就绪";
 
-    [ObservableProperty]
-    private User selectedUser;
+    [ObservableProperty] private string name = string.Empty;
 
-    [ObservableProperty]
-    private string message = "就绪";
+    [ObservableProperty] private User selectedUser;
 
-    public ObservableCollection<User> Users { get; } = new ();
-
-    public LiteDBViewModel() : base("LiteDB", MaterialIconKind.Database) 
+    public LiteDBViewModel() : base("LiteDB", MaterialIconKind.Database)
     {
         _database = new AppDatabase();
 
         LoadUsers();
     }
 
+    public ObservableCollection<User> Users { get; } = new();
+
     /// <summary>
-    /// 查询数据库
+    ///     查询数据库
     /// </summary>
     private void LoadUsers()
     {
@@ -46,16 +41,13 @@ public partial class LiteDBViewModel : DemoPageBase
             .FindAll()
             .OrderBy(x => x.Id);
 
-        foreach (var user in users)
-        {
-            Users.Add(user);
-        }
+        foreach (var user in users) Users.Add(user);
 
         Message = $"当前共有 {Users.Count} 条数据";
     }
 
     /// <summary>
-    /// 新增
+    ///     新增
     /// </summary>
     [RelayCommand]
     private void AddUser()
@@ -82,7 +74,7 @@ public partial class LiteDBViewModel : DemoPageBase
     }
 
     /// <summary>
-    /// 修改
+    ///     修改
     /// </summary>
     [RelayCommand]
     private void UpdateUser()
@@ -112,7 +104,7 @@ public partial class LiteDBViewModel : DemoPageBase
     }
 
     /// <summary>
-    /// 删除
+    ///     删除
     /// </summary>
     [RelayCommand]
     private void DeleteUser()
@@ -133,7 +125,7 @@ public partial class LiteDBViewModel : DemoPageBase
     }
 
     /// <summary>
-    /// 从数据库重新查询
+    ///     从数据库重新查询
     /// </summary>
     [RelayCommand]
     private void Refresh()
@@ -144,7 +136,7 @@ public partial class LiteDBViewModel : DemoPageBase
     }
 
     /// <summary>
-    /// 清空输入框
+    ///     清空输入框
     /// </summary>
     [RelayCommand]
     private void ClearInput()
@@ -155,14 +147,11 @@ public partial class LiteDBViewModel : DemoPageBase
     }
 
     /// <summary>
-    /// 点击表格中的用户
+    ///     点击表格中的用户
     /// </summary>
     partial void OnSelectedUserChanged(User value)
     {
-        if (value == null)
-        {
-            return;
-        }
+        if (value == null) return;
 
         Name = value.Name;
         Age = value.Age;
@@ -177,32 +166,29 @@ public class User
 
     public int Age { get; set; }
 }
+
 public class AppDatabase : IDisposable
 {
     private readonly LiteDatabase _database;
 
-    public ILiteCollection<User> Users
-    {
-        get { return _database.GetCollection<User>("users"); }
-    }
-
     public AppDatabase()
     {
-        string appData = Environment.GetFolderPath(
+        var appData = Environment.GetFolderPath(
             Environment.SpecialFolder.LocalApplicationData);
 
-        string directory = Path.Combine(appData, "LiteDbDemo");
+        var directory = Path.Combine(appData, "LiteDbDemo");
 
         Directory.CreateDirectory(directory);
 
-        string databasePath = Path.Combine(directory, "data.db");
-        Console.WriteLine(databasePath);
+        var databasePath = Path.Combine(directory, "data.db");
 
         _database = new LiteDatabase(databasePath);
 
         // Name 建立索引
         Users.EnsureIndex(x => x.Name);
     }
+
+    public ILiteCollection<User> Users => _database.GetCollection<User>("users");
 
     public void Dispose()
     {

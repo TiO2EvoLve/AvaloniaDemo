@@ -1,0 +1,43 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:SupabaseViewModel"
+             x:Class="AvaloniaTestDemo.Views.SupabaseView">
+    <Design.DataContext>
+        <vm:SupabaseViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*"  RowSpacing="10" Margin="10">
+        <StackPanel><Button Command="{Binding SelectCommand}" Height="40" Width="80">查询</Button></StackPanel>
+        
+        <DataGrid Grid.Row="1"
+            ItemsSource="{Binding UserDatas}"
+            SelectedItem="{Binding SelectData}"
+            AutoGenerateColumns="False"
+            GridLinesVisibility="All"
+            IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="姓名"
+                    FontSize="18"
+                    Binding="{Binding name}"
+                    />
+                <DataGridTextColumn
+                    Header="年龄"
+                    FontSize="18"
+                    Binding="{Binding age}"
+                    />
+                <DataGridTextColumn
+                    Header="创建日期"
+                    FontSize="18"
+                    Binding="{Binding created_at}"
+                    />
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>

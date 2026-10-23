@@ -1,28 +1,21 @@
 using System.Linq;
 using Avalonia;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Collections;
 using Avalonia.Markup.Xaml;
-
 using AvaloniaTestDemo.Common;
 using AvaloniaTestDemo.Services;
 using AvaloniaTestDemo.Views;
 using AvaloniaTestDemo.Views.WorkFlow;
-
 using Microsoft.Extensions.DependencyInjection;
-
 using NetSparkleUpdater;
 using NetSparkleUpdater.Enums;
 using NetSparkleUpdater.SignatureVerifiers;
-
 using SukiUI.Dialogs;
 using SukiUI.Toasts;
-
 using UpdateTest;
-
 using WorkflowCore.Interface;
-
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
 
 namespace AvaloniaTestDemo;
@@ -41,14 +34,14 @@ public class App : Application
             var services = new ServiceCollection();
 
             services.AddSingleton(desktop);
-            
+
             // ==========================================
             // 注册WorkflowCore
             // ==========================================
             services.AddWorkflow();
             services.AddLogging();
             services.AddSingleton<WorkFlowViewModel>();
-            
+
             // ==========================================
             // 注册自动更新
             // ==========================================
@@ -64,7 +57,7 @@ public class App : Application
                     verifier)
                 {
                     UIFactory = new ModernUpdaterFactory(),
-                    UserInteractionMode = UserInteractionMode.DownloadAndInstall,
+                    UserInteractionMode = UserInteractionMode.DownloadAndInstall
                 };
                 return updater;
             });
@@ -92,6 +85,7 @@ public class App : Application
             // ==========================================
             desktop.MainWindow = views.CreateView<MainWindowViewModel>(provider) as Window;
         }
+
         base.OnFrameworkInitializationCompleted();
     }
 
@@ -101,28 +95,30 @@ public class App : Application
     {
         return new SukiViews()
 
-            // Main Window
-            .AddView<MainWindow, MainWindowViewModel>(services)
+                // Main Window
+                .AddView<MainWindow, MainWindowViewModel>(services)
 
-            // Pages
-            .AddView<LinQView, LinQViewModel>(services)
-            .AddView<SettingView, SettingViewModel>(services)
-            .AddView<ReactiveView, ReactiveViewModel>(services)
-            .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
-            .AddView<TestView, TestViewModel>(services)
-            .AddView<BindingView, BindingViewModel>(services)
-            .AddView<StateMachineView, StateMachineViewModel>(services)
-            .AddView<QRCodeView, QRCodeViewModel>(services)
-            .AddView<SendEmailView, SendEmailViewModel>(services)
-            .AddView<DragDropView, DragDropViewModel>(services)
-            .AddView<DynamicDataView, DynamicDataViewModel>(services)
-            .AddView<HarmonyModView, HarmonyModViewModel>(services)
-            .AddView<LineRenderView, LineRenderViewModel>(services)
-            .AddView<SqlServerView, SqlServerViewModel>(services)
-            .AddView<PhotoDropView, PhotoDropViewModel>(services)
-            .AddView<UpdateView, UpdateViewModel>(services)
-            .AddView<LiteDBView, LiteDBViewModel>(services)
-            .AddView<WorkFlowView, WorkFlowViewModel>(services);
+                // Pages
+                .AddView<LinQView, LinQViewModel>(services)
+                .AddView<SettingView, SettingViewModel>(services)
+                .AddView<ReactiveView, ReactiveViewModel>(services)
+                .AddView<CancellationTokenView, CancellationTokenViewModel>(services)
+                .AddView<TestView, TestViewModel>(services)
+                .AddView<BindingView, BindingViewModel>(services)
+                .AddView<StateMachineView, StateMachineViewModel>(services)
+                .AddView<QRCodeView, QRCodeViewModel>(services)
+                .AddView<SendEmailView, SendEmailViewModel>(services)
+                .AddView<DragDropView, DragDropViewModel>(services)
+                .AddView<DynamicDataView, DynamicDataViewModel>(services)
+                .AddView<HarmonyModView, HarmonyModViewModel>(services)
+                .AddView<LineRenderView, LineRenderViewModel>(services)
+                .AddView<SqlServerView, SqlServerViewModel>(services)
+                .AddView<PhotoDropView, PhotoDropViewModel>(services)
+                .AddView<UpdateView, UpdateViewModel>(services)
+                .AddView<LiteDBView, LiteDBViewModel>(services)
+                .AddView<WorkFlowView, WorkFlowViewModel>(services)
+                .AddView<SupabaseView, SupabaseViewModel>(services)
+            ;
     }
 
 

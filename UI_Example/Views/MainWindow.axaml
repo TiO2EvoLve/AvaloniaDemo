@@ -19,18 +19,18 @@
 
     <Window.Styles>
         <Style Selector="MenuItem">
-            <Setter Property="Foreground" Value="WhiteSmoke"></Setter>
-            <Setter Property="FontFamily" Value="Inter, 苹方, Microsoft YaHei, sans-serif"></Setter>
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="FontFamily" Value="Inter, 苹方, Microsoft YaHei, sans-serif" />
         </Style>
         <Style Selector="MenuItem:pointerover ContentPresenter">
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="White" />
         </Style>
     </Window.Styles>
-    
-    <Grid RowDefinitions="Auto,*">
-        <Grid  PointerPressed="TitleBar_PointerPressed">
-            <Menu Background="#1E8FFD" >
-                <MenuItem Header="File" >
+
+    <Grid RowDefinitions="Auto,Auto,Auto">
+        <Grid PointerPressed="TitleBar_PointerPressed">
+            <Menu Background="#1E8FFD">
+                <MenuItem Header="File">
                     <MenuItem Header="New" />
                     <MenuItem Header="Open" />
                     <MenuItem Header="Save" />
@@ -39,25 +39,25 @@
                 <MenuItem Header="View" />
                 <MenuItem Header="Help" />
             </Menu>
-            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,0,10,0">
-                <Ellipse Width="20" Height="20" Fill="#fa8c16" PointerPressed="MinWindow"/>
-                <Ellipse Width="20" Height="20" Fill="#52c41a" PointerPressed="MaxWindow"/>
-                <Ellipse Width="20" Height="20" Fill="#ff4d4f" PointerPressed="Close"/>
+                <Ellipse Width="20" Height="20" Fill="#fa8c16" PointerPressed="MinWindow" />
+                <Ellipse Width="20" Height="20" Fill="#52c41a" PointerPressed="MaxWindow" />
+                <Ellipse Width="20" Height="20" Fill="#ff4d4f" PointerPressed="Close" />
             </StackPanel>
         </Grid>
 
-        <Border Classes="Card" Grid.Row="1" Margin="20" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-                <Button Classes="Green" Width="60" Content="绿色" Click="Button_OnClick" />
-                <Button Classes="Red" Width="60" Content="删除" VerticalContentAlignment="Center"/>
-                <Button Classes="Orange" Width="60" Content="橙色" />
-                <Button Classes="Cyan" Width="60" Content="青色" />
-                <Button Classes="Blue" Width="60" Content="蓝色" />
-                <Button Classes="Purple" Width="60" Content="紫色" />
-                <Button Classes="Pink" Width="60" Content="粉色" />
-            </StackPanel>
-        </Border>
-        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Spacing="10">
+            <Button Classes="Green" Width="60" Content="绿色" Click="Button_OnClick" />
+            <Button Classes="Red" Width="60" Content="红色" VerticalContentAlignment="Center" />
+            <Button Classes="Orange" Width="60" Content="橙色" />
+            <Button Classes="Cyan" Width="60" Content="青色" />
+            <Button Classes="Blue" Width="60" Content="蓝色" />
+            <Button Classes="Purple" Width="60" Content="紫色" />
+            <Button Classes="Pink" Width="60" Content="粉色" />
+        </StackPanel>
+
+        <Border Classes="Card" Grid.Row="2" Margin="20" />
     </Grid>
 </Window>

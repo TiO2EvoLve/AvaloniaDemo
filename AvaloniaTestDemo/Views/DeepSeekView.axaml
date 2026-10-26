@@ -1,0 +1,296 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:controls="clr-namespace:AvaloniaTestDemo.Controls"
+             x:DataType="vm:DeepSeekViewModel"
+             x:Class="AvaloniaTestDemo.Views.DeepSeekView">
+    <Design.DataContext>
+        <vm:DeepSeekViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="20" RowDefinitions="Auto,*,Auto" RowSpacing="12">
+
+        <!--  顶部：API Key、模型和思考模式设置  -->
+        <Border Grid.Row="0"
+                Padding="16,14"
+                Background="{DynamicResource SukiCardBackground}"
+                BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="14">
+            <Grid RowDefinitions="Auto,Auto" RowSpacing="12">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                        <Border Width="38"
+                                Height="38"
+                                Background="{DynamicResource SukiPrimaryColor}"
+                                CornerRadius="10">
+                            <icons:MaterialIcon Width="22"
+                                                Height="22"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="White"
+                                                Kind="RobotHappy" />
+                        </Border>
+                        <StackPanel Spacing="2">
+                            <TextBlock FontSize="18" FontWeight="Bold" Text="DeepSeek 对话" />
+                            <TextBlock FontSize="11"
+                                       Foreground="{DynamicResource SukiLowText}"
+                                       Text="流式输出，并实时展示 reasoning_content 思考过程" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Classes="Basic"
+                            Command="{Binding ClearCommand}"
+                            ToolTip.Tip="清空当前对话">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <icons:MaterialIcon Width="16" Height="16" Kind="DeleteSweepOutline" />
+                            <TextBlock Text="清空对话" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      ColumnDefinitions="Auto,270,Auto,150,Auto,*"
+                      ColumnSpacing="8">
+                    <TextBlock VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="{DynamicResource SukiLowText}"
+                               Text="API Key" />
+                    <TextBox Grid.Column="1"
+                             Height="34"
+                             PasswordChar="●"
+                             PlaceholderText="sk-... 或设置 DEEPSEEK_API_KEY"
+                             Text="{Binding ApiKey, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Column="2"
+                               VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="{DynamicResource SukiLowText}"
+                               Text="模型" />
+                    <ComboBox Grid.Column="3"
+                              Height="34"
+                              HorizontalAlignment="Stretch"
+                              ItemsSource="{Binding ModelOptions}"
+                              SelectedItem="{Binding SelectedModel, Mode=TwoWay}" />
+
+                    <CheckBox Grid.Column="4"
+                              VerticalAlignment="Center"
+                              Content="深度思考"
+                              IsChecked="{Binding EnableThinking, Mode=TwoWay}"
+                              ToolTip.Tip="开启后会请求并显示模型的思考过程" />
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!--  中间：对话列表  -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource SukiCardBackground}"
+                BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                BorderThickness="1"
+                ClipToBounds="True"
+                CornerRadius="14">
+            <Grid>
+                <ScrollViewer x:Name="ChatScrollViewer"
+                              Padding="16"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Messages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:DeepSeekChatMessage">
+                                <Grid Margin="0,0,0,14">
+
+                                    <!--  用户消息  -->
+                                    <Border MaxWidth="620"
+                                            Padding="14,10"
+                                            HorizontalAlignment="Right"
+                                            Background="{DynamicResource SukiPrimaryColor}"
+                                            CornerRadius="14,14,4,14"
+                                            IsVisible="{Binding IsUser}">
+                                        <StackPanel Spacing="4">
+                                            <SelectableTextBlock Foreground="White"
+                                                                 Text="{Binding Content}"
+                                                                 TextWrapping="Wrap" />
+                                            <TextBlock HorizontalAlignment="Right"
+                                                       FontSize="10"
+                                                       Foreground="#CCFFFFFF"
+                                                       Text="{Binding TimeText}" />
+                                        </StackPanel>
+                                    </Border>
+
+                                    <!--  助手消息  -->
+                                    <Border MaxWidth="780"
+                                            Padding="14,12"
+                                            HorizontalAlignment="Left"
+                                            Background="#12808080"
+                                            BorderBrush="#30808080"
+                                            BorderThickness="1"
+                                            CornerRadius="14,14,14,4"
+                                            IsVisible="{Binding IsAssistant}">
+                                        <StackPanel Spacing="8">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <icons:MaterialIcon Width="15"
+                                                                    Height="15"
+                                                                    Foreground="{DynamicResource SukiPrimaryColor}"
+                                                                    Kind="Robot" />
+                                                <TextBlock FontSize="11"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource SukiLowText}"
+                                                           Text="DeepSeek" />
+                                                <TextBlock FontSize="10"
+                                                           Foreground="{DynamicResource SukiLowText}"
+                                                           Text="{Binding TimeText}" />
+                                            </StackPanel>
+
+                                            <!--  思考过程  -->
+                                            <Border Padding="10,4"
+                                                    Background="#10808080"
+                                                    BorderBrush="#26808080"
+                                                    BorderThickness="1"
+                                                    CornerRadius="9"
+                                                    IsVisible="{Binding HasReasoning}">
+                                                <Expander HorizontalAlignment="Stretch"
+                                                          HorizontalContentAlignment="Stretch"
+                                                          IsExpanded="{Binding IsReasoningExpanded, Mode=TwoWay}">
+                                                    <Expander.Header>
+                                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                                            <icons:MaterialIcon Width="15"
+                                                                                Height="15"
+                                                                                Foreground="#D97706"
+                                                                                Kind="LightbulbOnOutline" />
+                                                            <TextBlock FontSize="12"
+                                                                       FontWeight="SemiBold"
+                                                                       Text="思考过程" />
+                                                            <TextBlock FontSize="10"
+                                                                       Foreground="{DynamicResource SukiPrimaryColor}"
+                                                                       IsVisible="{Binding IsStreaming}"
+                                                                       Text="实时输出中…" />
+                                                        </StackPanel>
+                                                    </Expander.Header>
+                                                    <SelectableTextBlock Margin="0,6,0,6"
+                                                                         FontSize="12"
+                                                                         Foreground="{DynamicResource SukiLowText}"
+                                                                         Text="{Binding Reasoning}"
+                                                                         TextWrapping="Wrap" />
+                                                </Expander>
+                                            </Border>
+
+                                            <!--  最终回答：使用 Markdown.Avalonia 渲染  -->
+                                            <controls:MarkdownPresenter Margin="0,-4,0,0"
+                                                                        IsVisible="{Binding HasContent}"
+                                                                        Markdown="{Binding Content}"
+                                                                        Rendered="MarkdownPresenter_OnRendered" />
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Spacing="8"
+                                                        IsVisible="{Binding IsStreaming}">
+                                                <ProgressBar Width="72"
+                                                             Height="3"
+                                                             IsIndeterminate="True"
+                                                             VerticalAlignment="Center" />
+                                                <TextBlock FontSize="11"
+                                                           Foreground="{DynamicResource SukiLowText}"
+                                                           Text="正在生成…" />
+                                            </StackPanel>
+
+                                            <TextBlock FontSize="11"
+                                                       Foreground="#D97706"
+                                                       IsVisible="{Binding HasNote}"
+                                                       Text="{Binding Note}"
+                                                       TextWrapping="Wrap" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <!--  空会话占位  -->
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            IsHitTestVisible="False"
+                            IsVisible="{Binding IsConversationEmpty}"
+                            Spacing="10">
+                    <icons:MaterialIcon Width="52"
+                                        Height="52"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{DynamicResource SukiLowText}"
+                                        Kind="RobotOutline" />
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="开始和 DeepSeek 对话" />
+                    <TextBlock MaxWidth="380"
+                               HorizontalAlignment="Center"
+                               FontSize="12"
+                               Foreground="{DynamicResource SukiLowText}"
+                               Text="填写 API Key 后发送消息。开启“深度思考”时，模型的思考过程会显示在回答上方。"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  底部：输入与操作  -->
+        <Border Grid.Row="2"
+                Padding="14"
+                Background="{DynamicResource SukiCardBackground}"
+                BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="14">
+            <Grid RowDefinitions="Auto,Auto" RowSpacing="8">
+                <TextBox x:Name="InputBox"
+                         MinHeight="64"
+                         MaxHeight="150"
+                         AcceptsReturn="True"
+                         KeyDown="InputBox_OnKeyDown"
+                         PlaceholderText="输入消息，Ctrl+Enter 发送，Shift+Enter 换行"
+                         Text="{Binding Input, Mode=TwoWay}"
+                         TextWrapping="Wrap" />
+
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+                    <StackPanel VerticalAlignment="Center" Spacing="2">
+                        <TextBlock FontSize="12"
+                                   Foreground="{DynamicResource SukiLowText}"
+                                   Text="{Binding StatusText}" />
+                        <TextBlock FontSize="12"
+                                   Foreground="#E5484D"
+                                   IsVisible="{Binding HasError}"
+                                   Text="{Binding ErrorMessage}"
+                                   TextWrapping="Wrap" />
+                        <TextBlock FontSize="11"
+                                   Foreground="{DynamicResource SukiLowText}"
+                                   IsVisible="{Binding HasUsage}"
+                                   Text="{Binding UsageText}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                        <Button Classes="Outlined"
+                                Command="{Binding SendCancelCommand}"
+                                Content="停止"
+                                IsVisible="{Binding IsBusy}" />
+                        <Button Height="38"
+                                MinWidth="110"
+                                Background="{DynamicResource SukiPrimaryColor}"
+                                Classes="Flat"
+                                Command="{Binding SendCommand}"
+                                Foreground="White">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <icons:MaterialIcon Width="16" Height="16" Kind="Send" />
+                                <TextBlock Text="发送" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

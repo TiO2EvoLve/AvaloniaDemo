@@ -10,22 +10,37 @@ using Newtonsoft.Json;
 
 namespace AvaloniaTestDemo.Views;
 
-public partial class SupabaseViewModel() : DemoPageBase("Supabase数据库", MaterialIconKind.SqlQuery,0)
+public partial class SupabaseViewModel() : DemoPageBase("Supabase数据库", MaterialIconKind.SqlQuery, 0)
 {
     [ObservableProperty] private UserData selectData;
-    [ObservableProperty]
-    public ObservableCollection<UserData> userDatas = new();
+
+    [ObservableProperty] public ObservableCollection<UserData> userDatas = new();
 
     [RelayCommand]
     private async Task Select()
     {
         var client = new SupabaseClient();
-        string result = await client.GetCards();
+        var result = await client.GetCards();
         Console.WriteLine(result);
         var list = JsonConvert.DeserializeObject<List<UserData>>(result);
-        if(list is null) return;
+        if (list is null) return;
         UserDatas.Clear();
         UserDatas = new ObservableCollection<UserData>(list);
+    }
+
+    [RelayCommand]
+    private async Task Add()
+    {
+    }
+
+    [RelayCommand]
+    private async Task Delete(int id)
+    {
+    }
+
+    [RelayCommand]
+    private async Task Updata(int id)
+    {
     }
 }
 
@@ -42,7 +57,7 @@ public class SupabaseClient
             "sb_publishable_iitF8TvQmK5SrlpEY9SCLw_UboHzgtd"
         );
     }
-    
+
     public async Task<string> GetCards()
     {
         var url = "https://bukdpuegydylbvzndqou.supabase.co/rest/v1/test?select=*";

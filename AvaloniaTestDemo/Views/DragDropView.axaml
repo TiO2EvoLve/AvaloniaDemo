@@ -21,7 +21,6 @@
                     <TextBlock Text="启用吸附" VerticalAlignment="Center"></TextBlock>
                     <CheckBox Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding IsSnapEnabled, Mode=TwoWay}"/>
                 </Grid>
-                
                 <Grid Grid.Row="1" ColumnDefinitions="*,2*">
                     <TextBlock Text="网格大小" VerticalAlignment="Center"></TextBlock>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">

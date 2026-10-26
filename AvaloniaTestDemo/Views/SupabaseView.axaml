@@ -10,32 +10,31 @@
         <vm:SupabaseViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="Auto,*"  RowSpacing="10" Margin="10">
-        <StackPanel><Button Command="{Binding SelectCommand}" Height="40" Width="80">查询</Button></StackPanel>
-        
+    <Grid RowDefinitions="Auto,*" RowSpacing="10" Margin="10">
+        <StackPanel>
+            <Button Command="{Binding SelectCommand}" Height="40" Width="80">查询</Button>
+        </StackPanel>
+
         <DataGrid Grid.Row="1"
-            ItemsSource="{Binding UserDatas}"
-            SelectedItem="{Binding SelectData}"
-            AutoGenerateColumns="False"
-            GridLinesVisibility="All"
-            IsReadOnly="True">
+                  ItemsSource="{Binding UserDatas}"
+                  SelectedItem="{Binding SelectData}"
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="All"
+                  IsReadOnly="True">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="姓名"
                     FontSize="18"
-                    Binding="{Binding name}"
-                    />
+                    Binding="{Binding name}" />
                 <DataGridTextColumn
                     Header="年龄"
                     FontSize="18"
-                    Binding="{Binding age}"
-                    />
+                    Binding="{Binding age}" />
                 <DataGridTextColumn
                     Header="创建日期"
                     FontSize="18"
-                    Binding="{Binding created_at}"
-                    />
+                    Binding="{Binding created_at}" />
             </DataGrid.Columns>
 
         </DataGrid>

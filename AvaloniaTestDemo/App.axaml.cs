@@ -93,9 +93,9 @@ public class App : Application
     private static SukiViews ConfigureViews(
         ServiceCollection services)
     {
-        return new SukiViews() 
+        return new SukiViews()
                 // Main Window
-                // .AddView<MainWindow, MainWindowViewModel>(services)
+                .AddView<MainWindow, MainWindowViewModel>(services)
 
                 // Pages
                 .AddView<LinQView, LinQViewModel>(services)
@@ -117,6 +117,7 @@ public class App : Application
                 .AddView<LiteDBView, LiteDBViewModel>(services)
                 .AddView<WorkFlowView, WorkFlowViewModel>(services)
                 .AddView<SupabaseView, SupabaseViewModel>(services)
+                .AddView<DeepSeekView, DeepSeekViewModel>(services)
             ;
     }
 

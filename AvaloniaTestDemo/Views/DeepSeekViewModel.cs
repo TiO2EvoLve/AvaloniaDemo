@@ -36,7 +36,7 @@ public partial class DeepSeekViewModel : DemoPageBase
     private string _selectedModel = "deepseek-flash";
 
     [ObservableProperty]
-    private string _apiKey = "sk-53573fcceb8c48dfa36b0b9bab727ab1";
+    private string _apiKey = Environment.GetEnvironmentVariable("DEEPSEEK_API_KEY")??"";
 
     [ObservableProperty]
     private bool _enableThinking = true;

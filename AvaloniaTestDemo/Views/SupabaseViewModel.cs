@@ -56,6 +56,10 @@ public class SupabaseClient
             "apikey",
             "sb_publishable_iitF8TvQmK5SrlpEY9SCLw_UboHzgtd"
         );
+        _client.DefaultRequestHeaders.Add(
+            "Authorization",
+            ""
+        );
     }
 
     public async Task<string> GetCards()

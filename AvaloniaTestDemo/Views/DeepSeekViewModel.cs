@@ -13,8 +13,7 @@ namespace AvaloniaTestDemo.Views;
 
 public partial class DeepSeekViewModel : DemoPageBase
 {
-    private const string SystemPrompt =
-        "你是一个乐于助人的 AI 助手。请使用简体中文回答，回答要准确、条理清晰。";
+    private const string SystemPrompt = "你是一个乐于助人的 AI 助手。请使用简体中文回答，回答要准确、条理清晰。";
 
     private readonly DeepSeekChatService _chatService = new();
 

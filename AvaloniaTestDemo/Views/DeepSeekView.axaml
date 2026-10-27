@@ -55,7 +55,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1"
-                      ColumnDefinitions="Auto,270,Auto,150,Auto,*"
+                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,*"
                       ColumnSpacing="8">
                     <TextBlock VerticalAlignment="Center"
                                FontSize="12"

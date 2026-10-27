@@ -85,7 +85,6 @@ public partial class DeepSeekView : UserControl
             {
                 return;
             }
-
             var distanceToBottom = ChatScrollViewer.Extent.Height
                                    - ChatScrollViewer.Viewport.Height
                                    - ChatScrollViewer.Offset.Y;

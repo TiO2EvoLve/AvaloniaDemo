@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Avalonia;
 using Avalonia.Collections;
@@ -32,9 +33,8 @@ public class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var services = new ServiceCollection();
-
+            
             services.AddSingleton(desktop);
-
             // ==========================================
             // 注册WorkflowCore
             // ==========================================
@@ -116,7 +116,6 @@ public class App : Application
                 .AddView<UpdateView, UpdateViewModel>(services)
                 .AddView<LiteDBView, LiteDBViewModel>(services)
                 .AddView<WorkFlowView, WorkFlowViewModel>(services)
-                .AddView<SupabaseView, SupabaseViewModel>(services)
                 .AddView<DeepSeekView, DeepSeekViewModel>(services)
             ;
     }

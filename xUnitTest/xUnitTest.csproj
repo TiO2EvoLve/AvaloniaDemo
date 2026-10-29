@@ -17,13 +17,13 @@
         <PackageReference Include="MediatR" Version="14.2.0" />
         <PackageReference Include="MessagePipe" Version="1.8.2" />
         <!-- Add Microsoft.Extensions.DependencyInjection so IServiceCollection.BuildServiceProvider() is available -->
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
         <PackageReference Include="coverlet.collector" Version="10.1.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="LanguageExt.Core" Version="4.4.9" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.13" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.14" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
         <PackageReference Include="NRules" Version="1.0.4" />
         <PackageReference Include="Scriban" Version="7.5.3" />

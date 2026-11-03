@@ -18,6 +18,7 @@ using SukiUI.Toasts;
 using UpdateTest;
 using WorkflowCore.Interface;
 using DemoPageBase = AvaloniaTestDemo.Views.DemoPageBase;
+using ViewLocator = AvaloniaTestDemo.Common.ViewLocator;
 
 namespace AvaloniaTestDemo;
 

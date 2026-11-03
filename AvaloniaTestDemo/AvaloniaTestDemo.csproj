@@ -23,7 +23,6 @@
         <PackageReference Include="Avalonia" Version="12.1.4" />
         <PackageReference Include="Avalonia.AvaloniaEdit" Version="12.0.0" />
         <PackageReference Include="Avalonia.Desktop" Version="12.1.4" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.8" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.4" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
@@ -46,10 +45,11 @@
         <PackageReference Include="NetSparkleUpdater.SparkleUpdater" Version="3.1.0" />
         <PackageReference Include="NetSparkleUpdater.UI.Avalonia" Version="3.1.0" />
         <PackageReference Include="QRCoder" Version="1.8.1" />
+        <PackageReference Include="ReactiveUI.Avalonia" Version="12.1.6" />
         <PackageReference Include="Stateless" Version="5.20.1" />
         <PackageReference Include="SukiUI" Version="7.0.1" />
         <PackageReference Include="System.Reactive" Version="7.0.0" />
-        <PackageReference Include="WorkflowCore" Version="3.21.0" />
+        <PackageReference Include="WorkflowCore" Version="3.22.0" />
         <PackageReference Include="xunit" Version="2.9.3" />
     </ItemGroup>
 

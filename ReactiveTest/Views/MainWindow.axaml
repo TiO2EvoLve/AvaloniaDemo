@@ -14,9 +14,8 @@
     </Design.DataContext>
 
     <Grid>
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
-    <Button Command="{Binding RunCommand}"></Button>
+        <TextBox Width="200" Text="{Binding Greeting}"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
     </Grid>
 </Window>

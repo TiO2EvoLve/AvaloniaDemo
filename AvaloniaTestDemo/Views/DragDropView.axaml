@@ -56,9 +56,7 @@
                            Foreground="White"
                            FontWeight="Bold" />
             </Border>
-
         </Canvas>
         </Border>
     </Grid>
-
 </UserControl>

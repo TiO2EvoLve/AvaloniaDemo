@@ -118,6 +118,7 @@ public class App : Application
                 .AddView<LiteDBView, LiteDBViewModel>(services)
                 .AddView<WorkFlowView, WorkFlowViewModel>(services)
                 .AddView<DeepSeekView, DeepSeekViewModel>(services)
+                .AddView<DownloaderView, DownloaderViewModel>(services)
             ;
     }
 

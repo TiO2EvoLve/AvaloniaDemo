@@ -1,4 +1,4 @@
-using System;
+
 using ReactiveUI.SourceGenerators;
 
 namespace ReactiveTest.ViewModels;
@@ -9,6 +9,12 @@ public partial class MainViewModel : ViewModelBase
     private string _greeting = "Welcome to Avalonia!";
 
     public MainViewModel()
+    {
+        
+    }
+
+    [ReactiveCommand]
+    public void Test()
     {
         
     }

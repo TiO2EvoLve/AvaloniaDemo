@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:AvaloniaTestDemo.Views"
+             x:DataType="vm:DownloaderViewModel"
+             x:Class="AvaloniaTestDemo.Views.DownloaderView">
+    
+    <Design.DataContext>
+        <vm:DownloaderViewModel />
+    </Design.DataContext>
+    
+     <Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
+        <!-- 输入区域 -->
+        <StackPanel Grid.Row="0" Spacing="8">
+            <TextBlock Text="文件 URL" FontWeight="SemiBold"/>
+            <TextBox Text="{Binding Url}" Watermark="https://example.com/file.zip"/>
+
+            <TextBlock Text="保存文件名" FontWeight="SemiBold" Margin="0,8,0,0"/>
+            <TextBox Text="{Binding FileName}"/>
+        </StackPanel>
+
+        <!-- 进度条 -->
+        <StackPanel Grid.Row="1" Margin="0,20,0,0" Spacing="6">
+            <ProgressBar Minimum="0" Maximum="100" 
+                         Value="{Binding ProgressPercentage}"
+                         Height="24"
+                         ShowProgressText="True"
+                         ProgressTextFormat="{}{0:0.0}%"/>
+            
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Text="{Binding ReceivedText}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="{Binding SpeedText}" 
+                           FontWeight="Bold" Foreground="DodgerBlue"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- 状态栏 -->
+        <Border Grid.Row="2" Background="#F0F0F0" CornerRadius="4" Padding="10" Margin="0,10,0,0">
+            <TextBlock Text="{Binding StatusText}" FontWeight="SemiBold"/>
+        </Border>
+
+        <!-- 控制按钮 -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0,20,0,0"
+                    HorizontalAlignment="Center">
+            <Button Content="开始下载" Command="{Binding StartDownloadCommand}"
+                    IsEnabled="{Binding !IsDownloading}"
+                    Classes="accent" Padding="20,8"/>
+
+            <Button Content="暂停" Command="{Binding PauseCommand}"
+                    IsEnabled="{Binding CanPause}" Padding="20,8"/>
+
+            <Button Content="继续" Command="{Binding ResumeCommand}"
+                    IsEnabled="{Binding CanResume}" Padding="20,8"/>
+
+            <Button Content="取消" Command="{Binding CancelCommand}"
+                    IsEnabled="{Binding CanCancel}" Padding="20,8"/>
+
+            <Button Content="从断点恢复" Command="{Binding ResumeFromPackageCommand}"
+                    IsEnabled="{Binding CanResume}" Padding="20,8"/>
+        </StackPanel>
+
+        <!-- 说明文字 -->
+        <TextBlock Grid.Row="4" TextWrapping="Wrap" Foreground="Gray" Margin="0,20,0,0"
+                   Text="说明：Downloader 支持多线程分块下载（ChunkCount=8）。暂停使用 Pause() 保持连接；取消后 Package 会保留，可通过“从断点恢复”继续。"/>
+    </Grid>
+</UserControl>

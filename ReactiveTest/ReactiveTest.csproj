@@ -25,4 +25,11 @@
         <PackageReference Include="System.Reactive" Version="7.0.0" />
         <PackageReference Include="System.Reactive.Linq" Version="6.1.0" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\UserControl\ReadCardDemo.axaml.cs">
+        <DependentUpon>ReadCardDemo.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

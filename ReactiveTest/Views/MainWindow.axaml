@@ -1,8 +1,8 @@
-
 <Window
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:ReactiveTest.ViewModels"
+    xmlns:userControl="clr-namespace:ReactiveTest.Views.UserControl"
     x:Class="ReactiveTest.Views.MainWindow"
     x:DataType="vm:MainViewModel"
     Title="ReactiveTest">
@@ -10,83 +10,22 @@
     <Design.DataContext>
         <vm:MainViewModel />
     </Design.DataContext>
+    
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:ReadCardDemoViewModel">
+            <userControl:ReadCardDemo />
+        </DataTemplate>
+        <DataTemplate DataType="vm:TestViewModel">
+            <userControl:Test />
+        </DataTemplate>
+    </Window.DataTemplates>
 
-    <Grid>
-        <StackPanel Margin="25" Spacing="15">
-
-            <TextBlock
-                Text="智能卡设备管理"
-                FontSize="26"
-                FontWeight="Bold"/>
-
-            <!-- 设备状态 -->
-            <Border
-                Padding="15"
-                CornerRadius="8"
-                Background="#E8F1FA">
-
-                <StackPanel Spacing="5">
-                    <TextBlock Text="当前设备状态"/>
-                    <TextBlock
-                        Text="{Binding Status}"
-                        FontSize="22"
-                        FontWeight="Bold"/>
-                </StackPanel>
-
-            </Border>
-
-            <!-- 模拟设备状态 -->
-            <TextBlock Text="设备控制" FontWeight="Bold"/>
-
-            <CheckBox
-                Content="设备已连接"
-                IsChecked="{Binding IsConnected, Mode=TwoWay}"/>
-
-            <CheckBox
-                Content="身份认证通过"
-                IsChecked="{Binding IsAuthenticated, Mode=TwoWay}"/>
-
-            <!-- 设备搜索 -->
-            <TextBlock Text="设备列表" FontWeight="Bold"/>
-
-            <TextBox
-                PlaceholderText="搜索设备..."
-                Text="{Binding SearchText, Mode=TwoWay}"/>
-            <ItemsControl Background="AntiqueWhite" ItemsSource="{Binding FilteredDevices}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="8">
-                            <TextBlock Text="{Binding}"/>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <!-- 读卡操作 -->
-            <Button
-                Content="读取 CPU 卡"
-                Command="{Binding ReadCardCommand}"/>
-
-            <!-- 执行状态 -->
-            <TextBlock
-                Text="{Binding IsBusy, StringFormat='正在执行：{0}'}"/>
-
-            <!-- 读卡结果 -->
-            <Border
-                Padding="12"
-                CornerRadius="8"
-                Background="#E8F5E9">
-
-                <StackPanel Spacing="5">
-                    <TextBlock
-                        Text="操作结果"
-                        FontWeight="Bold"/>
-
-                    <TextBlock Text="{Binding Result}"/>
-                </StackPanel>
-
-            </Border>
-
+    <Grid RowDefinitions="Auto, *" RowSpacing="10">
+        <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
+            <Button Command="{Binding NavigateCommand}" CommandParameter="readcard">Read Card</Button>
+            <Button Command="{Binding NavigateCommand}" CommandParameter="test">TEST</Button>
         </StackPanel>
+        <UserControl Grid.Row="1" Content="{Binding CurrentPage}"></UserControl>
     </Grid>
+    
 </Window>

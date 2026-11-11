@@ -3,6 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using ReactiveTest.ViewModels;
 using ReactiveTest.Views;
+using Splat;
 
 namespace ReactiveTest;
 
@@ -18,14 +19,16 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        var mainViewModel = AppLocator.Current.GetService<MainViewModel>();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel(),
+                DataContext = mainViewModel,
             };
         }
-
+        
         base.OnFrameworkInitializationCompleted();
     }
 }

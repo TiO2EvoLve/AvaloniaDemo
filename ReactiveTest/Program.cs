@@ -1,23 +1,35 @@
 ﻿using Avalonia;
 using ReactiveUI.Avalonia;
 using System;
+using DryIoc;
+using ReactiveTest.ViewModels;
+using ReactiveUI.Avalonia.Splat;
 
 namespace ReactiveTest;
 
 sealed class Program
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
+    
     [STAThread]
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
-
-    // Avalonia configuration, don't remove; also used by visual designer.
+    
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace()
+            .UseReactiveUIWithDryIoc(
+                container =>
+                {
+                    container.Register<MainViewModel>(Reuse.Singleton);
+                    container.Register<ReadCardDemoViewModel>(Reuse.Singleton);
+                    container.Register<TestViewModel>(Reuse.Singleton);
+                },
+                withReactiveUIBuilder: rxui =>
+                {
+                    // Optional ReactiveUI customizations
+                })
+            .RegisterReactiveUIViewsFromEntryAssembly()
             .UseReactiveUI(_ => { });
 }

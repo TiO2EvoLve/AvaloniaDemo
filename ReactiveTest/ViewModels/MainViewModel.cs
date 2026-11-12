@@ -3,7 +3,8 @@ using ReactiveUI.SourceGenerators;
 
 namespace ReactiveTest.ViewModels;
 
-public partial class MainViewModel(ReadCardDemoViewModel readCardDemoViewModel, TestViewModel testViewModel) : ViewModelBase
+public partial class MainViewModel(ReadCardDemoViewModel readCardDemoViewModel, 
+    TestViewModel testViewModel) : ViewModelBase
 {
     [Reactive]
     private ViewModelBase _currentPage = readCardDemoViewModel;

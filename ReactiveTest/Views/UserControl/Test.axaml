@@ -6,5 +6,17 @@
              xmlns:vm="using:ReactiveTest.ViewModels"
              x:DataType="vm:TestViewModel"
              x:Class="ReactiveTest.Views.UserControl.Test">
-    Welcome to Avalonia!
+
+    <Design.DataContext>
+        <vm:TestViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <StackPanel>
+        <Button Command="{Binding SaveCommand}">Save</Button>
+        <TextBox Text="{Binding Name}"/>
+        </StackPanel>
+    </Grid>
+   
+
 </UserControl>

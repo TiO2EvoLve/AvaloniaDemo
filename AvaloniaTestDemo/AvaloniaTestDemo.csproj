@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net11.0-windows</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <AssemblyName>AvaloniaTest</AssemblyName>
         <Version>1.0.0</Version>
         <Nullable>enable</Nullable>
@@ -20,29 +20,29 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="12.1.6" />
+        <PackageReference Include="Avalonia" Version="12.1.5" />
         <PackageReference Include="Avalonia.AvaloniaEdit" Version="12.0.0" />
-        <PackageReference Include="Avalonia.Desktop" Version="12.1.6" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.6" />
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.6" />
+        <PackageReference Include="Avalonia.Desktop" Version="12.1.5" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.5" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.5" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.23">
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.22">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.3.0.6" />
         <PackageReference Include="CalcBinding" Version="2.5.2" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-        <PackageReference Include="Downloader" Version="7.0.1" />
+        <PackageReference Include="Downloader" Version="6.0.1" />
         <PackageReference Include="DynamicData" Version="9.5.0" />
         <PackageReference Include="LiteDB" Version="5.0.21" />
         <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
         <PackageReference Include="Lib.Harmony" Version="2.4.3" />
         <PackageReference Include="Material.Icons.Avalonia" Version="3.0.2" />
         <PackageReference Include="Markdown.Avalonia" Version="12.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="11.0.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="11.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.14" />
         <PackageReference Include="NetSparkleUpdater.SparkleUpdater" Version="3.1.0" />
         <PackageReference Include="NetSparkleUpdater.UI.Avalonia" Version="3.1.0" />
         <PackageReference Include="QRCoder" Version="1.8.1" />

@@ -19,6 +19,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        //从容器中获取MainViewModel实例
         var mainViewModel = AppLocator.Current.GetService<MainViewModel>();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)

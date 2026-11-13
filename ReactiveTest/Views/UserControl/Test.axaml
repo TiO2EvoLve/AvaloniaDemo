@@ -6,5 +6,15 @@
              xmlns:vm="using:ReactiveTest.ViewModels"
              x:DataType="vm:TestViewModel"
              x:Class="ReactiveTest.Views.UserControl.Test">
-    Welcome to Avalonia!
+    <Design.DataContext>
+        <vm:TestViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="10">
+        <StackPanel Spacing="10" Orientation="Horizontal">
+            <TextBox Text="{Binding Name}" PlaceholderText="输入不为空才能点击按钮"/>
+            <Button Command="{Binding SaveCommand}">BUTTON</Button>
+        </StackPanel>
+    </Grid>
+
 </UserControl>

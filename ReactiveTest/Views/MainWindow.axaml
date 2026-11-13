@@ -2,18 +2,26 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:ReactiveTest.ViewModels"
+    xmlns:userControl="clr-namespace:ReactiveTest.Views.UserControl"
     x:Class="ReactiveTest.Views.MainWindow"
     x:DataType="vm:MainViewModel"
     Title="ReactiveTest">
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:ReadCardDemoViewModel">
+            <userControl:ReadCardDemo />
+        </DataTemplate>
+        <DataTemplate DataType="vm:TestViewModel">
+            <userControl:Test />
+        </DataTemplate>
+    </Window.DataTemplates>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="10">
         <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
             <Button Command="{Binding NavigateCommand}" CommandParameter="readcard">Read Card</Button>
             <Button Command="{Binding NavigateCommand}" CommandParameter="test">TEST</Button>
         </StackPanel>
-
-        <!-- Sextant 导航视图在 App.OnFrameworkInitializationCompleted 中填充 -->
-        <ContentControl Grid.Row="1" x:Name="NavigationHost" />
+        <UserControl Grid.Row="1" Content="{Binding CurrentPage}"></UserControl>
     </Grid>
 
 </Window>

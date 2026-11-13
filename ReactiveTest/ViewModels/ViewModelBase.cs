@@ -1,11 +1,7 @@
-﻿using System;
-using System.Reactive;
-using ReactiveUI;
-using Sextant;
+﻿using ReactiveUI;
 
 namespace ReactiveTest.ViewModels;
 
 public abstract class ViewModelBase : ReactiveObject
 {
-    
 }

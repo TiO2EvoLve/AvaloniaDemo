@@ -1,10 +1,9 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using ReactiveUI.Avalonia;
+using ReactiveTest.ViewModels;
 
 namespace ReactiveTest.Views.UserControl;
 
-public partial class Test : Avalonia.Controls.UserControl
+public partial class Test : ReactiveUserControl<TestViewModel>
 {
     public Test()
     {

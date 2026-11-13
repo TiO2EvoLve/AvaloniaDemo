@@ -1,6 +1,9 @@
-﻿namespace ReactiveTest.Views.UserControl;
+using ReactiveUI.Avalonia;
+using ReactiveTest.ViewModels;
 
-public partial class ReadCardDemo : Avalonia.Controls.UserControl
+namespace ReactiveTest.Views.UserControl;
+
+public partial class ReadCardDemo : ReactiveUserControl<ReadCardDemoViewModel>
 {
     public ReadCardDemo()
     {

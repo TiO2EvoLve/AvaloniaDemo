@@ -1,9 +1,13 @@
-﻿using System;
+using System;
+using System.Reactive;
+using System.Reactive.Linq;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using Sextant;
 
 namespace ReactiveTest.ViewModels;
 
-public partial class TestViewModel : ViewModelBase
+public partial class TestViewModel : ViewModelBase, INavigable
 {
     [Reactive]
     public partial string Name { get; set; }
@@ -31,4 +35,16 @@ public partial class TestViewModel : ViewModelBase
     {
         Console.WriteLine(Name);
     }
+
+    /// <inheritdoc />
+    public string? Id { get; } = nameof(TestViewModel);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatedFrom(INavigationParameter parameter) => Observable.Return(Unit.Default);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
 }

@@ -1,14 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using Sextant;
 
 namespace ReactiveTest.ViewModels;
 
-public partial class ReadCardDemoViewModel : ViewModelBase
+public partial class ReadCardDemoViewModel : ViewModelBase,INavigable
 {
     #region 响应式属性
 
@@ -26,9 +29,14 @@ public partial class ReadCardDemoViewModel : ViewModelBase
 
     #region 派生属性
 
-    [ObservableAsProperty] public partial string Status { get; }
+    // ReactiveUI 22 没有 [ObservableAsProperty] 源生成器（该特性来自 ReactiveUI.Binding），
+    // 因此这里显式使用 ObservableAsPropertyHelper。
+    private readonly ObservableAsPropertyHelper<string> _status;
+
+    public string Status => _status.Value;
 
     private readonly ObservableAsPropertyHelper<ObservableCollection<string>> _filteredDevices;
+
     public ObservableCollection<string> FilteredDevices => _filteredDevices.Value;
 
     #endregion
@@ -54,7 +62,7 @@ public partial class ReadCardDemoViewModel : ViewModelBase
     public ReadCardDemoViewModel()
     {
         // 1. 设备状态：组合三个属性
-        this.WhenAnyValue(x => x.IsConnected)
+        _status = this.WhenAnyValue(x => x.IsConnected)
             .CombineLatest(this.WhenAnyValue(x => x.IsAuthenticated),
                 this.WhenAnyValue(x => x.IsBusy),
                 (connected, authenticated, busy) =>
@@ -118,5 +126,16 @@ public partial class ReadCardDemoViewModel : ViewModelBase
     }
 
     #endregion
-    
+
+    /// <inheritdoc />
+    public string? Id { get; } = nameof(ReadCardDemoViewModel);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatedTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatedFrom(INavigationParameter parameter) => Observable.Return(Unit.Default);
+
+    /// <inheritdoc />
+    public IObservable<Unit> WhenNavigatingTo(INavigationParameter parameter) => Observable.Return(Unit.Default);
 }

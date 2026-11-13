@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net11.0-windows</TargetFramework>
@@ -12,20 +12,20 @@
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
 
+    <!--
+        Sextant 4.0.30 是当前最新版，只支持 Avalonia 11.3.x + ReactiveUI 22.3.1 + Splat 17。
+        项目原先使用的 Avalonia 12 / ReactiveUI 26 / Splat 21 会让 Sextant 在运行期抛
+        TypeLoadException（ReactiveUI.IViewFor`1）和 MissingMethodException（Splat.LogHost.Log），
+        因此这里把整个 Reactive 技术栈对齐到 Sextant 官方支持组合。
+    -->
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="12.1.6" />
-        <PackageReference Include="Avalonia.Desktop" Version="12.1.6" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.6" />
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.6" />
-        <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3">
-            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="ReactiveUI.Avalonia" Version="12.1.6" />
-        <PackageReference Include="ReactiveUI.Avalonia.DryIoc" Version="12.1.6" />
+        <PackageReference Include="Avalonia" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
+        <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+        <PackageReference Include="ReactiveUI.SourceGenerators" Version="4.2.0" />
         <PackageReference Include="Sextant.Avalonia" Version="4.0.30" />
-        <PackageReference Include="System.Reactive" Version="7.0.0" />
-        <PackageReference Include="System.Reactive.Linq" Version="6.1.0" />
     </ItemGroup>
 
     <ItemGroup>
